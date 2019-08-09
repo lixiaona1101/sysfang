@@ -3,6 +3,7 @@ package com.example.lixiaona.study.dialog;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.lixiaona.study.R;
@@ -24,6 +25,7 @@ public class PromptDialog extends BaseDialog {
     private AppCompatTextView tip;
     private AppCompatTextView body;
     private View line;
+    private Button button;
 
     private OnRightClick onRightClick;
     private OnLeftClick onLeftClick;
