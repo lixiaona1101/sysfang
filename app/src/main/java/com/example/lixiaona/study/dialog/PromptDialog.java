@@ -25,7 +25,6 @@ public class PromptDialog extends BaseDialog {
     private AppCompatTextView tip;
     private AppCompatTextView body;
     private View line;
-    private Button button;
 
     private OnRightClick onRightClick;
     private OnLeftClick onLeftClick;
