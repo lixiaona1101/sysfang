@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.example.lixiaona.study.R;
@@ -42,6 +43,7 @@ public abstract class BaseFragment extends Fragment implements IBaseFragment {
     public boolean isFragmentVisible;
     //是否已经加载过
     protected boolean isLoaded = false;
+    private Button button;
 
     protected boolean isResume = false;
 
