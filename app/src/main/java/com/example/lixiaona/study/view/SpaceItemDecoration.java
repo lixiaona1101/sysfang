@@ -10,9 +10,6 @@ import android.util.Log;
 import android.view.View;
 
 
-/**
- * Created by lt on 2018/4/9.
- */
 public class SpaceItemDecoration extends RecyclerView.ItemDecoration{
 
     private static final String TAG = "SpaceItemDecoration";

@@ -16,12 +16,7 @@ import android.view.WindowManager;
 
 import com.orhanobut.logger.Logger;
 
-//import com.example.fanhui.study.utils.ActivityStackManager;
-
-
 public abstract class BaseActivity extends AbstractActivity {
-//    页面的堆栈管理
-//    private ActivityStackManager mStackManager;
 
     protected int mWidth;
     protected int mHeight;
@@ -43,8 +38,6 @@ public abstract class BaseActivity extends AbstractActivity {
     }
 
     private void init() {
-//        mStackManager = ActivityStackManager.getInstance();
-//        mStackManager.pushOneActivity(this);
 
         WindowManager manager = this.getWindowManager();
         DisplayMetrics outMetrics = new DisplayMetrics();
@@ -57,7 +50,6 @@ public abstract class BaseActivity extends AbstractActivity {
 
     /*------------------------------------------ 状态栏和虚拟键盘  -------------------------------------*/
     private void initBarColor() {
-//        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.white));
         setDarkStatusIcon(true);
     }
 

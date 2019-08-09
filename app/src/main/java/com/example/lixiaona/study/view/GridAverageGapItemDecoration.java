@@ -13,7 +13,6 @@ import android.view.View;
  *
  * @author : renpeng
  * @org :Aurora Team
- * @since : 2018/9/29
  */
 public class GridAverageGapItemDecoration extends RecyclerView.ItemDecoration {
 

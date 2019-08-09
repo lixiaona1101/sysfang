@@ -12,7 +12,6 @@ import android.text.method.DigitsKeyListener;
  * 默认第一位输入小数点时，转换为0.
  * 如果起始位置为0,且第二位跟的不是".",则无法后续输入
  *
- *作者   ：Created by DuanRui on 2017/9/28.
  */
 
 public class MoneyValueFilter extends DigitsKeyListener {

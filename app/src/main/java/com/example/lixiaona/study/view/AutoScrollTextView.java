@@ -2,13 +2,9 @@ package com.example.lixiaona.study.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
-/**
- * Created by fanhui on 2019/3/18.
- */
 
-public class AutoScrollTextView extends TextView {
+public class AutoScrollTextView extends android.support.v7.widget.AppCompatTextView {
     public AutoScrollTextView(Context context) {
         super(context);
     }

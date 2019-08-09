@@ -9,7 +9,7 @@ public class LoginBean implements Serializable {
      * ryToken : SMApRMUJcbUaT/Ufe/ph46d8p65dGp6PRA9Z3uNEvmghYA9Rnr/x8B/TcmQUtUIVUdGCM9dx7txyquu6yR6T/KMrZlX25G5QLQCadIBwYl4=
      * userId : 120
      * userType : 3
-     * realName : 任文辉
+     * realName : ***
      * phone : 13752350414
      * lastLoginDate : 2019-03-31 15:40:34
      * checkUserId : 95
@@ -21,7 +21,7 @@ public class LoginBean implements Serializable {
      * available : 0
      * cardNo : 140729198702130036
      * businessLicenUrl :
-     * address : 天津市南开区
+     * address : **市**区
      * password : d7f75c7cd18ac72efe63d7c1593be047
      * createDate : 1526865170000
      * updateDate : 1554018038000
