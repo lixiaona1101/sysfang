@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.DoctorCertified.MessageCertifiedActivity">
+
+    <include layout="@layout/title" />
+
+    <!--1表示成功 2表示失败-->
+    <!--认证1-->
+    <TextView
+        android:id="@+id/text_pass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/orange"
+        android:gravity="center"
+        android:text="您的医生资质认证已通过！"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14"
+        android:visibility="visible" />
+
+    <!--认证2-->
+    <TextView
+        android:id="@+id/text_no_pass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/gray_444444"
+        android:gravity="center"
+        android:text="您的医生资质认证未通过！"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20">
+
+        <TextView
+            android:id="@+id/salesman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="业务员："
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/salesman_name_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_toRightOf="@+id/salesman"
+            android:text="赵璐 13145897536"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp16" />
+
+        <ImageView
+            android:id="@+id/salesman_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_toRightOf="@+id/salesman_name_phone"
+            android:src="@mipmap/phone" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@color/gray_dddddd" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20">
+
+        <TextView
+            android:id="@+id/attestation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="认证时间:"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/attestation_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp12"
+            android:layout_toRightOf="@+id/attestation"
+            android:text="2019.8.20"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp16" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:background="@color/gray_dddddd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        android:text="认证资料"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp16"
+        android:textStyle="bold" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生姓名"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/ren_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:text="赵璐"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <!--医师资格证1-->
+    <RelativeLayout
+        android:id="@+id/rela_status_ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生资格证"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/right1_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/right" />
+
+        <ImageView
+            android:id="@+id/pass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/right1_ok"
+            android:src="@mipmap/pass" />
+
+    </RelativeLayout>
+
+    <!--医生资格证2-->
+    <RelativeLayout
+        android:id="@+id/rela_status_no"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生资格证"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/right" />
+
+        <ImageView
+            android:id="@+id/fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/right"
+            android:src="@mipmap/fail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/fail"
+            android:text="未通过"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/sp12" />
+
+    </RelativeLayout>
+
+    <!--医生执业证1-->
+    <RelativeLayout
+        android:id="@+id/rela_practice_ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生执业证"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/right2_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/right" />
+
+        <ImageView
+            android:id="@+id/pass2_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/right2_ok"
+            android:src="@mipmap/pass" />
+
+    </RelativeLayout>
+
+    <!--医师执业证2-->
+    <RelativeLayout
+        android:id="@+id/rela_practice_no"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生执业证"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/right2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/right" />
+
+        <ImageView
+            android:id="@+id/fail2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/right2"
+            android:src="@mipmap/fail" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/fail2"
+            android:text="未通过"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/sp12" />
+
+    </RelativeLayout>
+
+    <!--成功-->
+    <TextView
+        android:id="@+id/reason_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="说明:\n1、我们承诺,您的个人信息只用做医生资格审查。绝不将您的个人信息外漏。\n2、医生资质一但认证成功,不支持进行更改。包括【医生姓名】、【执业证书】、【资格证书】。如有特殊情况请联系您的业务员进行说明更改。\n3、平台推广期,个别情况不做特别限制。"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp12"
+        android:visibility="visible" />
+
+    <!--失败-->
+    <TextView
+        android:id="@+id/reason_no1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="审核失败原因:"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/sp14"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/reason_no2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="资格证与认证医生姓名不符"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp12"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/reason_restart_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp33"
+        android:layout_marginRight="@dimen/dp33"
+        android:layout_marginTop="@dimen/dp30"
+        android:background="@drawable/radius_15_green"
+        android:text="重新认证"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp18"
+        android:visibility="gone" />
+
+</LinearLayout>

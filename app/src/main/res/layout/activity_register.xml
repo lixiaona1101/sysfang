@@ -1,0 +1,130 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp80"
+        android:src="@mipmap/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp70"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_code_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="验证码登录"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp18" />
+
+            <TextView
+                android:id="@+id/tv_line1"
+                android:layout_width="@dimen/dp80"
+                android:layout_height="@dimen/dp4"
+                android:layout_marginTop="@dimen/dp9"
+                android:background="@drawable/radius_4_009685" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="@dimen/dp1"
+            android:layout_height="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp23"
+            android:layout_marginRight="@dimen/dp23"
+            android:layout_marginTop="@dimen/dp5"
+            android:background="#bfbfbf" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_pass_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="密码登录"
+                android:textColor="@color/gary_999999"
+                android:textSize="@dimen/sp18" />
+
+            <TextView
+                android:id="@+id/tv_line2"
+                android:layout_width="@dimen/dp80"
+                android:layout_height="@dimen/dp4"
+                android:layout_marginTop="@dimen/dp9"
+                android:background="@drawable/radius_4_009685"
+                android:visibility="invisible" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <include layout="@layout/code" />
+
+    <include layout="@layout/password" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp38"
+                android:layout_marginRight="@dimen/dp38"
+                android:layout_marginTop="@dimen/dp35"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_weight="1"
+                    android:background="@color/gary_999999" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingRight="@dimen/dp15"
+                    android:text="第三方登录"
+                    android:textColor="@color/gray_444444" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_weight="1"
+                    android:background="@color/gary_999999" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_wx_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp18"
+                android:src="@mipmap/wechat" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

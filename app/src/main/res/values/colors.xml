@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#ffda00</color>
+    <color name="colorPrimaryDark">#7389ec</color>
     <color name="colorAccent">#FF4081</color>
     <!-- 线线颜色-->
     <color name="stroke_line">#ededed</color>v
     <color name="textcolor_yellow">#ffc801</color>
     <color name="text_color_000000">#000000</color>
-    <color name="white">#ffffff</color>
     <color name="btn2">#FFD52B</color>
     <color name="view_color">#f4f4f4</color>
-
     <color name="sred">#ff4141</color>
     <color name="gold">#d8ab5c</color>
-    <color name="orange">#ffa500</color>
     <color name="pink">#ffc0cb</color>
     <color name="transparent">#00000000</color>
     <color name="green">#FF34A350</color>
@@ -21,6 +18,41 @@
     <color name="background">#f7f7f7</color>
     <color name="sele">#ffda00</color>
     <color name="color_e6">#ffe6e6e6</color>
-
     <color name="divider">#ffd2d2d2</color>
+
+
+    <color name="theme_color">#af7f45</color>
+    <color name="gary_999999">#999999</color>
+    <color name="green_009685">#af7f45</color>
+    <color name="gray_444444">#444444</color>
+    <color name="gray_666666">#666666</color>
+    <color name="gray_808080">#808080</color>
+    <color name="app_back">#ffffff</color>
+    <color name="app_gray_back">#ffffff</color>
+    <color name="bg_tools_panel">#2F2F2F</color>
+    <color name="color_transparent">#00000000</color>
+    <color name="app_back_f2">#f2f2f2</color>
+    <color name="shadow_bottom">#d9d9d9</color>
+    <color name="shadow_center">#ececec</color>
+    <color name="shadow_top">#f1f1f1</color>
+    <color name="gray_dddddd">#dddddd</color>
+    <color name="text_black">#333333</color>
+    <color name="hint_orange">#ce503f</color>
+    <color name="orange">#ce503f</color>
+    <color name="yellow_d49e6a">#ce503f</color>
+    <color name="c_333333">#333333</color>
+    <color name="c_d8d3cf">#d8d3cf</color>
+    <color name="white">#ffffff</color>
+    <color name="c_a59a93">#a59a93</color>
+    <color name="c_b9afa9">#b9afa9</color>
+    <color name="c_c35b3a">#c35b3a</color>
+    <color name="c_9d472c">#9d472c</color>
+    <color name="c_8ab4ab">#8ab4ab</color>
+    <color name="c_a1c3bc">#a1c3bc</color>
+    <color name="em_blue">#1E88E5</color>
+    <color name="em_blue_pressed">#0000aF</color>
+    <color name="em_indicator_select">#9E9E9E</color>
+    <color name="em_indicator_normal">#1AFFFFFF</color>
+    <color name="c_e2e2df">#99f9ebeb</color>
+
 </resources>

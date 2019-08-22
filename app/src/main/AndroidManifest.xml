@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lixiaona.study">
+    package="com.jiuhao.jhjk">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -32,23 +32,97 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
-        android:name="com.example.lixiaona.study.App"
+        android:name=".APP.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-
-        <activity android:name="com.example.lixiaona.study.activity.MainActivity">
+        android:theme="@style/AppTheme2">
+        <activity android:name=".activity.welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.welcome.WelcomeSiActivity" />
+        <activity android:name=".activity.welcome.RegisterActivity" />
+        <activity android:name=".activity.welcome.BindPhoneActivity" />
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
+        <activity android:name=".view.NewsWebView" />
+        <activity
+            android:name=".activity.mine.DoctorCertified.MessageCertifiedActivity"
+            android:label="@string/title_activity_message_certified"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.DoctorCertified.CertifiedActivity"
+            android:label="@string/title_activity_certified"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.DoctorCertified.CertifiedPassActivity"
+            android:label="@string/title_activity_certified_pass"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.UserPhoneActivity"
+            android:label="@string/title_activity_user_phone"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.AccountManagementActivity"
+            android:label="@string/title_activity_account_management"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.UserPassActivity"
+            android:label="@string/title_activity_user_pass"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.ConsultingFeeActivity"
+            android:label="@string/title_activity_consulting_fee"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.ConsultingActivity"
+            android:label="@string/title_activity_consulting"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.FeePersonActivity"
+            android:label="@string/title_activity_fee_person"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.CutUserActivity"
+            android:label="@string/title_activity_cut_user"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.IntegralActivity"
+            android:label="@string/title_activity_integral"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.BillActivity"
+            android:label="@string/title_activity_bill"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.AboutOurActivity"
+            android:label="@string/title_activity_about_our"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.PersonalDataActivity"
+            android:label="@string/title_activity_personal_data"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.AdministrativeActivity"
+            android:label="@string/title_activity_administrative"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.OccupationActivity"
+            android:label="@string/title_activity_occupation"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.OutCallActivity"
+            android:label="@string/title_activity_out_call"
+            android:theme="@style/AppTheme2"></activity>
     </application>
 
 </manifest>

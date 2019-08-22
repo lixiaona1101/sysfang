@@ -1,0 +1,307 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.jiuhao.jhjk.fragment.main.MainPatientFragment">
+
+    <!--背景-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background" />
+
+    <!--医生头像-->
+    <ImageView
+        android:id="@+id/iv_head"
+        android:src="@mipmap/ic_12"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp80"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp40" />
+
+    <!--医生名字-->
+    <TextView
+        android:id="@+id/tv_doc_name_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp7"
+        android:layout_marginTop="@dimen/dp74"
+        android:layout_toRightOf="@+id/iv_head"
+        android:text="医生名字"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp19" />
+
+    <!--个人资料-->
+    <TextView
+        android:id="@+id/perfect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/tv_doc_name_user"
+        android:layout_alignBottom="@+id/tv_doc_name_user"
+        android:layout_alignEnd="@+id/invite"
+        android:drawableRight="@mipmap/edit"
+        android:text="完善个人资料  "
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12" />
+
+    <!--邀请医生-->
+    <TextView
+        android:id="@+id/invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp19"
+        android:layout_marginTop="@dimen/dp32"
+        android:background="@drawable/background_one"
+        android:padding="@dimen/dp6"
+        android:text="邀请医生"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp12" />
+
+    <!--医生资质认证-->
+    <RelativeLayout
+        android:id="@+id/lin_1"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp140"
+        android:background="@drawable/radius_20_back_white_gray_line">
+
+        <ImageView
+            android:id="@+id/ok_authentication"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp20"
+            android:src="@mipmap/ok_1" />
+
+        <TextView
+            android:id="@+id/ren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@+id/ok_authentication"
+            android:text="医生资质认证"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/authentication_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp110"
+            android:layout_toRightOf="@+id/ren"
+            android:padding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:text="未认证  " />
+
+    </RelativeLayout>
+
+    <!--咨询费设置-->
+    <LinearLayout
+        android:id="@+id/lin_2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp185"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp215"
+        android:background="@drawable/radius_20_back_white_gray_line"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/seeting_money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_1"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="咨询费设置"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_dddddd" />
+
+        <!--出诊时间-->
+        <TextView
+            android:id="@+id/go_out_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_2"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="出诊时间"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_dddddd" />
+
+        <!--问诊单-->
+        <TextView
+            android:id="@+id/Interrogation_of_single"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_3"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="问诊单"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_dddddd" />
+
+        <!--积分统计-->
+        <TextView
+            android:id="@+id/number_statistics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_4"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="积分统计"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+
+    </LinearLayout>
+
+    <!--账号管理-->
+    <LinearLayout
+        android:id="@+id/lin_3"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp90"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp415"
+        android:background="@drawable/radius_20_back_white_gray_line"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/management"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_5"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="账号管理"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_dddddd" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_ic_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/ic_6"
+                android:drawablePadding="@dimen/dp10"
+                android:gravity="center_vertical"
+                android:padding="@dimen/dp14"
+                android:text="智能填写"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp15" />
+
+            <TextView
+                android:id="@+id/tv_ic_6_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_ic_6"
+                android:text="(什么是智能填写)" />
+
+            <ImageView
+                android:id="@+id/iv_zhi_off_on"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dp14"
+                android:src="@mipmap/on" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <!--使用帮助-->
+    <LinearLayout
+        android:id="@+id/lin_4"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp90"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp525"
+        android:background="@drawable/radius_20_back_white_gray_line"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/use_help"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_7"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="使用帮助"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@color/gray_dddddd" />
+
+        <TextView
+            android:id="@+id/about_our"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/ic_8"
+            android:drawablePadding="@dimen/dp10"
+            android:drawableRight="@mipmap/right"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp14"
+            android:text="关于我们"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

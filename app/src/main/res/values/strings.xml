@@ -11,4 +11,23 @@
     <string name="no_found_network">请求失败，请稍后再试…</string>
     <string name="Authorization_failure">授权失败</string>
     <string name="Authorization_error">授权错误</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_bind_phone">BindPhoneActivity</string>
+    <string name="title_activity_message_certified">MessageCertifiedActivity</string>
+    <string name="title_activity_certified">CertifiedActivity</string>
+    <string name="title_activity_certified_pass">CertifiedPassActivity</string>
+    <string name="title_activity_user_phone">UserPhoneActivity</string>
+    <string name="title_activity_account_management">AccountManagementActivity</string>
+    <string name="title_activity_user_pass">UserPassActivity</string>
+    <string name="title_activity_consulting_fee">ConsultingFeeActivity</string>
+    <string name="title_activity_consulting">ConsultingActivity</string>
+    <string name="title_activity_fee_person">FeePersonActivity</string>
+    <string name="title_activity_cut_user">CutUserActivity</string>
+    <string name="title_activity_integral">IntegralActivity</string>
+    <string name="title_activity_bill">BillActivity</string>
+    <string name="title_activity_about_our">AboutOurActivity</string>
+    <string name="title_activity_personal_data">PersonalDataActivity</string>
+    <string name="title_activity_administrative">AdministrativeActivity</string>
+    <string name="title_activity_occupation">OccupationActivity</string>
+    <string name="title_activity_out_call">OutCallActivity</string>
 </resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.DoctorCertified.MessageCertifiedActivity">
+
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="邀请码"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/invitation_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:hint="请输入业务员邀请码"
+            android:digits="0123456789abcdefghijklmnopqrstuvwxyz"
+            android:maxLength="6"
+            android:textSize="@dimen/sp14" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@color/gray_dddddd" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="医生姓名"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/doctor_name"
+            android:maxLength="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:hint="请输入医生真实姓名"
+            android:inputType="text"
+            android:textSize="@dimen/sp14" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="@color/gray_dddddd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        android:text="资格证书"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp5"
+        android:text="要求：1.资格证书编号清晰,2.执业证带有执业地点详情"
+        android:textColor="@color/gary_999999"
+        android:textSize="@dimen/sp14" />
+
+    <!--上传证书 默认-->
+    <TextView
+        android:id="@+id/up_no_ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_margin="@dimen/dp20"
+        android:background="@drawable/imaginary_line"
+        android:gravity="center"
+        android:text="点击上传医师资格证书"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/sp15"
+        android:visibility="visible" />
+
+    <!--上传证书 完成-->
+    <LinearLayout
+        android:id="@+id/up_ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_margin="@dimen/dp20"
+        android:background="@drawable/imaginary_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/pass"
+            android:text=" 证书已上传,"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击查看图片"
+            android:textColor="@color/orange"
+            android:textSize="@dimen/sp15" />
+
+    </LinearLayout>
+
+    <!--提交认证-->
+    <Button
+        android:id="@+id/message_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp33"
+        android:layout_marginRight="@dimen/dp33"
+        android:layout_marginTop="@dimen/dp50"
+        android:background="@drawable/radius_15_green"
+        android:text="提交认证"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp18" />
+
+</LinearLayout>

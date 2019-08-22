@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+
+    <TextView
+        android:id="@+id/statement"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:background="@color/white"
+        android:drawableRight="@mipmap/right"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20"
+        android:text="法律声明"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp16" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:background="@color/white"
+        android:padding="@dimen/dp20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="版本升级"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/new_versions"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_toLeftOf="@+id/right"
+            android:drawableRight="@mipmap/right"
+            android:text="当前已是最新版本2.0.1  "
+            android:textColor="@color/orange"
+            android:textSize="@dimen/sp14" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:background="@color/white"
+        android:padding="@dimen/dp20">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="客服热线"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/service_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@mipmap/phone"
+            android:text="0571-86168750  "
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp14" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60"
+            android:padding="@dimen/dp20"
+            android:text="用户反馈"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp16" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp140"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@drawable/radius_2_cc">
+
+            <EditText
+                android:id="@+id/feel_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp10"
+                android:background="@null"
+                android:hint="在这里写下您的意见或反馈，非常感谢！"
+                android:inputType="textMultiLine"
+                android:maxLength="300"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:id="@+id/now_number"
+                android:layout_width="match_parent"
+                android:gravity="end"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_toLeftOf="@+id/san"
+                android:text="0"
+                android:textColor="@color/gary_999999" />
+
+            <TextView
+                android:id="@+id/san"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:text="/300"
+                android:textColor="@color/gary_999999" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp25"
+            android:layout_gravity="end"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="@drawable/radius_1_up"
+            android:text="提交"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.DoctorCertified.CertifiedActivity">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp77"
+        android:src="@mipmap/icon_8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp40"
+        android:lineSpacingExtra="@dimen/dp4"
+        android:text="您的认证信息已提交，请等待后台审核通过，认证通过后，如有特殊情况需要变更，请联系您的业务员进行说明更改。"
+        android:textColor="@color/gary_999999"
+        android:textSize="@dimen/sp14" />
+
+    <TextView
+        android:id="@+id/back_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="返回首页>>"
+        android:textColor="@color/orange"
+        android:textSize="@dimen/sp16" />
+</LinearLayout>

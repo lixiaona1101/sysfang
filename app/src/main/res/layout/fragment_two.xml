@@ -1,0 +1,14 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.lixiaona.study.com.jiuhao.lixiaona.study.fragment.base.welcome.TwoFragment">
+
+    <ImageView
+        android:scaleType="center"
+        android:src="@drawable/guidance_two"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>

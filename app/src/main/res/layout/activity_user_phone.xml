@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <EditText
+        android:id="@+id/et_new_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:background="@null"
+        android:hint="请输入新的手机号码"
+        android:inputType="phone"
+        android:textSize="@dimen/sp15"
+        android:paddingLeft="@dimen/dp15"
+        android:textColor="@color/text_black" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="#f2f2f2"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/et_set_phone_code"
+            android:layout_width="@dimen/dp245"
+            android:layout_height="@dimen/dp60"
+            android:background="@null"
+            android:hint="请输入验证码"
+            android:inputType="number"
+            android:textSize="@dimen/sp15"
+            android:maxLength="6"
+            android:paddingLeft="@dimen/dp15"
+            android:textColor="@color/text_black" />
+
+        <TextView
+            android:id="@+id/tv_set_phone_get_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60"
+            android:layout_toRightOf="@+id/et_set_phone_code"
+            android:gravity="center_vertical|end"
+            android:paddingRight="@dimen/dp15"
+            android:text="获取验证码"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/sp15" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="#f2f2f2" />
+
+
+    <Button
+        android:id="@+id/btn_save_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp33"
+        android:layout_marginRight="@dimen/dp33"
+        android:layout_marginTop="@dimen/dp90"
+        android:background="@drawable/radius_40_009685"
+        android:text="确定"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp18" />
+
+
+</LinearLayout>

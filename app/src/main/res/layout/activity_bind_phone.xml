@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="@color/gray_dddddd" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp65"
+        android:src="@mipmap/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp38"
+        android:layout_marginRight="@dimen/dp38"
+        android:layout_marginTop="@dimen/dp48"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp7">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/number" />
+
+        <EditText
+            android:id="@+id/et_bind_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:paddingLeft="@dimen/dp7"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp38"
+        android:layout_marginRight="@dimen/dp38"
+        android:layout_marginTop="@dimen/dp6"
+        android:background="@color/gary_999999" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp38"
+        android:layout_marginRight="@dimen/dp38"
+        android:layout_marginTop="@dimen/dp25"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp7"
+        android:paddingRight="@dimen/dp7">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/message" />
+
+        <EditText
+            android:id="@+id/et_bind_code"
+            android:layout_width="@dimen/dp145"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="短信验证码"
+            android:paddingLeft="@dimen/dp7"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/tv_get_bind_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="获取验证码"
+            android:textColor="@color/green_009685"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp38"
+        android:layout_marginRight="@dimen/dp38"
+        android:layout_marginTop="@dimen/dp6"
+        android:background="@color/gary_999999" />
+
+    <LinearLayout
+        android:id="@+id/ll_bing_use_read"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp38"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="绑定即代表同意"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dp5"
+            android:text="《上医尚方用户协议》"
+            android:textColor="@color/yellow_d49e6a"
+            android:textSize="@dimen/sp14" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bind_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp33"
+        android:layout_marginRight="@dimen/dp33"
+        android:layout_marginTop="@dimen/dp18"
+        android:background="@drawable/radius_40_009685"
+        android:text="绑定并登陆"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp18" />
+
+</LinearLayout>

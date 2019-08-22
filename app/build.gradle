@@ -3,24 +3,21 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.lixiaona.study"
+        applicationId "com.jiuhao.jhjk"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
-//        ndk {
-//            abiFilters "armeabi-v7a", "x86"
-//        }
     }
 
     signingConfigs {
         sugar {
-            keyAlias 'android'
-            keyPassword 'android'
-            storeFile file('app.jks')
-            storePassword 'android'
+            keyAlias 'yhlx'
+            keyPassword 'yhlx123456'
+            storeFile file('E:/yhlxSign.jks')
+            storePassword 'yhlx123456'
         }
     }
     buildTypes {
@@ -92,4 +89,8 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'
     implementation files('libs/alipaySdk-20180403.jar')
     implementation 'com.orhanobut:logger:2.2.0'
+    //轮播依赖
+    implementation 'com.youth.banner:banner:1.4.10'
+    //微信依赖（包含统计）
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
 }
