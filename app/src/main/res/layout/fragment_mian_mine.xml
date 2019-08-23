@@ -92,11 +92,10 @@
             android:id="@+id/authentication_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp110"
-            android:layout_toRightOf="@+id/ren"
-            android:padding="@dimen/dp10"
             android:drawableRight="@mipmap/right"
+            android:padding="@dimen/dp10"
             android:text="未认证  " />
 
     </RelativeLayout>

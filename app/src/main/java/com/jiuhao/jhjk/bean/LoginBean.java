@@ -2,128 +2,65 @@ package com.jiuhao.jhjk.bean;
 
 public class LoginBean {
 
+
     /**
-     * id : 1078
-     * userId : 3348
-     * hospital : null
-     * departmentId : 1
-     * titles : 涓讳换鍖荤敓
-     * label : 涓嶆檿涓嶈偛
-     * avatar : http://123
-     * sex : 1
-     * birthday : null
+     * areaId : 0
      * authStat : 1
-     * fees : null
-     * factoryId : null
-     * businessCard : null
-     * inviteCode : null
-     * clinicTime : [[1,1],[1,2]]
-     * areaId : null
+     * avatar : http://123
+     * birthday : null
+     * businessCard :
+     * clinicTime : 1.2,1.2,1.3
      * createTime : null
-     * updateTime : null
+     * departmentId : 1
+     * departmentName : 消化内科
+     * factoryId : 0
+     * fees : 0
+     * hospital :
+     * id : 1078
+     * inviteCode :
+     * label : 不晕不育
+     * password :
+     * phone :
+     * resume : 我是简介
+     * sex : 1
+     * titles : 主任医生
      * token : eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2NvdW50IjoiMzM0OCJ9.kO0AIXEcY8Aw-NxnuXGYd2uWMIa6E1ZW0B4kyOnqYiA
-     * resume : 鎴戞槸绠€浠?
-     * phone : null
-     * password : null
-     * unionId : null
-     * departmentName : 娑堝寲鍐呯
+     * unionId :
+     * updateTime : null
+     * userId : 3348
      */
 
-    private int id;
-    private int userId;
-    private Object hospital;
-    private int departmentId;
-    private String titles;
-    private String label;
-    private String avatar;
-    private int sex;
-    private Object birthday;
+    private int areaId;
     private int authStat;
-    private Object fees;
-    private Object factoryId;
-    private Object businessCard;
-    private Object inviteCode;
+    private String avatar;
+    private Object birthday;
+    private String businessCard;
     private String clinicTime;
-    private Object areaId;
     private Object createTime;
-    private Object updateTime;
-    private String token;
-    private String resume;
-    private Object phone;
-    private Object password;
-    private Object unionId;
+    private int departmentId;
     private String departmentName;
+    private int factoryId;
+    private int fees;
+    private String hospital;
+    private int id;
+    private String inviteCode;
+    private String label;
+    private String password;
+    private String phone;
+    private String resume;
+    private int sex;
+    private String titles;
+    private String token;
+    private String unionId;
+    private Object updateTime;
+    private int userId;
 
-    public int getId() {
-        return id;
+    public int getAreaId() {
+        return areaId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public Object getHospital() {
-        return hospital;
-    }
-
-    public void setHospital(Object hospital) {
-        this.hospital = hospital;
-    }
-
-    public int getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public String getTitles() {
-        return titles;
-    }
-
-    public void setTitles(String titles) {
-        this.titles = titles;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
-
-    public Object getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Object birthday) {
-        this.birthday = birthday;
+    public void setAreaId(int areaId) {
+        this.areaId = areaId;
     }
 
     public int getAuthStat() {
@@ -134,36 +71,28 @@ public class LoginBean {
         this.authStat = authStat;
     }
 
-    public Object getFees() {
-        return fees;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setFees(Object fees) {
-        this.fees = fees;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public Object getFactoryId() {
-        return factoryId;
+    public Object getBirthday() {
+        return birthday;
     }
 
-    public void setFactoryId(Object factoryId) {
-        this.factoryId = factoryId;
+    public void setBirthday(Object birthday) {
+        this.birthday = birthday;
     }
 
-    public Object getBusinessCard() {
+    public String getBusinessCard() {
         return businessCard;
     }
 
-    public void setBusinessCard(Object businessCard) {
+    public void setBusinessCard(String businessCard) {
         this.businessCard = businessCard;
-    }
-
-    public Object getInviteCode() {
-        return inviteCode;
-    }
-
-    public void setInviteCode(Object inviteCode) {
-        this.inviteCode = inviteCode;
     }
 
     public String getClinicTime() {
@@ -174,14 +103,6 @@ public class LoginBean {
         this.clinicTime = clinicTime;
     }
 
-    public Object getAreaId() {
-        return areaId;
-    }
-
-    public void setAreaId(Object areaId) {
-        this.areaId = areaId;
-    }
-
     public Object getCreateTime() {
         return createTime;
     }
@@ -190,52 +111,12 @@ public class LoginBean {
         this.createTime = createTime;
     }
 
-    public Object getUpdateTime() {
-        return updateTime;
+    public int getDepartmentId() {
+        return departmentId;
     }
 
-    public void setUpdateTime(Object updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public String getResume() {
-        return resume;
-    }
-
-    public void setResume(String resume) {
-        this.resume = resume;
-    }
-
-    public Object getPhone() {
-        return phone;
-    }
-
-    public void setPhone(Object phone) {
-        this.phone = phone;
-    }
-
-    public Object getPassword() {
-        return password;
-    }
-
-    public void setPassword(Object password) {
-        this.password = password;
-    }
-
-    public Object getUnionId() {
-        return unionId;
-    }
-
-    public void setUnionId(Object unionId) {
-        this.unionId = unionId;
+    public void setDepartmentId(int departmentId) {
+        this.departmentId = departmentId;
     }
 
     public String getDepartmentName() {
@@ -246,33 +127,153 @@ public class LoginBean {
         this.departmentName = departmentName;
     }
 
+    public int getFactoryId() {
+        return factoryId;
+    }
+
+    public void setFactoryId(int factoryId) {
+        this.factoryId = factoryId;
+    }
+
+    public int getFees() {
+        return fees;
+    }
+
+    public void setFees(int fees) {
+        this.fees = fees;
+    }
+
+    public String getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getInviteCode() {
+        return inviteCode;
+    }
+
+    public void setInviteCode(String inviteCode) {
+        this.inviteCode = inviteCode;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    public int getSex() {
+        return sex;
+    }
+
+    public void setSex(int sex) {
+        this.sex = sex;
+    }
+
+    public String getTitles() {
+        return titles;
+    }
+
+    public void setTitles(String titles) {
+        this.titles = titles;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public String getUnionId() {
+        return unionId;
+    }
+
+    public void setUnionId(String unionId) {
+        this.unionId = unionId;
+    }
+
+    public Object getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Object updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "LoginBean{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", hospital=" + hospital +
-                ", departmentId=" + departmentId +
-                ", titles='" + titles + '\'' +
-                ", label='" + label + '\'' +
-                ", avatar='" + avatar + '\'' +
-                ", sex=" + sex +
-                ", birthday=" + birthday +
+                "areaId=" + areaId +
                 ", authStat=" + authStat +
-                ", fees=" + fees +
-                ", factoryId=" + factoryId +
-                ", businessCard=" + businessCard +
-                ", inviteCode=" + inviteCode +
+                ", avatar='" + avatar + '\'' +
+                ", birthday=" + birthday +
+                ", businessCard='" + businessCard + '\'' +
                 ", clinicTime='" + clinicTime + '\'' +
-                ", areaId=" + areaId +
                 ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", token='" + token + '\'' +
-                ", resume='" + resume + '\'' +
-                ", phone=" + phone +
-                ", password=" + password +
-                ", unionId=" + unionId +
+                ", departmentId=" + departmentId +
                 ", departmentName='" + departmentName + '\'' +
+                ", factoryId=" + factoryId +
+                ", fees=" + fees +
+                ", hospital='" + hospital + '\'' +
+                ", id=" + id +
+                ", inviteCode='" + inviteCode + '\'' +
+                ", label='" + label + '\'' +
+                ", password='" + password + '\'' +
+                ", phone='" + phone + '\'' +
+                ", resume='" + resume + '\'' +
+                ", sex=" + sex +
+                ", titles='" + titles + '\'' +
+                ", token='" + token + '\'' +
+                ", unionId='" + unionId + '\'' +
+                ", updateTime=" + updateTime +
+                ", userId=" + userId +
                 '}';
     }
 }

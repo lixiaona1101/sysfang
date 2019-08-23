@@ -321,8 +321,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         ToastUtils.show("登录成功");
                         //登录成功用户的id跟token封装在OKhttp中
                         //如果id为-1 token为“” 那么就是未登录状态
-                        Config.userId=loginBean.getId();
-                        Config.userToken=loginBean.getToken();
+                        Config.userId = loginBean.getId();
+                        Config.userToken = loginBean.getToken();
                         check(loginBean);
                     }
 
@@ -338,28 +338,28 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void check(LoginBean data) {
         SPUtils.putInt(getContext(), ConfigKeys.ID, data.getId());
         SPUtils.putInt(getContext(), ConfigKeys.USERID, data.getUserId());
-//        SPUtils.putString(getContext(), ConfigKeys.HOSPITAL, data.getHospital());
-//        SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTID, data.getDepartmentId());
-//        SPUtils.putString(getContext(), ConfigKeys.TITLES, data.getTitles());
-//        SPUtils.putString(getContext(), ConfigKeys.LABEL, data.getLabel());
-//        SPUtils.putString(getContext(), ConfigKeys.AVATAR, data.getAvatar());
-//        SPUtils.putString(getContext(), ConfigKeys.SEX, data.getSex());
-//        SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, data.getBirthday());
-//        SPUtils.putString(getContext(), ConfigKeys.AUTHSTAT, data.getAuthStat());
-//        SPUtils.putInt(getContext(), ConfigKeys.FEES, data.getFees());
-//        SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, data.getFactoryId());
-//        SPUtils.putString(getContext(), ConfigKeys.BUSINESSCARD, data.getBusinessCard());
-//        SPUtils.putString(getContext(), ConfigKeys.INVITECODE, data.getInviteCode());
-//        SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, data.getClinicTime());
-//        SPUtils.putInt(getContext(), ConfigKeys.AREAID, data.getAreaId());
-//        SPUtils.putInt(getContext(), ConfigKeys.CREATETIME, data.getCreateTime());
-//        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, data.getUpdateTime());
-//        SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
-//        SPUtils.putInt(getContext(), ConfigKeys.RESUME, data.getResume());
-//        SPUtils.putInt(getContext(), ConfigKeys.PHONE, data.getPhone());
-//        SPUtils.putString(getContext(), ConfigKeys.PASSWORD, data.getPassword());
-//        SPUtils.putInt(getContext(), ConfigKeys.UNIONID, data.getUnionId());
-//        SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTNAME, data.getDepartmentName());
+        SPUtils.putString(getContext(), ConfigKeys.HOSPITAL, data.getHospital());
+        SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTID, data.getDepartmentId());
+        SPUtils.putString(getContext(), ConfigKeys.TITLES, data.getTitles());
+        SPUtils.putString(getContext(), ConfigKeys.LABEL, data.getLabel());
+        SPUtils.putString(getContext(), ConfigKeys.AVATAR, data.getAvatar());
+        SPUtils.putInt(getContext(), ConfigKeys.SEX, data.getSex());
+        SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, (String) data.getBirthday());
+        SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, data.getAuthStat());
+        SPUtils.putInt(getContext(), ConfigKeys.FEES, data.getFees());
+        SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, data.getFactoryId());
+        SPUtils.putString(getContext(), ConfigKeys.BUSINESSCARD, data.getBusinessCard());
+        SPUtils.putString(getContext(), ConfigKeys.INVITECODE, data.getInviteCode());
+        SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, data.getClinicTime());
+        SPUtils.putInt(getContext(), ConfigKeys.AREAID, data.getAreaId());
+        SPUtils.putString(getContext(), ConfigKeys.CREATETIME, (String) data.getCreateTime());
+        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, (String) data.getUpdateTime());
+        SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
+        SPUtils.putString(getContext(), ConfigKeys.RESUME, data.getResume());
+        SPUtils.putString(getContext(), ConfigKeys.PHONE, data.getPhone());
+        SPUtils.putString(getContext(), ConfigKeys.PASSWORD, data.getPassword());
+        SPUtils.putString(getContext(), ConfigKeys.UNIONID, data.getUnionId());
+        SPUtils.putString(getContext(), ConfigKeys.DEPARTMENTNAME, data.getDepartmentName());
 
         //登录状态
         SPUtils.putBoolean(getContext(), ConfigKeys.LOGIN_STATE, true);
@@ -423,8 +423,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 if (code == 0) {
                     Gson gson = new Gson();
                     LoginBean loginBean = gson.fromJson(response, LoginBean.class);
-                    Config.userId=loginBean.getId();
-                    Config.userToken=loginBean.getToken();
+                    Config.userId = loginBean.getId();
+                    Config.userToken = loginBean.getToken();
                     check(loginBean);
                 }
             }

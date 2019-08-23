@@ -30,4 +30,5 @@
     <string name="title_activity_administrative">AdministrativeActivity</string>
     <string name="title_activity_occupation">OccupationActivity</string>
     <string name="title_activity_out_call">OutCallActivity</string>
+    <string name="title_activity_label">LabelActivity</string>
 </resources>

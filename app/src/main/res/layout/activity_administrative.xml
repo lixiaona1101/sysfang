@@ -6,227 +6,229 @@
 
     <include layout="@layout/title" />
 
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_administrative"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="中医科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="中医科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
 
-        <ImageView
-            android:id="@+id/administrative1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select" />
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative1"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select" />-->
 
-    </RelativeLayout>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
+    <!--</RelativeLayout>-->
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="风湿骨科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="#f2f2f2" />-->
 
-        <ImageView
-            android:id="@+id/administrative2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select1" />
-
-    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="风湿骨科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative2"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select1" />-->
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="内分泌科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/administrative3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select1" />
-
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="#f2f2f2" />-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="呼吸科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/administrative4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select1" />
-
-    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="内分泌科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative3"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select1" />-->
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="神经内科与心理科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/administrative5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select1" />
-
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="#f2f2f2" />-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="妇科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/administrative6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select1" />
-
-    </RelativeLayout>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="呼吸科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp60">
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative4"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select1" />-->
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:paddingLeft="@dimen/dp16"
-            android:text="血液科"
-            android:textColor="@color/text_black"
-            android:textSize="@dimen/sp16"
-            android:textStyle="bold" />
-
-        <ImageView
-            android:id="@+id/administrative7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/dp15"
-            android:src="@mipmap/select1" />
-
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp1"
-        android:background="#f2f2f2" />
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="#f2f2f2" />-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="神经内科与心理科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative5"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select1" />-->
+
+    <!--</RelativeLayout>-->
+
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="#f2f2f2" />-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="妇科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative6"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select1" />-->
+
+    <!--</RelativeLayout>-->
+
+
+    <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp1"-->
+        <!--android:background="#f2f2f2" />-->
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/dp60">-->
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:paddingLeft="@dimen/dp16"-->
+            <!--android:text="血液科"-->
+            <!--android:textColor="@color/text_black"-->
+            <!--android:textSize="@dimen/sp16"-->
+            <!--android:textStyle="bold" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/administrative7"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/dp15"-->
+            <!--android:src="@mipmap/select1" />-->
+
+    <!--</RelativeLayout>-->
+
+
 </LinearLayout>

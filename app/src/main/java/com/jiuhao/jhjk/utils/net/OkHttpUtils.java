@@ -414,6 +414,64 @@ public class OkHttpUtils {
     }
 
 
+
+    //---------------------------------put请求--------------------------
+
+    public static void put(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
+        getInstance().putRequest(isToast, url, params, callback);
+    }
+
+    public static void put(String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
+        getInstance().putRequest(false, url, params, callback);
+    }
+
+    private Call putRequest(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback<String> callback) {
+        if (urls.contains(url)) {
+            ToastUtils.show(R.string.frequent);
+            return null;
+        }
+
+
+        if (userId != -1) {
+            if (params == null)
+                params = new LinkedHashMap<>();
+            if (!params.containsKey("userId"))
+                params.put("userId", userId);
+            if (!params.containsKey("accessToken"))
+                params.put("accessToken", userToken);
+        }
+
+        //请求体
+        FormBody.Builder builder = new FormBody.Builder();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (!CollectionUtils.isEmpty(params)) {
+            for (Object o : params.entrySet()) {
+                Map.Entry entry = (Map.Entry) o;
+                String key = (String) entry.getKey();
+                String val = String.valueOf(entry.getValue());
+
+                builder.add(key, val);
+
+//                builder.addEncoded()
+
+                sb.append("\"").append(key).append("\"").append(":").append("\"").append(val).append("\"").append(",");
+            }
+        }
+
+        RequestBody requestBody = builder.build();
+        String string = sb.append("}").toString();
+
+//        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, sb.toString());
+        Request request = new Request.Builder()
+                .url(url)
+                .put(requestBody)
+                .build();
+
+        String newUrl = "Put: " + url + "\nParams: " + string;
+        return deliveryResult(isToast, true, url, newUrl, callback, request);
+    }
     /**********************************************************************************************************
      *******************************************      处理结果       ********************************************
      *  @param isToast      是否吐司
@@ -484,7 +542,7 @@ public class OkHttpUtils {
 //                    }
 
 
-                    if (code == CODE_SUCCESS || code==200)
+                    if (code == CODE_SUCCESS || code == 200)
                         sendSuccessCallBack(callback, body, code);
                     else
                         sendFailCallback(isToast, callback, new Exception(msg), code);

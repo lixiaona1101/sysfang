@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.mine.AboutOurActivity;
 import com.jiuhao.jhjk.activity.mine.AccountManagementActivity;
@@ -18,6 +19,8 @@ import com.jiuhao.jhjk.activity.mine.IntegralActivity;
 import com.jiuhao.jhjk.activity.mine.OutCallActivity;
 import com.jiuhao.jhjk.activity.mine.PersonalDataActivity;
 import com.jiuhao.jhjk.fragment.base.BaseFragment;
+import com.jiuhao.jhjk.utils.SPUtils;
+import com.jiuhao.jhjk.utils.glide.GlideUtil;
 
 /**
  * 我的主fragment
@@ -123,6 +126,19 @@ public class MainMineFragment extends BaseFragment {
     @Override
     protected void initData() {
 
+        //医生头像
+        String headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
+        GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
+        //认证状态 1未认证 3已认证
+        int authstat = SPUtils.getInt(getContext(), ConfigKeys.AUTHSTAT, 1);
+        if (authstat == 1) {
+            mOkAuthentication.setImageResource(R.mipmap.ok_1);
+            mAuthenticationRight.setText("未认证  ");
+        } else if (authstat == 3) {
+            mOkAuthentication.setImageResource(R.mipmap.ok);
+            mAuthenticationRight.setText("已认证  ");
+        }
+
     }
 
     @Override
@@ -183,7 +199,7 @@ public class MainMineFragment extends BaseFragment {
                 startActivity(new Intent(getContext(), PersonalDataActivity.class));
             }
         });
-        
+
         //出诊时间
         mGoOutTime.setOnClickListener(new View.OnClickListener() {
             @Override

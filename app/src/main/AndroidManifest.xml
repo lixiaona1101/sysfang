@@ -122,6 +122,10 @@
         <activity
             android:name=".activity.mine.OutCallActivity"
             android:label="@string/title_activity_out_call"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.LabelActivity"
+            android:label="@string/title_activity_label"
             android:theme="@style/AppTheme2"></activity>
     </application>
 

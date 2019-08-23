@@ -250,18 +250,31 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void check(LoginBean data) {
-//        SPUtils.putInt(getContext(), ConfigKeys.DOC_ID, data.getId());
-//        SPUtils.putString(getContext(), ConfigKeys.REGISTRATIONID, data.getRegistrationId());
-//        SPUtils.putString(getContext(), ConfigKeys.PHONE, data.getPhone());
-//        SPUtils.putInt(getContext(), ConfigKeys.AUTH_STATUS, data.getAuthState());
-//        SPUtils.putBoolean(getContext(), ConfigKeys.INVITE_STATUS, data.isInviteState());
-//        SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
-//        SPUtils.putString(getContext(), ConfigKeys.HEAD_IMAGE, data.getAvatar());
-//        SPUtils.putString(getContext(), ConfigKeys.NAME_CARD, data.getBusinessCard());
-//        SPUtils.putString(getContext(), ConfigKeys.USER_NAME, data.getName());
-//        SPUtils.putString(getContext(), ConfigKeys.POSITION, data.getTitles());
-//        SPUtils.putInt(getContext(), ConfigKeys.SEX, data.getSex());
-//        SPUtils.putInt(getContext(), ConfigKeys.IDENTITY, data.getIdentity());
+        SPUtils.putInt(getContext(), ConfigKeys.ID, data.getId());
+        SPUtils.putInt(getContext(), ConfigKeys.USERID, data.getUserId());
+        SPUtils.putString(getContext(), ConfigKeys.HOSPITAL, data.getHospital());
+        SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTID, data.getDepartmentId());
+        SPUtils.putString(getContext(), ConfigKeys.TITLES, data.getTitles());
+        SPUtils.putString(getContext(), ConfigKeys.LABEL, data.getLabel());
+        SPUtils.putString(getContext(), ConfigKeys.AVATAR, data.getAvatar());
+        SPUtils.putInt(getContext(), ConfigKeys.SEX, data.getSex());
+        SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, (String) data.getBirthday());
+        SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, data.getAuthStat());
+        SPUtils.putInt(getContext(), ConfigKeys.FEES, data.getFees());
+        SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, data.getFactoryId());
+        SPUtils.putString(getContext(), ConfigKeys.BUSINESSCARD, data.getBusinessCard());
+        SPUtils.putString(getContext(), ConfigKeys.INVITECODE, data.getInviteCode());
+        SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, data.getClinicTime());
+        SPUtils.putInt(getContext(), ConfigKeys.AREAID, data.getAreaId());
+        SPUtils.putString(getContext(), ConfigKeys.CREATETIME, (String) data.getCreateTime());
+        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, (String) data.getUpdateTime());
+        SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
+        SPUtils.putString(getContext(), ConfigKeys.RESUME, data.getResume());
+        SPUtils.putString(getContext(), ConfigKeys.PHONE, data.getPhone());
+        SPUtils.putString(getContext(), ConfigKeys.PASSWORD, data.getPassword());
+        SPUtils.putString(getContext(), ConfigKeys.UNIONID, data.getUnionId());
+        SPUtils.putString(getContext(), ConfigKeys.DEPARTMENTNAME, data.getDepartmentName());
+
         //登录状态
         SPUtils.putBoolean(getContext(), ConfigKeys.LOGIN_STATE, true);
 

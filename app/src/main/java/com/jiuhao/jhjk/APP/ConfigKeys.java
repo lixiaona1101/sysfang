@@ -61,6 +61,7 @@ public class ConfigKeys {
     //密码
     public static final String PASSWORD = "password";
     public static final String UNIONID = "unionId";
+    //科室名称
     public static final String DEPARTMENTNAME = "departmentName";
     //登录状态
     public static final String LOGIN_STATE = "login_state";
@@ -75,6 +76,9 @@ public class ConfigKeys {
 
     //获取验证码
     public static final String GET_CODE = BASE_URL + "phone/code";
+
+    //获取所有科室
+    public static final String DEPARTMENT = BASE_URL + "department";
 
     //使用声明
     public static final String USER_INSTRUCTIONS = BASE_SERVER + "instructions.html";
