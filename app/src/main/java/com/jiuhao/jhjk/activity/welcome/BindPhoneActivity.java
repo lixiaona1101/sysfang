@@ -17,19 +17,21 @@ import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.MainActivity;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.bean.LoginBean;
+import com.jiuhao.jhjk.bean.LoginBean2;
 import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.fy.BaseTimerTask;
 import com.jiuhao.jhjk.utils.fy.ITimerListener;
 import com.jiuhao.jhjk.utils.fy.RegexUtils;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
-import com.jiuhao.jhjk.view.NewsWebView;
+import com.jiuhao.jhjk.view.WebviewActivity;
 import com.orhanobut.logger.Logger;
 
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.Timer;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class BindPhoneActivity extends BaseActivity implements View.OnClickListener, ITimerListener {
 
@@ -197,7 +199,7 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
 
     //用户协议
     public void getUserRead() {
-        Intent intent = new Intent(this, NewsWebView.class);
+        Intent intent = new Intent(this, WebviewActivity.class);
         intent.putExtra("title", "用户协议");
         intent.putExtra("html", ConfigKeys.USER_INSTRUCTIONS);
         startActivity(intent);
@@ -222,9 +224,17 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
         Logger.e(phone);
         Logger.e(code);
         Logger.e(unionId);
+        String registrationId = JPushInterface.getRegistrationID(getApplicationContext());//极光设备号
+        if (!registrationId.isEmpty()) {
+            Logger.e(registrationId);
+        } else {
+            Logger.e("加入极光失败！");
+        }
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("phone", phone);
         linkedHashMap.put("passCode", code);
+        //加入极光设备号
+        linkedHashMap.put("registrationId", registrationId);
         linkedHashMap.put("unionId", unionId);
         linkedHashMap.put("state", "3");
 
@@ -233,7 +243,7 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
             public void onSuccess(int code, String response) {
                 Logger.d(response);
                 Gson gson = new Gson();
-                LoginBean loginBean = gson.fromJson(response, LoginBean.class);
+                LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
                 Config.userId = loginBean.getId();
                 Config.userToken = loginBean.getToken();
                 Logger.d(loginBean.toString());
@@ -249,7 +259,7 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
         });
     }
 
-    private void check(LoginBean data) {
+    private void check(LoginBean2 data) {
         SPUtils.putInt(getContext(), ConfigKeys.ID, data.getId());
         SPUtils.putInt(getContext(), ConfigKeys.USERID, data.getUserId());
         SPUtils.putString(getContext(), ConfigKeys.HOSPITAL, data.getHospital());
@@ -258,7 +268,7 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
         SPUtils.putString(getContext(), ConfigKeys.LABEL, data.getLabel());
         SPUtils.putString(getContext(), ConfigKeys.AVATAR, data.getAvatar());
         SPUtils.putInt(getContext(), ConfigKeys.SEX, data.getSex());
-        SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, (String) data.getBirthday());
+        SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, data.getBirthday());
         SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, data.getAuthStat());
         SPUtils.putInt(getContext(), ConfigKeys.FEES, data.getFees());
         SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, data.getFactoryId());
@@ -266,14 +276,15 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
         SPUtils.putString(getContext(), ConfigKeys.INVITECODE, data.getInviteCode());
         SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, data.getClinicTime());
         SPUtils.putInt(getContext(), ConfigKeys.AREAID, data.getAreaId());
-        SPUtils.putString(getContext(), ConfigKeys.CREATETIME, (String) data.getCreateTime());
-        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, (String) data.getUpdateTime());
+        SPUtils.putLong(getContext(), ConfigKeys.CREATETIME, data.getCreateTime());
+        SPUtils.putLong(getContext(), ConfigKeys.UPDATETIME, data.getUpdateTime());
         SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
         SPUtils.putString(getContext(), ConfigKeys.RESUME, data.getResume());
         SPUtils.putString(getContext(), ConfigKeys.PHONE, data.getPhone());
         SPUtils.putString(getContext(), ConfigKeys.PASSWORD, data.getPassword());
         SPUtils.putString(getContext(), ConfigKeys.UNIONID, data.getUnionId());
         SPUtils.putString(getContext(), ConfigKeys.DEPARTMENTNAME, data.getDepartmentName());
+        SPUtils.putString(getContext(), ConfigKeys.NAME, data.getName());
 
         //登录状态
         SPUtils.putBoolean(getContext(), ConfigKeys.LOGIN_STATE, true);

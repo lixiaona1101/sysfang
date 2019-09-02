@@ -6,6 +6,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.TextView;
 
+import com.jiuhao.jhjk.APP.Config;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.MainActivity;
@@ -84,6 +85,8 @@ public class WelcomeActivity extends BaseActivity {
         boolean aBoolean = SPUtils.getBoolean(getContext(), ConfigKeys.LOGIN_STATE,false);
         Logger.e("登录状态"+aBoolean);
         if (aBoolean) {//登录状态
+            Config.userId=SPUtils.getInt(getContext(),ConfigKeys.ID,-1);
+            Config.userToken=SPUtils.getString(getContext(),ConfigKeys.TOKEN,"");
             //跳转主页面
             startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
         } else {//未登录状态

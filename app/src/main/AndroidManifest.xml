@@ -21,6 +21,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- 闪光灯 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 用于读取手机当前的状态 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
@@ -31,6 +33,34 @@
     <!-- 这个权限用于访问GPS定位 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <!-- 极光推送 -->
+    <!-- Required -->
+    <permission
+        android:name="com.jiuhao.jhjk.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Required 一些系统要求的权限，如访问网络等 -->
+    <uses-permission android:name="com.jiuhao.jhjk.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <!-- Optional for location -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Android Q后台定位权限 -->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
     <application
         android:name=".APP.App"
         android:allowBackup="true"
@@ -40,6 +70,63 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">
+
+        <!-- 极光推送 -->
+        <!-- User defined. For test only 用户自定义的广播接收器 -->
+        <receiver
+            android:name=".Receiver.MyReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+
+                <!-- Required 用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+
+                <!-- Required 用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+
+                <!-- Required 用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+
+                <!-- Required 用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <category android:name="com.jiuhao.jhjk" />
+            </intent-filter>
+        </receiver>
+
+        <!-- User defined. For test only 用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调 -->
+        <!-- since 3.3.0 接收JPush相关事件 -->
+        <receiver android:name=".Receiver.PushMessageReceiver">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+
+                <category android:name="com.jiuhao.jhjk" />
+            </intent-filter>
+        </receiver>
+
+        <!-- since 3.3.0 Required SDK 核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <!-- User defined. For test only 继承自cn.jpush.android.service.JCommonService -->
+        <service
+            android:name=".Receiver.PushService"
+            android:process=":pushcore">
+            <intent-filter>
+                <action android:name="com.jiuhao.jhjk" />
+            </intent-filter>
+        </service>
+
+        <!-- 必需的。启用它，您可以获得统计数据与通道 -->
+        <!-- <meta-data -->
+        <!-- android:name="JPUSH_CHANNEL" -->
+        <!-- android:value="${JPUSH_CHANNEL}" /> -->
+        <meta-data
+            android:name="JPUSH_APPKEY"
+            android:value="bcfbabc87429fc923ec27f5d" />
+        <!-- </>值来自开发者平台取得的AppKey -->
+
         <activity android:name=".activity.welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +134,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 测试 直接到主页面 -->
         <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.welcome.WelcomeSiActivity" />
         <activity android:name=".activity.welcome.RegisterActivity" />
@@ -54,7 +142,6 @@
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:exported="true" />
-        <activity android:name=".view.NewsWebView" />
         <activity
             android:name=".activity.mine.DoctorCertified.MessageCertifiedActivity"
             android:label="@string/title_activity_message_certified"
@@ -68,64 +155,124 @@
             android:label="@string/title_activity_certified_pass"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.UserPhoneActivity"
+            android:name=".activity.mine.AccountManagement.UserPhoneActivity"
             android:label="@string/title_activity_user_phone"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.AccountManagementActivity"
+            android:name=".activity.mine.AccountManagement.AccountManagementActivity"
             android:label="@string/title_activity_account_management"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.UserPassActivity"
+            android:name=".activity.mine.AccountManagement.UserPassActivity"
             android:label="@string/title_activity_user_pass"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.ConsultingFeeActivity"
+            android:name=".activity.mine.ConsultingFee.ConsultingFeeActivity"
             android:label="@string/title_activity_consulting_fee"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.ConsultingActivity"
+            android:name=".activity.mine.ConsultingFee.ConsultingActivity"
             android:label="@string/title_activity_consulting"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.FeePersonActivity"
+            android:name=".activity.mine.ConsultingFee.FeePersonActivity"
             android:label="@string/title_activity_fee_person"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.CutUserActivity"
+            android:name=".activity.mine.AccountManagement.CutUserActivity"
             android:label="@string/title_activity_cut_user"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.IntegralActivity"
+            android:name=".activity.mine.Other.IntegralActivity"
             android:label="@string/title_activity_integral"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.BillActivity"
+            android:name=".activity.mine.Bill.BillActivity"
             android:label="@string/title_activity_bill"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.AboutOurActivity"
+            android:name=".activity.mine.Other.AboutOurActivity"
             android:label="@string/title_activity_about_our"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.PersonalDataActivity"
+            android:name=".activity.mine.Personage.PersonalDataActivity"
             android:label="@string/title_activity_personal_data"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.AdministrativeActivity"
+            android:name=".activity.mine.Personage.AdministrativeActivity"
             android:label="@string/title_activity_administrative"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.OccupationActivity"
+            android:name=".activity.mine.Personage.OccupationActivity"
             android:label="@string/title_activity_occupation"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.OutCallActivity"
+            android:name=".activity.mine.Other.OutCallActivity"
             android:label="@string/title_activity_out_call"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.LabelActivity"
+            android:name=".activity.mine.Personage.LabelActivity"
             android:label="@string/title_activity_label"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Other.FillInActivity"
+            android:label="@string/title_activity_fill_in"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".view.WebviewActivity"
+            android:label="@string/title_activity_webview"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Bill.QuestionActivity"
+            android:label="@string/title_activity_question"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Bill.Bill2Activity"
+            android:label="@string/title_activity_bill2"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Bill.ListQuestionActivity"
+            android:label="@string/title_activity_list_question"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Bill.CompileBillActivity"
+            android:label="@string/title_activity_compile_bill"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Bill.CompileQuestionActivity"
+            android:label="@string/title_activity_compile_question"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.MassTextingOneActivity"
+            android:label="@string/title_activity_mass_texting_one"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.HistoryActivity"
+            android:label="@string/title_activity_history"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.PersonDetailsActivity"
+            android:label="@string/title_activity_person_details"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.MoreSetActivity"
+            android:label="@string/title_activity_more_set"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.PaySetActivity"
+            android:label="@string/title_activity_pay_set"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.DialogueActivity"
+            android:label="@string/title_activity_dialogue"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Other.InviteFriendsActivity"
+            android:label="@string/title_activity_invite_friends"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.Other.BigImgActivity"
+            android:label="@string/title_activity_big_img"
             android:theme="@style/AppTheme2"></activity>
     </application>
 

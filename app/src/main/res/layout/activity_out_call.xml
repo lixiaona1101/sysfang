@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.jiuhao.jhjk.activity.mine.OutCallActivity">
+    tools:context="com.jiuhao.jhjk.activity.mine.Other.OutCallActivity">
 
     <include layout="@layout/title" />
 

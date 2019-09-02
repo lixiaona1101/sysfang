@@ -1,9 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jiuhao.jhjk.activity.mine.LabelActivity">
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.Personage.LabelActivity">
 
-</android.support.design.widget.CoordinatorLayout>
+    <include layout="@layout/title"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp20">
+
+        <TextView
+            android:id="@+id/subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中医科"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp17"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标签"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp17"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.zhy.view.flowlayout.TagFlowLayout
+        android:id="@+id/tagflowlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingRight="@dimen/dp15">
+
+    </com.zhy.view.flowlayout.TagFlowLayout>
+
+
+</LinearLayout>

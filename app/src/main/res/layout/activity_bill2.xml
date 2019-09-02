@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.Bill.Bill2Activity">
+
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:background="@color/white"
+        android:gravity="center"
+        android:padding="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/bill_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="中医科"
+            android:textColor="@color/gray_444444"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/compile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="编辑"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp14"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp40"
+            android:background="@drawable/radius_6_origen"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingLeft="@dimen/dp25"
+            android:paddingRight="@dimen/dp25"
+            android:paddingTop="@dimen/dp10"
+            android:text="问题库导入"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+
+        <Button
+            android:id="@+id/button_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp40"
+            android:background="@drawable/radius_6_origen"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingLeft="@dimen/dp30"
+            android:paddingRight="@dimen/dp30"
+            android:paddingTop="@dimen/dp10"
+            android:text="新建问题"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+    </RelativeLayout>
+</LinearLayout>

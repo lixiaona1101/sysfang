@@ -16,17 +16,19 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp50"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp5">
 
         <RadioButton
             android:id="@+id/radio_medicine"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/text_color_000000"
             android:button="@null"
+            android:drawableTop="@drawable/item_kf"
             android:gravity="center"
-            android:text="开方" />
+            android:text="开方"
+            android:textColor="@drawable/text_color" />
 
         <RadioButton
             android:id="@+id/radio_patient"
@@ -34,9 +36,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:textColor="@color/green_009685"
+            android:drawableTop="@drawable/item_hz"
             android:gravity="center"
-            android:text="患者" />
+            android:text="患者"
+            android:textColor="@drawable/text_color" />
 
         <RadioButton
             android:id="@+id/radio_message"
@@ -44,19 +47,21 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:button="@null"
-            android:textColor="@color/green_009685"
+            android:drawableTop="@drawable/item_xx"
             android:gravity="center"
-            android:text="消息" />
+            android:text="消息"
+            android:textColor="@drawable/text_color" />
 
         <RadioButton
             android:id="@+id/radio_mine"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/green_009685"
-             android:button="@null"
+            android:button="@null"
+            android:drawableTop="@drawable/item_zh"
             android:gravity="center"
-            android:text="我的" />
+            android:text="我的"
+            android:textColor="@drawable/text_color" />
 
     </RadioGroup>
 </RelativeLayout>

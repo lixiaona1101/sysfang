@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.os.StrictMode;
 
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -12,10 +13,11 @@ import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class App extends Application {
 
@@ -34,12 +36,17 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        context=this;
+        context = this;
         mApplication = this;
         initRC();
 
+//        微信初始化
         WeChat.setAppId("wx19105639b52300a5");
         WeChat.setAppSecret("dc76a66a690f04f1309292d6a068bd06");
+
+//        极光推送初始化
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
         //logger 初始化
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
@@ -52,6 +59,11 @@ public class App extends Application {
 
         ToastUtils.init(this);
         Logger.i(sHA1(this));
+
+        // android 7.0系统解决拍照的问题
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        builder.detectFileUriExposure();
     }
 
     public String sHA1(Context context) {

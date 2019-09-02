@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_margin="@dimen/dp3"
+    android:text="标签"
+    android:paddingBottom="@dimen/dp6"
+    android:paddingTop="@dimen/dp6"
+    android:paddingRight="@dimen/dp13"
+    android:paddingLeft="@dimen/dp13"
+    android:background="@drawable/tag_bg"
+    android:textColor="@drawable/text_color"
+    android:layout_height="wrap_content">
+
+</TextView>

@@ -18,7 +18,7 @@ public class Json {
             String jsonObjectStr = array.getString(i);
             T bean = new Gson().fromJson(jsonObjectStr, c);
             list.add(bean);
-            Logger.e(bean.toString());
+            Logger.e(i+bean.toString());
         }
         return list;
     }

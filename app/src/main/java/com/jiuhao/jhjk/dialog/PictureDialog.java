@@ -15,8 +15,8 @@ public class PictureDialog extends BaseDialog {
     private AppCompatTextView p_bottom;
     private AppCompatTextView p_cancel;
 
-    private String topStr = "";
-    private String bottomStr = "";
+    private String topStr = "照相机";
+    private String bottomStr = "选择相册";
 
     public PictureDialog setTop(String str) {
         topStr = str;

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_f2">
+
+    <include layout="@layout/title" />
+
+    <RelativeLayout
+        android:id="@+id/rl_invite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:paddingBottom="@dimen/dp30"
+        android:paddingTop="@dimen/dp30">
+
+        <Button
+            android:id="@+id/btn_invite_friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp80"
+            android:layout_marginRight="@dimen/dp80"
+            android:background="@drawable/radius_15_green"
+            android:textSize="@dimen/sp17"
+            style="?android:attr/borderlessButtonStyle"
+            android:text="邀请医生"
+            android:textColor="#fefefe" />
+    </RelativeLayout>
+
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/cb_invite_friend"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_invite"
+        android:layout_below="@+id/rl_title" />
+
+
+</RelativeLayout>

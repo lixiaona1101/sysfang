@@ -10,6 +10,9 @@ import com.bumptech.glide.Priority;
 import com.bumptech.glide.request.RequestOptions;
 import com.zhihu.matisse.engine.ImageEngine;
 
+/**
+ * 图片加载引警
+ */
 public class GlideEngine implements ImageEngine {
 
     @Override

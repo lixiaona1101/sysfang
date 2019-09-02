@@ -121,8 +121,8 @@ public class OkHttpUtils {
                 params = new LinkedHashMap<>();
             if (!params.containsKey("userId"))
                 params.put("userId", userId);
-            if (!params.containsKey("accessToken"))
-                params.put("accessToken", userToken);
+            if (!params.containsKey("token"))
+                params.put("token", userToken);
         }
 
         //判断是否有参数
@@ -148,6 +148,7 @@ public class OkHttpUtils {
 
         //请求
         Request request = new Request.Builder()
+                .addHeader("token", userToken)
                 .url(url)
                 .build();
         return deliveryResult(isToast, tokenFailurLogin, url, "Get: " + url, callback, request);
@@ -176,8 +177,8 @@ public class OkHttpUtils {
                 params = new LinkedHashMap<>();
             if (!params.containsKey("userId"))
                 params.put("userId", userId);
-            if (!params.containsKey("accessToken"))
-                params.put("accessToken", userToken);
+            if (!params.containsKey("token"))
+                params.put("token", userToken);
         }
 
 //        StringBuilder sb = new StringBuilder();
@@ -243,6 +244,7 @@ public class OkHttpUtils {
 //        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, sb.toString());
         Request request = new Request.Builder()
                 .url(url)
+                .addHeader("token", userToken)
                 .post(requestBody)
                 .build();
 
@@ -281,8 +283,8 @@ public class OkHttpUtils {
                 params = new LinkedHashMap<>();
             if (!params.containsKey("userId"))
                 params.put("userId", userId + "");
-            if (!params.containsKey("accessToken"))
-                params.put("accessToken", userToken);
+            if (!params.containsKey("token"))
+                params.put("token", userToken);
         }
 
         StringBuilder sb = new StringBuilder();
@@ -327,6 +329,7 @@ public class OkHttpUtils {
 
         //请求
         Request request = new Request.Builder()
+                .addHeader("token", userToken)
                 .url(url)
                 .post(ProgressHelper.addProgressRequestListener(
                         requestBody,
@@ -362,8 +365,8 @@ public class OkHttpUtils {
                 params = new LinkedHashMap<>();
             if (!params.containsKey("userId"))
                 params.put("userId", userId);
-            if (!params.containsKey("accessToken"))
-                params.put("accessToken", userToken);
+            if (!params.containsKey("token"))
+                params.put("token", userToken);
         }
 
         StringBuilder sb = new StringBuilder();
@@ -405,6 +408,7 @@ public class OkHttpUtils {
 
         RequestBody requestBody = RequestBody.create(MEDIA_TYPE_TEXT, sb.toString());
         Request request = new Request.Builder()
+                .addHeader("token", userToken)
                 .url(url)
                 .post(requestBody)
                 .build();
@@ -414,8 +418,7 @@ public class OkHttpUtils {
     }
 
 
-
-    //---------------------------------put请求--------------------------
+    //---------------------------------put请求 表单--------------------------
 
     public static void put(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
         getInstance().putRequest(isToast, url, params, callback);
@@ -430,15 +433,15 @@ public class OkHttpUtils {
             ToastUtils.show(R.string.frequent);
             return null;
         }
-
+        urls.add(url);
 
         if (userId != -1) {
             if (params == null)
                 params = new LinkedHashMap<>();
             if (!params.containsKey("userId"))
                 params.put("userId", userId);
-            if (!params.containsKey("accessToken"))
-                params.put("accessToken", userToken);
+            if (!params.containsKey("token"))
+                params.put("token", userToken);
         }
 
         //请求体
@@ -465,6 +468,7 @@ public class OkHttpUtils {
 
 //        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, sb.toString());
         Request request = new Request.Builder()
+                .addHeader("token", userToken)
                 .url(url)
                 .put(requestBody)
                 .build();
@@ -472,6 +476,82 @@ public class OkHttpUtils {
         String newUrl = "Put: " + url + "\nParams: " + string;
         return deliveryResult(isToast, true, url, newUrl, callback, request);
     }
+
+
+    //---------------------------------put请求 json--------------------------
+
+    public static void putJson(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
+        getInstance().putRequestObject(isToast, url, params, callback);
+    }
+
+    public static void putJson(String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
+        getInstance().putRequestObject(false, url, params, callback);
+    }
+
+    private Call putRequestObject(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback<String> callback) {
+        if (urls.contains(url)) {
+            ToastUtils.show(R.string.frequent);
+            return null;
+        }
+        urls.add(url);
+
+        if (userId != -1) {
+            if (params == null)
+                params = new LinkedHashMap<>();
+            if (!params.containsKey("userId"))
+                params.put("userId", userId);
+            if (!params.containsKey("token"))
+                params.put("token", userToken);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        //请求体 参数
+
+        if (!CollectionUtils.isEmpty(params)) {
+            int i = 0;
+            for (Object o : params.entrySet()) {
+                Map.Entry entry = (Map.Entry) o;
+                String key = (String) entry.getKey();
+                Object value = entry.getValue();
+
+                if (i == 0) {
+                    sb.append("{");
+                }
+
+                sb.append("\"").append(key).append("\":");
+                if (value instanceof String) {
+                    if (((String) value).endsWith("}") && ((String) value).startsWith("{")) {
+                        sb.append(value);
+                    } else if (((String) value).endsWith("]") && ((String) value).startsWith("[")) {
+                        sb.append(value);
+                    } else {
+                        sb.append("\"").append(value).append("\"");
+                    }
+                } else {
+                    sb.append(value);
+                }
+
+                if (i == params.size() - 1) {
+                    sb.append("}");
+                } else {
+                    sb.append(",");
+                }
+
+                i++;
+            }
+        }
+
+        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_TEXT, sb.toString());
+        Request request = new Request.Builder()
+                .addHeader("token", userToken)
+                .url(url)
+                .put(requestBody)
+                .build();
+
+        String newUrl = "Post Json: " + url + "\nParams: " + sb.toString();
+        return deliveryResult(isToast, true, url, newUrl, callback, request);
+    }
+
     /**********************************************************************************************************
      *******************************************      处理结果       ********************************************
      *  @param isToast      是否吐司

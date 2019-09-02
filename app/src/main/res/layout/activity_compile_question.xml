@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.Bill.CompileQuestionActivity">
+
+
+    <include layout="@layout/title"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp15">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="问题标题"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp16"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/now_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/bai"
+            android:text="0"
+            android:textColor="@color/gary_999999" />
+
+        <TextView
+            android:id="@+id/bai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="/100"
+            android:textColor="@color/gary_999999" />
+
+
+        <LinearLayout
+            android:layout_width="@dimen/dp330"
+            android:layout_height="@dimen/dp100"
+            android:layout_below="@+id/bai"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/radius_5_f2f2f2">
+
+            <EditText
+                android:id="@+id/doctor_synopsis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp15"
+                android:background="@null"
+                android:hint="点击编辑问题"
+                android:inputType="textMultiLine"
+                android:maxLength="100"
+                android:textSize="@dimen/sp14" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp15"
+        android:text="问题类型"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp16"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp20"
+        android:paddingRight="@dimen/dp20">
+
+        <RadioButton
+            android:id="@+id/dan_choice"
+            android:layout_width="@dimen/dp90"
+            android:layout_height="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@drawable/question_item"
+            android:button="@null"
+            android:gravity="center"
+            android:text="单选题"
+            android:textColor="@drawable/text_color_dsj"
+            android:textSize="@dimen/sp14" />
+
+        <RadioButton
+            android:id="@+id/duo_choice"
+            android:layout_width="@dimen/dp90"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_weight="1"
+            android:background="@drawable/question_item"
+            android:button="@null"
+            android:gravity="center"
+            android:text="多选题"
+            android:textColor="@drawable/text_color_dsj"
+            android:textSize="@dimen/sp14" />
+
+        <RadioButton
+            android:id="@+id/white_choice"
+            android:layout_width="@dimen/dp90"
+            android:layout_height="@dimen/dp30"
+            android:layout_weight="1"
+            android:background="@drawable/question_item"
+            android:button="@null"
+            android:gravity="center"
+            android:text="简答题"
+            android:textColor="@drawable/text_color_dsj"
+            android:textSize="@dimen/sp14" />
+    </RadioGroup>
+
+    <!--单选-->
+    <LinearLayout
+        android:id="@+id/dan_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/dan_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/dan_add_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="点击添加选项"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="#f2f2f2" />
+    </LinearLayout>
+
+
+    <!--多选-->
+    <LinearLayout
+        android:id="@+id/duo_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/duo_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/duo_add_choice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="点击添加选项"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="#f2f2f2" />
+    </LinearLayout>
+</LinearLayout>

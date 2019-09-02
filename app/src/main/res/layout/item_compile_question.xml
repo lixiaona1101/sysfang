@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp20"
+    android:layout_marginRight="@dimen/dp20"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@drawable/radius_3_cancle"
+    android:padding="@dimen/dp20">
+
+    <TextView
+        android:id="@+id/question_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1.中医科问题文档上分别缴纳保存的VB补充十多个对吧是双方各打玻尿酸？"
+        android:textColor="@color/gray_444444"
+        android:textSize="@dimen/sp15" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/item_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/question_name"
+        android:layout_marginTop="@dimen/dp10">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/te"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_below="@id/item_recycler"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="#f2f2f2" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/te"
+        android:layout_marginTop="@dimen/dp15">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/up"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp25"
+                android:background="@drawable/radius_6_fasle"
+                android:text="置顶"
+                android:textColor="@color/gray_666666"
+                android:textSize="@dimen/sp12"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/last"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radius_6_true"
+                android:text="上移"
+                android:textColor="#ce503f"
+                android:textSize="@dimen/sp12"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radius_6_true"
+                android:text="下移"
+                android:textColor="#ce503f"
+                android:textSize="@dimen/sp12"
+                android:visibility="visible" />
+
+            <Button
+                android:id="@+id/down"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/radius_6_fasle"
+                android:text="置底"
+                android:textColor="@color/gray_666666"
+                android:textSize="@dimen/sp12"
+                android:visibility="visible" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/compile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toLeftOf="@+id/tex"
+            android:padding="@dimen/dp5"
+            android:text="编辑"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/tex"
+            android:layout_width="@dimen/dp1"
+            android:layout_height="@dimen/dp25"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toLeftOf="@+id/trash"
+            android:background="@color/gray_666666"
+            android:padding="@dimen/dp5" />
+
+        <ImageView
+            android:id="@+id/trash"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp25"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:src="@mipmap/trash" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

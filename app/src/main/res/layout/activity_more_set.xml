@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.patient.MoreSetActivity">
+
+    <include layout="@layout/title" />
+
+    <TextView
+        android:id="@+id/clear_details"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:layout_marginLeft="@dimen/dp15"
+        android:gravity="center_vertical"
+        android:text="清空聊天记录"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp16" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="#f2f2f2" />
+
+    <TextView
+        android:id="@+id/no_disturb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp60"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:drawableRight="@mipmap/off"
+        android:gravity="center_vertical"
+        android:text="消息免打扰"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp16" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="#f2f2f2" />
+
+
+</LinearLayout>

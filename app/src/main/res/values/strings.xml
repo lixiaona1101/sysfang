@@ -31,4 +31,20 @@
     <string name="title_activity_occupation">OccupationActivity</string>
     <string name="title_activity_out_call">OutCallActivity</string>
     <string name="title_activity_label">LabelActivity</string>
+    <string name="title_activity_fill_in">FillInActivity</string>
+    <string name="title_activity_help">HelpActivity</string>
+    <string name="title_activity_webview">WebviewActivity</string>
+    <string name="title_activity_question">QuestionActivity</string>
+    <string name="title_activity_bill2">Bill2Activity</string>
+    <string name="title_activity_list_question">ListQuestionActivity</string>
+    <string name="title_activity_compile_bill">CompileBillActivity</string>
+    <string name="title_activity_compile_question">CompileQuestionActivity</string>
+    <string name="title_activity_mass_texting_one">MassTextingOneActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_person_details">PersonDetailsActivity</string>
+    <string name="title_activity_more_set">MoreSetActivity</string>
+    <string name="title_activity_pay_set">PaySetActivity</string>
+    <string name="title_activity_dialogue">DialogueActivity</string>
+    <string name="title_activity_invite_friends">InviteFriendsActivity</string>
+    <string name="title_activity_big_img">BigImgActivity</string>
 </resources>

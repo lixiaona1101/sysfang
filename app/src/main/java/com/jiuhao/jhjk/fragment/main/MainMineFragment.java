@@ -10,17 +10,20 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
-import com.jiuhao.jhjk.activity.mine.AboutOurActivity;
-import com.jiuhao.jhjk.activity.mine.AccountManagementActivity;
-import com.jiuhao.jhjk.activity.mine.BillActivity;
-import com.jiuhao.jhjk.activity.mine.ConsultingFeeActivity;
+import com.jiuhao.jhjk.activity.mine.Other.AboutOurActivity;
+import com.jiuhao.jhjk.activity.mine.AccountManagement.AccountManagementActivity;
+import com.jiuhao.jhjk.activity.mine.Bill.BillActivity;
+import com.jiuhao.jhjk.activity.mine.ConsultingFee.ConsultingFeeActivity;
 import com.jiuhao.jhjk.activity.mine.DoctorCertified.MessageCertifiedActivity;
-import com.jiuhao.jhjk.activity.mine.IntegralActivity;
-import com.jiuhao.jhjk.activity.mine.OutCallActivity;
-import com.jiuhao.jhjk.activity.mine.PersonalDataActivity;
+import com.jiuhao.jhjk.activity.mine.Other.FillInActivity;
+import com.jiuhao.jhjk.activity.mine.Other.IntegralActivity;
+import com.jiuhao.jhjk.activity.mine.Other.InviteFriendsActivity;
+import com.jiuhao.jhjk.activity.mine.Other.OutCallActivity;
+import com.jiuhao.jhjk.activity.mine.Personage.PersonalDataActivity;
 import com.jiuhao.jhjk.fragment.base.BaseFragment;
 import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.glide.GlideUtil;
+import com.jiuhao.jhjk.view.WebviewActivity;
 
 /**
  * 我的主fragment
@@ -91,6 +94,7 @@ public class MainMineFragment extends BaseFragment {
      */
     private TextView mAboutOur;
     private LinearLayout mLin4;
+    private boolean isWhite = true;
 
     @Override
     protected int getLayoutId() {
@@ -129,6 +133,9 @@ public class MainMineFragment extends BaseFragment {
         //医生头像
         String headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
         GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
+        //医生名字
+        String name = SPUtils.getString(getContext(), ConfigKeys.NAME, "医生名字");
+        mTvDocNameUser.setText(name);
         //认证状态 1未认证 3已认证
         int authstat = SPUtils.getInt(getContext(), ConfigKeys.AUTHSTAT, 1);
         if (authstat == 1) {
@@ -205,6 +212,47 @@ public class MainMineFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), OutCallActivity.class));
+            }
+        });
+        //智能填写
+        mIvZhiOffOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (isWhite) {
+                    mIvZhiOffOn.setImageResource(R.mipmap.off);
+                    SPUtils.putBoolean(getActivity(), ConfigKeys.ZHI_FLAG, false);
+                } else if (!isWhite) {
+                    mIvZhiOffOn.setImageResource(R.mipmap.on);
+                    SPUtils.putBoolean(getActivity(), ConfigKeys.ZHI_FLAG, true);
+                }
+                isWhite = !isWhite;
+            }
+        });
+
+        //什么是智能填写
+        mTvIc6Question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), FillInActivity.class));
+            }
+        });
+
+        //使用帮助
+        mUseHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), WebviewActivity.class);
+                intent.putExtra("title", "使用帮助");
+                intent.putExtra("html", ConfigKeys.USER_HELP);
+                startActivity(intent);
+            }
+        });
+
+        //邀请医生
+        mInvite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), InviteFriendsActivity.class));
             }
         });
     }

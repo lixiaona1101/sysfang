@@ -7,6 +7,7 @@
     <include layout="@layout/title" />
 
     <TextView
+        android:id="@+id/oldPhone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp60"
         android:paddingLeft="@dimen/dp15"

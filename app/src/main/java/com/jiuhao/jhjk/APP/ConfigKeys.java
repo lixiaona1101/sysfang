@@ -1,11 +1,18 @@
 package com.jiuhao.jhjk.APP;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+
 public class ConfigKeys {
 
     private static final String BASE_URL = "http://192.168.0.104:8090/sysf/";
     //    private static final String BASE_URL = "http://www.hzsysf.com/sysf/";
     private static final String BASE_SERVER = "http://www.hzsysf.com/";
 
+
+    //glide
+    public static final RequestOptions REQUEST_OPTIONS = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL).fitCenter();
     /**
      * -------------------------微信APPID appSecret--------------------
      */
@@ -63,9 +70,12 @@ public class ConfigKeys {
     public static final String UNIONID = "unionId";
     //科室名称
     public static final String DEPARTMENTNAME = "departmentName";
+    //医生名字
+    public static final String NAME = "name";
     //登录状态
     public static final String LOGIN_STATE = "login_state";
-
+    //智能填写状态
+    public static final String ZHI_FLAG = "zhiflag";
 
     /**
      * ---------------------------------接口------------------------------------
@@ -80,8 +90,49 @@ public class ConfigKeys {
     //获取所有科室
     public static final String DEPARTMENT = BASE_URL + "department";
 
-    //使用声明
+    //按照科室id查询标签
+    public static final String DOCLABEL = BASE_URL + "doclabel";
+
+    //完善医生信息
+    public static final String DOC = BASE_URL + "doc";
+
+    //修改密码
+    public static final String PASSWORDD = BASE_URL + "password";
+
+    //退出登录
+    public static final String LOGINOUT = BASE_URL + "loginout";
+
+    //更换手机号
+    public static final String CHANGEPHONE = BASE_URL + "changephone";
+
+    //问题库
+    public static final String IGQUESTIONSTORE = BASE_URL + "igquestionStore";
+
+    //编辑问诊单put请求 /问诊单列表get请求
+    public static final String INTERROGATION = BASE_URL + "interrogation";
+
+    //更新医生坐诊时间
+    public static final String CLINIC = BASE_URL + "user/clinic";
+
+    //获取医生信息
+    public static final String USERDOC = BASE_URL + "user/doc";
+
+    //邀请医生
+    public static final String DSIMG = BASE_URL + "dsimg";
+
+    //咨询费列表get  选择付费列表put
+    public static final String DOCPRICEITEM = BASE_URL + "docPriceItem";
+
+    //咨询费设置
+    public static final String DOCPRICEITEMCHOOSED = BASE_URL + "docPriceItem/choosed";
+
+
+    /**
+     * -----------------------------------HTML-----------------------------
+     */
+    //法律声明
     public static final String USER_INSTRUCTIONS = BASE_SERVER + "instructions.html";
 
-
+    //使用帮助
+    public static final String USER_HELP = BASE_SERVER + "help.html";
 }

@@ -61,9 +61,11 @@ public class MainActivity extends BaseActivity {
         fragments.add(new MainPatientFragment());//患者
         fragments.add(new MainMessageFragment());//消息
         fragments.add(new MainMineFragment());//我的
-        radioMedicine.setChecked(true);
-        mainViewpager.setCurrentItem(0);
-        check(0);
+//        radioMedicine.setChecked(true);
+//        mainViewpager.setCurrentItem(0);
+        //默认
+        radioMine.setChecked(true);
+        mainViewpager.setCurrentItem(3,true);
     }
 
     @Override
@@ -78,28 +80,28 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 mainViewpager.setCurrentItem(0,true);
-                check(0);
+                radioMedicine.setChecked(true);
             }
         });
         radioPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainViewpager.setCurrentItem(1,true);
-                check(1);
+                radioPatient.setChecked(true);
             }
         });
         radioMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainViewpager.setCurrentItem(2,true);
-                check(2);
+                radioMessage.setChecked(true);
             }
         });
         radioMine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mainViewpager.setCurrentItem(3,true);
-                check(3);
+                radioMine.setChecked(true);
             }
         });
         mainViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -119,7 +121,6 @@ public class MainActivity extends BaseActivity {
                 }else if(i==3){
                     radioMine.setChecked(true);
                 }
-                check(i);
             }
 
             @Override
@@ -129,21 +130,21 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    public void check(int i){
-        radioMedicine.setTextColor(getResources().getColor(R.color.green_009685));
-        radioPatient.setTextColor(getResources().getColor(R.color.green_009685));
-        radioMessage.setTextColor(getResources().getColor(R.color.green_009685));
-        radioMine.setTextColor(getResources().getColor(R.color.green_009685));
-
-        if(i==0){
-            radioMedicine.setTextColor(getResources().getColor(R.color.text_color_000000));
-        }else if(i==1){
-            radioPatient.setTextColor(getResources().getColor(R.color.text_color_000000));
-        }else if(i==2){
-            radioMessage.setTextColor(getResources().getColor(R.color.text_color_000000));
-        }else if(i==3){
-            radioMine.setTextColor(getResources().getColor(R.color.text_color_000000));
-        }
-    }
+//    public void check(int i){
+//        radioMedicine.setTextColor(getResources().getColor(R.color.green_009685));
+//        radioPatient.setTextColor(getResources().getColor(R.color.green_009685));
+//        radioMessage.setTextColor(getResources().getColor(R.color.green_009685));
+//        radioMine.setTextColor(getResources().getColor(R.color.green_009685));
+//
+//        if(i==0){
+//            radioMedicine.setTextColor(getResources().getColor(R.color.text_color_000000));
+//        }else if(i==1){
+//            radioPatient.setTextColor(getResources().getColor(R.color.text_color_000000));
+//        }else if(i==2){
+//            radioMessage.setTextColor(getResources().getColor(R.color.text_color_000000));
+//        }else if(i==3){
+//            radioMine.setTextColor(getResources().getColor(R.color.text_color_000000));
+//        }
+//    }
 
 }

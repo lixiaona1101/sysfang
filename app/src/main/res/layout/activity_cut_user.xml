@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.jiuhao.jhjk.activity.mine.CutUserActivity">
+    tools:context="com.jiuhao.jhjk.activity.mine.AccountManagement.CutUserActivity">
 
     <include layout="@layout/title" />
 
@@ -14,6 +14,7 @@
 
 
         <TextView
+            android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -23,6 +24,7 @@
             android:textSize="@dimen/sp16" />
 
         <ImageView
+            android:id="@+id/yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -40,13 +42,14 @@
 
 
     <TextView
+        android:id="@+id/cut"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp60"
         android:drawableRight="@mipmap/right"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/dp16"
         android:paddingRight="@dimen/dp15"
-        android:text="切换账号"
+        android:text="换个新账号"
         android:textColor="@color/text_black"
         android:textSize="@dimen/sp16" />
 
