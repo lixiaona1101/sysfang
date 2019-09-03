@@ -56,7 +56,13 @@ public class MainPatientFragment extends BaseFragment {
 
     @Override
     protected void setListener() {
+        //邀请患者
+        welcomeOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
     }
 
 }

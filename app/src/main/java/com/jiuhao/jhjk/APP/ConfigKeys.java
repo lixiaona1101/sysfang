@@ -43,8 +43,9 @@ public class ConfigKeys {
     public static final String SEX = "sex";
     //生日
     public static final String BIRTHDAY = "birthday";
-    //认证
+    //认证状态
     public static final String AUTHSTAT = "authStat";
+    public static final String INVITE_STATUS = "invite_status";
     //诊金
     public static final String FEES = "fees";
     //厂家id
@@ -125,6 +126,15 @@ public class ConfigKeys {
 
     //咨询费设置
     public static final String DOCPRICEITEMCHOOSED = BASE_URL + "docPriceItem/choosed";
+
+    //查看认证get 医生认证post
+    public static final String DOCAUTH = BASE_URL + "docAuth";
+
+    //患者分组列表
+    public static final String DCGROUP = BASE_URL + "dcgroup";
+
+    //查询分组用户
+    public static final String INDEX = BASE_URL + "customer/index";
 
 
     /**

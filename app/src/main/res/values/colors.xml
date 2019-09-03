@@ -56,5 +56,6 @@
     <color name="c_e2e2df">#99f9ebeb</color>
     <color name="e4d7d0">#e4d7d0</color>
     <color name="efd0c5">#efd0c5</color>
+    <color name="gray">#808080</color>
 
 </resources>

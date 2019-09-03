@@ -9,7 +9,7 @@
 
     <include layout="@layout/title" />
 
-    <!--1表示成功 2表示失败-->
+    <!--1表示成功 2表示失败 3审核中-->
     <!--认证1-->
     <TextView
         android:id="@+id/text_pass"
@@ -20,7 +20,7 @@
         android:text="您的医生资质认证已通过！"
         android:textColor="@color/white"
         android:textSize="@dimen/sp14"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <!--认证2-->
     <TextView
@@ -30,6 +30,18 @@
         android:background="@color/gray_444444"
         android:gravity="center"
         android:text="您的医生资质认证未通过！"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp14"
+        android:visibility="gone" />
+
+    <!--认证3-->
+    <TextView
+        android:id="@+id/text_now_pass"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:background="@color/gray_444444"
+        android:gravity="center"
+        android:text="您的医生资质认证正在审核中"
         android:textColor="@color/white"
         android:textSize="@dimen/sp14"
         android:visibility="gone" />
@@ -64,6 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp5"
             android:layout_toRightOf="@+id/salesman_name_phone"
+            android:padding="@dimen/dp3"
             android:src="@mipmap/phone" />
 
     </RelativeLayout>
@@ -157,7 +170,7 @@
         android:layout_marginRight="@dimen/dp20"
         android:layout_marginTop="@dimen/dp10"
         android:background="@drawable/imaginary_line"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -237,6 +250,48 @@
             android:textSize="@dimen/sp12" />
 
     </RelativeLayout>
+    <!--医生资格证3-->
+    <RelativeLayout
+        android:id="@+id/rela_status_now"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生资格证"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/right_now"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/right" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/right_now"
+            android:text="审核中"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp12" />
+
+    </RelativeLayout>
+
 
     <!--医生执业证1-->
     <RelativeLayout
@@ -247,7 +302,7 @@
         android:layout_marginRight="@dimen/dp20"
         android:layout_marginTop="@dimen/dp10"
         android:background="@drawable/imaginary_line"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <TextView
             android:layout_width="wrap_content"
@@ -328,6 +383,47 @@
 
     </RelativeLayout>
 
+    <!--医师执业证3-->
+    <RelativeLayout
+        android:id="@+id/rela_practice_now"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@drawable/imaginary_line"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="医生执业证"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/right3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/right" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@+id/right3"
+            android:text="审核中"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp12" />
+
+    </RelativeLayout>
+
     <!--成功-->
     <TextView
         android:id="@+id/reason_ok"
@@ -339,7 +435,7 @@
         android:text="说明:\n1、我们承诺,您的个人信息只用做医生资格审查。绝不将您的个人信息外漏。\n2、医生资质一但认证成功,不支持进行更改。包括【医生姓名】、【执业证书】、【资格证书】。如有特殊情况请联系您的业务员进行说明更改。\n3、平台推广期,个别情况不做特别限制。"
         android:textColor="@color/c_333333"
         android:textSize="@dimen/sp12"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <!--失败-->
     <TextView
@@ -375,9 +471,23 @@
         android:layout_marginRight="@dimen/dp33"
         android:layout_marginTop="@dimen/dp30"
         android:background="@drawable/radius_15_green"
+        android:text="完成认证"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp18"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/again_restart_button"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginLeft="@dimen/dp33"
+        android:layout_marginRight="@dimen/dp33"
+        android:layout_marginTop="@dimen/dp30"
+        android:background="@drawable/radius_15_green"
         android:text="重新认证"
         android:textColor="@color/white"
         android:textSize="@dimen/sp18"
         android:visibility="gone" />
+
 
 </LinearLayout>

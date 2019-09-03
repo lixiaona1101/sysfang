@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.activity.mine.DoctorCertified;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.net.Uri;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
+import com.jiuhao.jhjk.activity.mine.Other.BigImgActivity;
+import com.jiuhao.jhjk.bean.DocAuthBean;
 
 /**
  * 认证是否通过
@@ -85,6 +87,21 @@ public class CertifiedPassActivity extends BaseActivity implements View.OnClickL
      * 重新认证
      */
     private Button reasonRestartButton;
+    private DocAuthBean docAuthBean;
+    private int authStat;//认证状态
+    /**
+     * 您的医生资质认证正在审核中
+     */
+    private TextView textNowPass;
+    private ImageView rightNow;
+    private RelativeLayout relaStatusNow;
+    private ImageView right3;
+    private RelativeLayout relaPracticeNow;
+    /**
+     * 重新认证
+     */
+    private Button againRestartButton;
+
 
     @Override
     protected void setContentLayout() {
@@ -126,16 +143,122 @@ public class CertifiedPassActivity extends BaseActivity implements View.OnClickL
         reasonRestartButton = (Button) findViewById(R.id.reason_restart_button);
         reasonRestartButton.setOnClickListener(this);
         tvTitle.setText("信息认证");
+        textNowPass = (TextView) findViewById(R.id.text_now_pass);
+        rightNow = (ImageView) findViewById(R.id.right_now);
+        relaStatusNow = (RelativeLayout) findViewById(R.id.rela_status_now);
+        right3 = (ImageView) findViewById(R.id.right3);
+        relaPracticeNow = (RelativeLayout) findViewById(R.id.rela_practice_now);
+        againRestartButton = (Button) findViewById(R.id.again_restart_button);
+        againRestartButton.setOnClickListener(this);
     }
 
     @Override
     protected void obtainData() {
+        Intent intent = getIntent();
+        docAuthBean = (DocAuthBean) intent.getSerializableExtra("bean");
 
+        String name = docAuthBean.getSalesman().getName();
+        String phone = docAuthBean.getSalesman().getPhone();
+        salesmanNamePhone.setText(name + "  " + phone);
+        attestationTime.setText(docAuthBean.getCreateTime() + "");
+        renName.setText(docAuthBean.getName());
+
+        authStat = docAuthBean.getAuthStat();
+        if (authStat == 3) {//已认证
+            textPass.setVisibility(View.VISIBLE);
+            relaStatusOk.setVisibility(View.VISIBLE);
+            relaPracticeOk.setVisibility(View.VISIBLE);
+            reasonOk.setVisibility(View.VISIBLE);
+            reasonRestartButton.setVisibility(View.VISIBLE);
+        } else if (authStat == 4) {//审核失败
+            textNoPass.setVisibility(View.VISIBLE);
+            reasonNo1.setVisibility(View.VISIBLE);
+            reasonNo2.setVisibility(View.VISIBLE);
+            againRestartButton.setVisibility(View.VISIBLE);
+            reasonNo2.setText(docAuthBean.getUnAuthRemark());
+            if (docAuthBean.isAu_PhysicianQualCert()) {//资格证通过
+                relaStatusOk.setVisibility(View.VISIBLE);
+            } else {
+                relaStatusNo.setVisibility(View.VISIBLE);
+            }
+            if (docAuthBean.isAu_PhysicianCert()) {//执业证通过
+                relaPracticeOk.setVisibility(View.VISIBLE);
+            } else {
+                relaPracticeNo.setVisibility(View.VISIBLE);
+            }
+
+        } else if (authStat == 2) {//审核中
+            textNowPass.setVisibility(View.VISIBLE);
+            relaStatusNow.setVisibility(View.VISIBLE);
+            relaPracticeNow.setVisibility(View.VISIBLE);
+            reasonOk.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     protected void initEvent() {
 
+        //call
+        salesmanPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + docAuthBean.getSalesman().getPhone());
+                intent.setData(data);
+                startActivity(intent);
+            }
+        });
+
+        //成功 医师资格证查看
+        relaStatusOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                look(docAuthBean.getPhysicianQualCert());
+            }
+        });
+        //成功 医师执业证查看
+        relaPracticeOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                look(docAuthBean.getPhysicianCert());
+            }
+        });
+        //失败 医师资格证查看
+        relaStatusNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                look(docAuthBean.getPhysicianQualCert());
+            }
+        });
+        //失败 执业证查看
+        relaPracticeNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                look(docAuthBean.getPhysicianCert());
+            }
+        });
+        //审核中  医师资格证查看
+        relaStatusNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                look(docAuthBean.getPhysicianQualCert());
+            }
+        });
+        //审核中 执业证查看
+        relaPracticeNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                look(docAuthBean.getPhysicianCert());
+            }
+        });
+
+    }
+
+    //查看图片
+    public void look(String url) {
+        Intent intent = new Intent(getContext(), BigImgActivity.class);
+        intent.putExtra("imgUrl", url);
+        startActivity(intent);
     }
 
 
@@ -144,9 +267,15 @@ public class CertifiedPassActivity extends BaseActivity implements View.OnClickL
         switch (v.getId()) {
             default:
                 break;
-            case R.id.reason_restart_button:
-                startActivity(new Intent(getContext(),MessageCertifiedActivity.class));
+            case R.id.reason_restart_button://完成认证
+                finish();
+                break;
+            case R.id.again_restart_button://重新认证
+                Intent intent = new Intent(getContext(), MessageCertifiedAgainActivity.class);
+                intent.putExtra("docbean", docAuthBean);
+                startActivity(intent);
                 break;
         }
     }
+
 }

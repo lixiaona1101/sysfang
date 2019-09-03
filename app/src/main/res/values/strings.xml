@@ -11,6 +11,10 @@
     <string name="no_found_network">请求失败，请稍后再试…</string>
     <string name="Authorization_failure">授权失败</string>
     <string name="Authorization_error">授权错误</string>
+
+
+    <string name="new_five_record">（仅显示最新的5条处方记录）</string>
+
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_bind_phone">BindPhoneActivity</string>
     <string name="title_activity_message_certified">MessageCertifiedActivity</string>
@@ -47,4 +51,6 @@
     <string name="title_activity_dialogue">DialogueActivity</string>
     <string name="title_activity_invite_friends">InviteFriendsActivity</string>
     <string name="title_activity_big_img">BigImgActivity</string>
+    <string name="title_activity_message_certified_again">MessageCertifiedAgainActivity</string>
+    <string name="title_activity_invite_customer">InviteCustomerActivity</string>
 </resources>

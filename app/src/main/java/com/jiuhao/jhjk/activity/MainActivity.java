@@ -61,11 +61,8 @@ public class MainActivity extends BaseActivity {
         fragments.add(new MainPatientFragment());//患者
         fragments.add(new MainMessageFragment());//消息
         fragments.add(new MainMineFragment());//我的
-//        radioMedicine.setChecked(true);
-//        mainViewpager.setCurrentItem(0);
-        //默认
-        radioMine.setChecked(true);
-        mainViewpager.setCurrentItem(3,true);
+        radioMedicine.setChecked(true);
+        mainViewpager.setCurrentItem(0);
     }
 
     @Override

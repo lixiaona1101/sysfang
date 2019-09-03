@@ -39,7 +39,7 @@ public class CertifiedActivity extends BaseActivity {
         mBackMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
             }
         });
     }

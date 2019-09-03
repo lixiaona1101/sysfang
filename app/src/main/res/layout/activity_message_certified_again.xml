@@ -88,6 +88,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp20"
         android:layout_marginLeft="@dimen/dp20"
         android:layout_marginTop="@dimen/dp5"
         android:text="要求：1.资格证书编号清晰,2.执业证带有执业地点详情"
@@ -99,22 +100,23 @@
         android:id="@+id/up_no_ok"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp45"
-        android:layout_margin="@dimen/dp20"
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/imaginary_line"
         android:gravity="center"
-        android:text="点击上传医师资格证书"
+        android:text="重新提交医师资格证书"
         android:textColor="@color/orange"
         android:textSize="@dimen/sp15"
-        android:visibility="visible" />
-
+        android:visibility="gone" />
     <!--上传证书 完成-->
     <LinearLayout
-        android:id="@+id/up_ok"
+        android:id="@+id/up_look"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp45"
         android:layout_marginBottom="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
         android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/imaginary_line"
         android:gravity="center"
         android:orientation="horizontal"
@@ -137,6 +139,28 @@
             android:textSize="@dimen/sp15" />
 
     </LinearLayout>
+    <!--上传证书 完成-->
+    <LinearLayout
+        android:id="@+id/up_ok"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@drawable/imaginary_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/pass"
+            android:text=" 资格证已通过审核"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp15" />
+
+    </LinearLayout>
 
     <!--上传执业证书 默认-->
     <TextView
@@ -144,14 +168,14 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp45"
         android:layout_marginBottom="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
         android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/imaginary_line"
         android:gravity="center"
-        android:text="点击上传医师执业证书"
+        android:text="重新提交医师执业证书"
         android:textColor="@color/orange"
         android:textSize="@dimen/sp15"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
     <!--上传证书 完成-->
     <LinearLayout
@@ -159,8 +183,30 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp45"
         android:layout_marginBottom="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
         android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@drawable/imaginary_line"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/pass"
+            android:text=" 执业证已通过审核"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp15" />
+
+    </LinearLayout>
+    <!--上传证书 完成-->
+    <LinearLayout
+        android:id="@+id/down_look"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
         android:background="@drawable/imaginary_line"
         android:gravity="center"
         android:orientation="horizontal"
@@ -183,7 +229,6 @@
             android:textSize="@dimen/sp15" />
 
     </LinearLayout>
-
     <!--提交认证-->
     <Button
         android:id="@+id/message_submit"

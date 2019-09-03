@@ -111,7 +111,6 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private int sexx;
     private String headUri="1";
     private static String[] PERMISSIONS_STORAGE = {
-//            Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,//写权限
             Manifest.permission.CAMERA};//照相权限
 

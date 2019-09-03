@@ -2,6 +2,8 @@ package com.jiuhao.jhjk.fragment.main;
 
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,20 +12,26 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
-import com.jiuhao.jhjk.activity.mine.Other.AboutOurActivity;
 import com.jiuhao.jhjk.activity.mine.AccountManagement.AccountManagementActivity;
 import com.jiuhao.jhjk.activity.mine.Bill.BillActivity;
 import com.jiuhao.jhjk.activity.mine.ConsultingFee.ConsultingFeeActivity;
+import com.jiuhao.jhjk.activity.mine.DoctorCertified.CertifiedPassActivity;
 import com.jiuhao.jhjk.activity.mine.DoctorCertified.MessageCertifiedActivity;
+import com.jiuhao.jhjk.activity.mine.Other.AboutOurActivity;
 import com.jiuhao.jhjk.activity.mine.Other.FillInActivity;
 import com.jiuhao.jhjk.activity.mine.Other.IntegralActivity;
 import com.jiuhao.jhjk.activity.mine.Other.InviteFriendsActivity;
 import com.jiuhao.jhjk.activity.mine.Other.OutCallActivity;
 import com.jiuhao.jhjk.activity.mine.Personage.PersonalDataActivity;
+import com.jiuhao.jhjk.bean.DocAuthBean;
 import com.jiuhao.jhjk.fragment.base.BaseFragment;
 import com.jiuhao.jhjk.utils.SPUtils;
+import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.glide.GlideUtil;
+import com.jiuhao.jhjk.utils.net.Json;
+import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.jiuhao.jhjk.view.WebviewActivity;
+import com.orhanobut.logger.Logger;
 
 /**
  * 我的主fragment
@@ -96,6 +104,37 @@ public class MainMineFragment extends BaseFragment {
     private LinearLayout mLin4;
     private boolean isWhite = true;
 
+    //医生认证
+    private DocAuthBean docAuthBean;
+    private int authStat;
+    public Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message message) {
+            switch (message.what) {
+                case 0:
+                    authStat = docAuthBean.getAuthStat();
+                    SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, authStat);
+                    Logger.e(authStat + "");
+                    if (authStat == 3) {
+                        mOkAuthentication.setImageResource(R.mipmap.ok);
+                        mAuthenticationRight.setText("已认证  ");
+                    } else if (authStat == 1) {
+                        mOkAuthentication.setImageResource(R.mipmap.ok_1);
+                        mAuthenticationRight.setText("未认证  ");
+                    } else if (authStat == 2) {
+                        mOkAuthentication.setImageResource(R.mipmap.ok_1);
+                        mAuthenticationRight.setText("审核中  ");
+                    } else if (authStat == 4) {
+                        mOkAuthentication.setImageResource(R.mipmap.ok_1);
+                        mAuthenticationRight.setText("审核失败  ");
+                    }
+
+                    break;
+            }
+            return false;
+        }
+    });
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_mian_mine;
@@ -129,33 +168,54 @@ public class MainMineFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        getDocAuth();
         //医生头像
         String headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
         GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
         //医生名字
         String name = SPUtils.getString(getContext(), ConfigKeys.NAME, "医生名字");
         mTvDocNameUser.setText(name);
-        //认证状态 1未认证 3已认证
-        int authstat = SPUtils.getInt(getContext(), ConfigKeys.AUTHSTAT, 1);
-        if (authstat == 1) {
-            mOkAuthentication.setImageResource(R.mipmap.ok_1);
-            mAuthenticationRight.setText("未认证  ");
-        } else if (authstat == 3) {
-            mOkAuthentication.setImageResource(R.mipmap.ok);
-            mAuthenticationRight.setText("已认证  ");
-        }
+        //认证状态 1,  "未认证"  2, "审核中"   3, "已认证"   4,"审核失败";
+//        int authstat = SPUtils.getInt(getContext(), ConfigKeys.AUTHSTAT, 1);
 
+    }
+
+    public void getDocAuth() {
+
+        //查看认证
+        OkHttpUtils.get(ConfigKeys.DOCAUTH, null, new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e(response);
+                docAuthBean = Json.parseObj(response, DocAuthBean.class);
+                Logger.e(docAuthBean.getAuthStat()+"");
+                handler.sendEmptyMessage(0);
+
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+                ToastUtils.show(e.getMessage());
+            }
+        });
     }
 
     @Override
     protected void setListener() {
 
-        //医生认证
+        //医生认证 认证状态 1,  "未认证"  2, "审核中"   3, "已认证"   4,"审核失败";
         mAuthenticationRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), MessageCertifiedActivity.class));
+                if (authStat == 1) {//未认证
+                    Intent intent = new Intent(getContext(), MessageCertifiedActivity.class);
+                    startActivity(intent);
+                } else if (authStat == 3 || authStat == 2 || authStat == 4) {//已认证//审核中//审核失败
+                    Intent intent = new Intent(getContext(), CertifiedPassActivity.class);
+                    intent.putExtra("bean", docAuthBean);
+                    startActivity(intent);
+                }
             }
         });
 

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:background="#f2f2f2"
     android:orientation="vertical"
+    android:paddingTop="@dimen/dp25"
     tools:context="com.jiuhao.jhjk.fragment.main.MainPatientFragment">
 
     <EditText

@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -23,11 +24,11 @@ import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.activity.mine.Other.BigImgActivity;
+import com.jiuhao.jhjk.bean.DocAuthBean;
 import com.jiuhao.jhjk.dialog.PictureDialog;
 import com.jiuhao.jhjk.utils.PictureUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.glide.GlideEngine;
-import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 import com.zhihu.matisse.Matisse;
@@ -36,120 +37,131 @@ import com.zhihu.matisse.MimeType;
 import java.io.File;
 import java.util.LinkedHashMap;
 
-/**
- * 信息认证
- */
-public class MessageCertifiedActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageView mIvBack;
+public class MessageCertifiedAgainActivity extends BaseActivity implements View.OnClickListener {
+
+    private ImageView ivBack;
     /**
      * 标题
      */
-    private TextView mTvTitle;
+    private TextView tvTitle;
     /**
      * 确认
      */
-    private TextView mTvTitleSure;
-    private RelativeLayout mRlTitleSure;
-    private RelativeLayout mRlTitle;
+    private TextView tvTitleSure;
+    private RelativeLayout rlTitleSure;
+    private RelativeLayout rlTitle;
     /**
      * 请输入业务员邀请码
      */
-    private EditText mInvitationCode;
+    private EditText invitationCode;
     /**
      * 请输入医生真实姓名
      */
-    private EditText mDoctorName;
+    private EditText doctorName;
     /**
-     * 点击上传医师资格证书
+     * 重新提交医师资格证书
      */
-    private TextView mUpNoOk;
-    private LinearLayout mUpOk;
+    private TextView upNoOk;
+    private LinearLayout upOk;
+    /**
+     * 重新提交医师执业证书
+     */
+    private TextView downNoOk;
+    private LinearLayout downOk;
     /**
      * 提交认证
      */
-    private Button mMessageSubmit;
-    /**
-     * 点击查看图片
-     */
-    private TextView mSeeImg;
-    /**
-     * 点击上传医师执业证书
-     */
-    private TextView mDownNoOk;
-    /**
-     * 点击查看图片
-     */
-    private TextView mSeeImgDown;
-    private LinearLayout mDownOk;
+    private Button messageSubmit;
+    private DocAuthBean docbean;
     private Uri imageuri;
     private String headUri = "1";//资格证
     private String headUri2 = "1";//执业证
     private static String[] PERMISSIONS_STORAGE = {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,//写权限
             Manifest.permission.CAMERA};//照相权限
-
+    /**
+     * 点击查看图片
+     */
+    private TextView seeImg;
+    private LinearLayout upLook;
+    /**
+     * 点击查看图片
+     */
+    private TextView seeImgDown;
+    private LinearLayout downLook;
 
     @Override
     protected void setContentLayout() {
-        setContentView(R.layout.activity_message_certified);
+        setContentView(R.layout.activity_message_certified_again);
         translucentStatusBar(true);
     }
 
     @Override
     protected void initView() {
 
-        mIvBack = (ImageView) findViewById(R.id.iv_back);
-        mTvTitle = (TextView) findViewById(R.id.tv_title);
-        mTvTitleSure = (TextView) findViewById(R.id.tv_title_sure);
-        mRlTitleSure = (RelativeLayout) findViewById(R.id.rl_title_sure);
-        mRlTitle = (RelativeLayout) findViewById(R.id.rl_title);
-        mInvitationCode = (EditText) findViewById(R.id.invitation_code);
-        mDoctorName = (EditText) findViewById(R.id.doctor_name);
-        mUpNoOk = (TextView) findViewById(R.id.up_no_ok);
-        mUpOk = (LinearLayout) findViewById(R.id.up_ok);
-        mMessageSubmit = (Button) findViewById(R.id.message_submit);
-        mSeeImg = (TextView) findViewById(R.id.see_img);
-        mMessageSubmit.setOnClickListener(this);
-        mTvTitle.setText("信息认证");
-        mDownNoOk = (TextView) findViewById(R.id.down_no_ok);
-        mSeeImgDown = (TextView) findViewById(R.id.see_img_down);
-        mDownOk = (LinearLayout) findViewById(R.id.down_ok);
+        ivBack = (ImageView) findViewById(R.id.iv_back);
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvTitleSure = (TextView) findViewById(R.id.tv_title_sure);
+        rlTitleSure = (RelativeLayout) findViewById(R.id.rl_title_sure);
+        rlTitle = (RelativeLayout) findViewById(R.id.rl_title);
+        invitationCode = (EditText) findViewById(R.id.invitation_code);
+        doctorName = (EditText) findViewById(R.id.doctor_name);
+        upNoOk = (TextView) findViewById(R.id.up_no_ok);
+        upOk = (LinearLayout) findViewById(R.id.up_ok);
+        downNoOk = (TextView) findViewById(R.id.down_no_ok);
+        downOk = (LinearLayout) findViewById(R.id.down_ok);
+        messageSubmit = (Button) findViewById(R.id.message_submit);
+        messageSubmit.setOnClickListener(this);
+        seeImg = (TextView) findViewById(R.id.see_img);
+        upLook = (LinearLayout) findViewById(R.id.up_look);
+        seeImgDown = (TextView) findViewById(R.id.see_img_down);
+        downLook = (LinearLayout) findViewById(R.id.down_look);
     }
 
     @Override
     protected void obtainData() {
+        Intent intent = getIntent();
+        docbean = (DocAuthBean) intent.getSerializableExtra("docbean");
 
+        String inviteCode = docbean.getInviteCode();
+        invitationCode.setText(inviteCode);
+        String name = docbean.getName();
+        doctorName.setText(name);
+
+        //资格证通过
+        if (docbean.isAu_PhysicianQualCert()) {
+            upOk.setVisibility(View.VISIBLE);
+        } else {
+            upNoOk.setVisibility(View.VISIBLE);
+        }
+
+        //执业证通过
+        if (docbean.isAu_PhysicianCert()) {
+            downOk.setVisibility(View.VISIBLE);
+        } else {
+            downNoOk.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
     protected void initEvent() {
-
-        mIvBack.setOnClickListener(new View.OnClickListener() {
+        //资格证重新提交
+        upNoOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                getphoto(101, 102);
             }
         });
-
-        //点击上传医师资格证书
-        mUpNoOk.setOnClickListener(new View.OnClickListener() {
+        //执业证重新提交
+        downNoOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getphoto(1001, 1002);
+                getphoto(201, 202);
             }
         });
-
-        //点击上传执业证书
-        mDownNoOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getphoto(2001, 2002);
-            }
-        });
-
         //资格证书查看
-        mSeeImg.setOnClickListener(new View.OnClickListener() {
+        seeImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), BigImgActivity.class);
@@ -158,7 +170,7 @@ public class MessageCertifiedActivity extends BaseActivity implements View.OnCli
             }
         });
         //执业证书查看
-        mSeeImgDown.setOnClickListener(new View.OnClickListener() {
+        seeImgDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), BigImgActivity.class);
@@ -221,22 +233,22 @@ public class MessageCertifiedActivity extends BaseActivity implements View.OnCli
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1001) {
+        if (requestCode == 101) {
             headUri = imageuri.toString();
-            mUpNoOk.setVisibility(View.GONE);
-            mUpOk.setVisibility(View.VISIBLE);
-        } else if (requestCode == 1002) {
+            upNoOk.setVisibility(View.GONE);
+            upLook.setVisibility(View.VISIBLE);
+        } else if (requestCode == 102) {
             headUri = Matisse.obtainPathResult(data).get(0);
-            mUpNoOk.setVisibility(View.GONE);
-            mUpOk.setVisibility(View.VISIBLE);
-        } else if (requestCode == 2001) {
+            upNoOk.setVisibility(View.GONE);
+            upLook.setVisibility(View.VISIBLE);
+        } else if (requestCode == 201) {
             headUri2 = imageuri.toString();
-            mDownNoOk.setVisibility(View.GONE);
-            mDownOk.setVisibility(View.VISIBLE);
-        } else if (requestCode == 2002) {
+            downNoOk.setVisibility(View.GONE);
+            downLook.setVisibility(View.VISIBLE);
+        } else if (requestCode == 202) {
             headUri2 = Matisse.obtainPathResult(data).get(0);
-            mDownNoOk.setVisibility(View.GONE);
-            mDownOk.setVisibility(View.VISIBLE);
+            downNoOk.setVisibility(View.GONE);
+            downLook.setVisibility(View.VISIBLE);
         }
     }
 
@@ -245,17 +257,18 @@ public class MessageCertifiedActivity extends BaseActivity implements View.OnCli
         switch (v.getId()) {
             default:
                 break;
-            case R.id.message_submit://提交认证
+            case R.id.message_submit:
                 updata();
                 break;
         }
     }
 
+
     public void updata(){
         //邀请码
-        String inviteCode = mInvitationCode.getText().toString();
+        String inviteCode = invitationCode.getText().toString();
         //医生姓名
-        String name = mDoctorName.getText().toString();
+        String name = doctorName.getText().toString();
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("inviteCode",inviteCode);
         linkedHashMap.put("name",name);

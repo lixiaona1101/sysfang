@@ -273,6 +273,14 @@
         <activity
             android:name=".activity.mine.Other.BigImgActivity"
             android:label="@string/title_activity_big_img"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.mine.DoctorCertified.MessageCertifiedAgainActivity"
+            android:label="@string/title_activity_message_certified_again"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.InviteCustomerActivity"
+            android:label="@string/title_activity_invite_customer"
             android:theme="@style/AppTheme2"></activity>
     </application>
 

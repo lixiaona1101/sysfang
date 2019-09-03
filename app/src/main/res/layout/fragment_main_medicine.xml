@@ -1,14 +1,190 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jiuhao.jhjk.fragment.main.MainMedicineFragment">
+    android:background="@color/app_back"
+    android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="开方" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingTop="@dimen/dp30"
+                    android:src="@mipmap/title" />
+
+                <TextView
+                    android:id="@+id/tv_name_card"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/dp15"
+                    android:paddingLeft="@dimen/dp15"
+                    android:paddingRight="@dimen/dp15"
+                    android:paddingTop="@dimen/dp30"
+                    android:text="名片"
+                    android:textColor="@color/yellow_d49e6a" />
+
+            </RelativeLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp200">
+
+                <com.bigkoo.convenientbanner.ConvenientBanner
+                    android:id="@+id/cb_index"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <TextView
+                    android:id="@+id/tv_main_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:background="@color/yellow_d49e6a"
+                    android:drawableRight="@mipmap/right1"
+                    android:gravity="center"
+                    android:padding="@dimen/dp7"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp15">
+
+                <LinearLayout
+                    android:id="@+id/ll_online"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_20_back_white_gray_line"
+                    android:padding="@dimen/dp15">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp3"
+                        android:drawableTop="@mipmap/icon_1"
+                        android:gravity="center"
+                        android:text="在线开方"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp18" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="@dimen/dp1"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@color/gray_dddddd" />
+
+                <LinearLayout
+                    android:id="@+id/ll_camera"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/radius_20_back_white_gray_line"
+                    android:padding="@dimen/dp15">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/dp3"
+                        android:drawableTop="@mipmap/icon_2"
+                        android:gravity="center"
+                        android:text="拍方上传"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp18" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.jiuhao.jhjk.view.MyGridView
+                android:id="@+id/mgv_env"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:background="@color/app_back_f2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/dp10">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp40"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_weight="1"
+                    android:background="@color/gary_999999" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="最近开方"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp18" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp40"
+                    android:layout_weight="1"
+                    android:background="@color/gary_999999" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/new_five_record"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/sp13" />
+
+            <ImageView
+                android:id="@+id/iv_no_case"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp40"
+                android:src="@mipmap/no_recording1"
+                android:visibility="gone" />
+
+            <com.jiuhao.jhjk.view.MyListView
+                android:id="@+id/mlv_five_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

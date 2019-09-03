@@ -16,6 +16,8 @@ import android.view.WindowManager;
 
 import com.orhanobut.logger.Logger;
 
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity extends AbstractActivity {
 
     protected int mWidth;
