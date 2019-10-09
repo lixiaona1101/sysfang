@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp15"
+    android:layout_marginRight="@dimen/dp15"
+    android:layout_marginTop="@dimen/dp15"
+    android:background="@drawable/radius_8_card"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp20">
+
+        <TextView
+            android:id="@+id/orderState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="【无患者处方】"
+            android:textColor="#cd503f"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/time_str"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="下午16:50"
+            android:textColor="@color/gray_666666"
+            android:textSize="@dimen/sp14" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp25"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp20"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="【诊断】"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:id="@+id/symptom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:text="夏季感冒"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp14" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/user_lin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp5"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="【患者】"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp14" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp10"
+                android:text="昵称"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp14" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

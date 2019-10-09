@@ -32,8 +32,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.jiuhao.jhjk.APP.Config.userId;
 import static com.jiuhao.jhjk.APP.Config.userToken;
+
+//import static com.jiuhao.jhjk.APP.Config.userId;
 
 /**
  * OkHttp网络连接封装工具类  解析用的是Gson 记得添加Gson依赖 或者jar包
@@ -116,15 +117,6 @@ public class OkHttpUtils {
     }
 
     private Call getRequest(boolean isToast, boolean tokenFailurLogin, String url, LinkedHashMap<String, Object> params, final ResultCallback<String> callback) {
-        if (userId != -1) {
-            if (params == null)
-                params = new LinkedHashMap<>();
-            if (!params.containsKey("userId"))
-                params.put("userId", userId);
-            if (!params.containsKey("token"))
-                params.put("token", userToken);
-        }
-
         //判断是否有参数
         if (!CollectionUtils.isEmpty(params)) {
             StringBuilder param = new StringBuilder();
@@ -172,51 +164,53 @@ public class OkHttpUtils {
         }
 
 
-        if (userId != -1) {
-            if (params == null)
-                params = new LinkedHashMap<>();
-            if (!params.containsKey("userId"))
-                params.put("userId", userId);
-            if (!params.containsKey("token"))
-                params.put("token", userToken);
+        //请求体
+        FormBody.Builder builder = new FormBody.Builder();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("{");
+        if (!CollectionUtils.isEmpty(params)) {
+            for (Object o : params.entrySet()) {
+                Map.Entry entry = (Map.Entry) o;
+                String key = (String) entry.getKey();
+                String val = String.valueOf(entry.getValue());
+
+                builder.add(key, val);
+
+                sb.append("\"").append(key).append("\"").append(":").append("\"").append(val).append("\"").append(",");
+            }
         }
 
-//        StringBuilder sb = new StringBuilder();
-//        //请求体 参数
-//
-//        if (!CollectionUtils.isEmpty(params)) {
-//            int i = 0;
-//            for (Object o : params.entrySet()) {
-//                Map.Entry entry = (Map.Entry) o;
-//                String key = (String) entry.getKey();
-//                Object value = entry.getValue();
-//
-//                if (i == 0) {
-//                    sb.append("{");
-//                }
-//
-//                sb.append("\"").append(key).append("\":");
-//                if (value instanceof String) {
-//                    if (((String) value).endsWith("}") && ((String) value).startsWith("{")) {
-//                        sb.append(value);
-//                    } else if (((String) value).endsWith("]") && ((String) value).startsWith("[")) {
-//                        sb.append(value);
-//                    } else {
-//                        sb.append("\"").append(value).append("\"");
-//                    }
-//                } else {
-//                    sb.append(value);
-//                }
-//
-//                if (i == params.size() - 1) {
-//                    sb.append("}");
-//                } else {
-//                    sb.append(",");
-//                }
-//
-//                i++;
-//            }
-//        }
+        RequestBody requestBody = builder.build();
+        String string = sb.append("}").toString();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .addHeader("token", userToken)
+                .post(requestBody)
+                .build();
+
+        String newUrl = "Post: " + url + "\nParams: " + string;
+        return deliveryResult(isToast, true, url, newUrl, callback, request);
+    }
+
+
+    /**********************************************************************************************************
+     *******************************************      dele 表单请求       ***************************************
+     ***********************************************************************************************************/
+    public static void dele(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
+        getInstance().deleRequest(isToast, url, params, callback);
+    }
+
+    public static void dele(String url, LinkedHashMap<String, Object> params, final ResultCallback callback) {
+        getInstance().deleRequest(false, url, params, callback);
+    }
+
+    private Call deleRequest(boolean isToast, String url, LinkedHashMap<String, Object> params, final ResultCallback<String> callback) {
+        if (urls.contains(url)) {
+            ToastUtils.show(R.string.frequent);
+            return null;
+        }
 
 
         //请求体
@@ -232,8 +226,6 @@ public class OkHttpUtils {
 
                 builder.add(key, val);
 
-//                builder.addEncoded()
-
                 sb.append("\"").append(key).append("\"").append(":").append("\"").append(val).append("\"").append(",");
             }
         }
@@ -241,11 +233,10 @@ public class OkHttpUtils {
         RequestBody requestBody = builder.build();
         String string = sb.append("}").toString();
 
-//        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, sb.toString());
         Request request = new Request.Builder()
                 .url(url)
                 .addHeader("token", userToken)
-                .post(requestBody)
+                .delete(requestBody)
                 .build();
 
         String newUrl = "Post: " + url + "\nParams: " + string;
@@ -277,15 +268,6 @@ public class OkHttpUtils {
             return null;
         }
         urls.add(url);
-
-        if (userId != -1) {
-            if (params == null)
-                params = new LinkedHashMap<>();
-            if (!params.containsKey("userId"))
-                params.put("userId", userId + "");
-            if (!params.containsKey("token"))
-                params.put("token", userToken);
-        }
 
         StringBuilder sb = new StringBuilder();
         sb.append("{");
@@ -360,15 +342,6 @@ public class OkHttpUtils {
         }
         urls.add(url);
 
-        if (userId != -1) {
-            if (params == null)
-                params = new LinkedHashMap<>();
-            if (!params.containsKey("userId"))
-                params.put("userId", userId);
-            if (!params.containsKey("token"))
-                params.put("token", userToken);
-        }
-
         StringBuilder sb = new StringBuilder();
         //请求体 参数
 
@@ -435,15 +408,6 @@ public class OkHttpUtils {
         }
         urls.add(url);
 
-        if (userId != -1) {
-            if (params == null)
-                params = new LinkedHashMap<>();
-            if (!params.containsKey("userId"))
-                params.put("userId", userId);
-            if (!params.containsKey("token"))
-                params.put("token", userToken);
-        }
-
         //请求体
         FormBody.Builder builder = new FormBody.Builder();
 
@@ -457,8 +421,6 @@ public class OkHttpUtils {
 
                 builder.add(key, val);
 
-//                builder.addEncoded()
-
                 sb.append("\"").append(key).append("\"").append(":").append("\"").append(val).append("\"").append(",");
             }
         }
@@ -466,7 +428,6 @@ public class OkHttpUtils {
         RequestBody requestBody = builder.build();
         String string = sb.append("}").toString();
 
-//        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, sb.toString());
         Request request = new Request.Builder()
                 .addHeader("token", userToken)
                 .url(url)
@@ -494,15 +455,6 @@ public class OkHttpUtils {
             return null;
         }
         urls.add(url);
-
-        if (userId != -1) {
-            if (params == null)
-                params = new LinkedHashMap<>();
-            if (!params.containsKey("userId"))
-                params.put("userId", userId);
-            if (!params.containsKey("token"))
-                params.put("token", userToken);
-        }
 
         StringBuilder sb = new StringBuilder();
         //请求体 参数
@@ -610,16 +562,6 @@ public class OkHttpUtils {
                             "\nCode: " + code +
                             "\nmsg: " + msg +
                             "\nBody: " + body);
-
-//                    if (url.contains(url_userReg) ||
-//                            url.contains(url_loginSubmit)) {
-//                        if (!StringUtils.isEmpty(body) && body.startsWith("{")) {
-//                            JSONObject jsonObject = JSON.parseObject(body);
-//                            if (jsonObject.containsKey("userId")) {
-//                                userId = jsonObject.getInteger("userId");
-//                            }
-//                        }
-//                    }
 
 
                     if (code == CODE_SUCCESS || code == 200)

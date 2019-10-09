@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.message.LogisticsActivity">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/dp15">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/typename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="#090909"
+                android:textSize="@dimen/sp16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="#090909"
+                android:textSize="@dimen/sp16" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp100">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/lin_circle"
+            android:layout_marginBottom="@dimen/dp5"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/shipments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="已发货"
+                    android:textColor="@color/gary_999999"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/transportation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="运输中"
+                    android:textColor="@color/gary_999999"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/delivery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="派件中"
+                    android:textColor="@color/gary_999999"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/deliverystatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp5"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
+                    android:paddingTop="@dimen/dp5"
+                    android:text="已签收"
+                    android:textColor="@color/gary_999999"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/lin_circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+
+                <TextView
+                    android:id="@+id/yi_circle"
+                    android:layout_width="@dimen/dp10"
+                    android:layout_height="@dimen/dp10"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/radius_10_hui_circle" />
+
+                <TextView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_toRightOf="@+id/yi_circle"
+                    android:background="@color/gary_999999" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_toLeftOf="@+id/er_circle"
+                    android:background="@color/gary_999999" />
+
+                <TextView
+                    android:id="@+id/er_circle"
+                    android:layout_width="@dimen/dp10"
+                    android:layout_height="@dimen/dp10"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/radius_10_hui_circle" />
+
+                <TextView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_toRightOf="@+id/er_circle"
+                    android:background="@color/gary_999999" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_toLeftOf="@+id/san_circle"
+                    android:background="@color/gary_999999" />
+
+                <TextView
+                    android:id="@+id/san_circle"
+                    android:layout_width="@dimen/dp10"
+                    android:layout_height="@dimen/dp10"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/radius_10_hui_circle" />
+
+                <TextView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_toRightOf="@+id/san_circle"
+                    android:background="@color/gary_999999" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_toLeftOf="@+id/si_circle"
+                    android:background="@color/gary_999999" />
+
+                <TextView
+                    android:id="@+id/si_circle"
+                    android:layout_width="@dimen/dp10"
+                    android:layout_height="@dimen/dp10"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/radius_10_hui_circle" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lin_circle"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/startCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#ce503f"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:id="@+id/endCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/c_333333"
+                    android:textSize="@dimen/sp15" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- item_logistics-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/logistics_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

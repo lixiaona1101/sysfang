@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tb_index_case"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:isScrollContainer="true"
+            app:tabContentStart="0dp"
+            app:tabGravity="fill"
+            app:tabIndicatorHeight="3dp"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
+            app:tabTextAppearance="@style/MyTabLayoutTextAppearance" />
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_content_case"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_back_f2" />
+
+
+</android.support.v7.widget.LinearLayoutCompat>

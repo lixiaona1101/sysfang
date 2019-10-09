@@ -1,5 +1,6 @@
 package com.jiuhao.jhjk.activity.mine.ConsultingFee;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -11,7 +12,7 @@ import android.widget.TextView;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.ExPandableListViewAdapter;
+import com.jiuhao.jhjk.adapter.ExPandableListView.ExPandableListViewAdapter;
 import com.jiuhao.jhjk.bean.DcGroupBean;
 import com.jiuhao.jhjk.bean.IndexBean;
 import com.jiuhao.jhjk.utils.ToastUtils;
@@ -20,6 +21,7 @@ import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -47,18 +49,29 @@ public class FeePersonActivity extends BaseActivity {
      */
     private TextView allNumber;
     private ImageView allImg;
+
     private ExpandableListView alarmClockExpandablelist;
     private ArrayList<FatherData> datas;
     private ExPandableListViewAdapter adapter;
     private List<DcGroupBean> dcGroupBeans;
     private List<List<IndexBean>> lists = new ArrayList<>();
+    private int f = 0;
+    private Intent intent;
+    private boolean check = false;//全选状态
+    private int sum = 0;//总个数
+    private int fee;//收费金额
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
             switch (message.what) {
                 case 0:
-                    setAdapter();
+                    for (int i = 0; i < dcGroupBeans.size(); i++) {
+                        getInData(dcGroupBeans.get(i).getId(), dcGroupBeans.get(i).getCount(), dcGroupBeans.get(i).getName());
+                    }
+                    break;
+                case 1:
                     setData();
+                    setAdapter();
                     break;
             }
             return false;
@@ -84,11 +97,15 @@ public class FeePersonActivity extends BaseActivity {
         allImg = (ImageView) findViewById(R.id.all_img);
         alarmClockExpandablelist = (ExpandableListView) findViewById(R.id.alarm_clock_expandablelist);
         rlTitleSure.setVisibility(View.VISIBLE);
-        tvTitle.setText("选择患者");
+
     }
 
     @Override
     protected void obtainData() {
+        intent = getIntent();
+        String title = intent.getStringExtra("title");
+        fee = intent.getIntExtra("fee", 0);
+        tvTitle.setText(title);
         getOutData();
     }
 
@@ -100,37 +117,56 @@ public class FeePersonActivity extends BaseActivity {
                 finish();
             }
         });
-        // 设置ExpandableListView的监听事件
-        // 设置一级item点击的监听器
-        alarmClockExpandablelist.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
-            @Override
-            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
-                ToastUtils.show(datas.get(i).getName());
-                return false;
-            }
-        });
 
-        // 设置二级item点击的监听器，同时在Adapter中设置isChildSelectable返回值true，同时二级列表布局中控件不能设置点击效果
-        alarmClockExpandablelist.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        tvTitleSure.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-                ToastUtils.show(datas.get(i).getList().get(i1).getUserName());
-                return false;
+            public void onClick(View view) {
+                StringBuffer stringBuffer = new StringBuffer();
+                for (int i = 0; i < datas.size(); i++) {
+                    for (int j = 0; j < datas.get(i).getList().size(); j++) {
+                        if (datas.get(i).getList().get(j).isCheck()) {
+                            int id = datas.get(i).getList().get(j).getId();
+                            String s = id + ",";
+                            stringBuffer.append(s);
+                        }
+                    }
+                }
+                //患者的id字符串
+                String clinic = stringBuffer.delete((stringBuffer.length() - 1), stringBuffer.length()).toString();
+                Logger.e(clinic);
+
+                postData(clinic);
             }
         });
     }
 
-    /**
-     * 自定义setAdapter
-     */
-    private void setAdapter() {
-        if (adapter == null) {
-            adapter = new ExPandableListViewAdapter(this, datas);
-            alarmClockExpandablelist.setAdapter(adapter);
-        } else {
-            adapter.flashData(datas);
-        }
+    public void postData(String clinic) {
+//
+        /**
+         * priceType 费用类型:1,问诊收费
+         * price 收费费用
+         * customers 患者编号
+         */
+        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("priceType",1);
+        linkedHashMap.put("price",fee);
+        linkedHashMap.put("customers",clinic);
+        OkHttpUtils.postJson(ConfigKeys.PRICEBATCH, linkedHashMap, new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onSuccess(int code, String response) {
+                ToastUtils.show("设置收费成功");
+                setResult(102);
+                finish();
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+                ToastUtils.show(e.getMessage());
+            }
+        });
     }
+
 
     // 定义数据
     private void setData() {
@@ -146,9 +182,15 @@ public class FeePersonActivity extends BaseActivity {
             ArrayList<ChildrenData> itemList = new ArrayList<>();
             for (int j = 0; j < lists.get(i).size(); j++) {
                 ChildrenData childrenData = new ChildrenData();
+                childrenData.setId(lists.get(i).get(j).getId());
                 childrenData.setAvatar(lists.get(i).get(j).getAvatar());
-                childrenData.setUserName(lists.get(i).get(j).getUserName());
-                childrenData.setAged(lists.get(i).get(j).getAged() + "岁");
+                childrenData.setUserName(lists.get(i).get(j).getNickName());
+                String aged = lists.get(i).get(j).getAged();
+                if (!aged.contains("不详")) {
+                    childrenData.setAged(lists.get(i).get(j).getAged() + "岁");
+                } else {
+                    childrenData.setAged(lists.get(i).get(j).getAged());
+                }
                 int sex = lists.get(i).get(j).getSex();//0未知 1男 2女
                 if (sex == 0) {
                     childrenData.setSex("");
@@ -162,18 +204,76 @@ public class FeePersonActivity extends BaseActivity {
             fatherData.setList(itemList);
             datas.add(fatherData);
         }
+
+        //总个数设置
+        for (int i = 0; i < lists.size(); i++) {
+            int size = lists.get(i).size();
+            sum += size;
+        }
+        allNumber.setText("/" + sum);
+
+        //全选 未全选
+        allImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                check = !check;
+
+                allNowNumber.setText(check ? sum + "" : "0");
+
+                allImg.setImageResource(check ? R.mipmap.select : R.mipmap.select1);
+
+                for (int i = 0; i < datas.size(); i++) {
+                    datas.get(i).setCheck(check);
+                    datas.get(i).setCheckCount(check ? datas.get(i).getList().size() : 0);
+                    for (int j = 0; j < datas.get(i).getList().size(); j++) {
+                        datas.get(i).getList().get(j).setCheck(check);
+                    }
+                }
+                adapter.notifyDataSetChanged();
+
+            }
+        });
+
+    }
+
+    /**
+     * sum_now = check1 ? sum++ : sum--;
+     * allNowNumber.setText(sum_now+"");
+     * allImg.setImageResource(sum_now==sum?R.mipmap.select1:R.mipmap.select1);
+     * <p>
+     * int s = sum - number;
+     * allNowNumber.setText(s + "");
+     * allImg.setImageResource(s == sum ? R.mipmap.select1 : R.mipmap.select1);
+     * <p>
+     * 自定义setAdapter
+     */
+
+    private void setAdapter() {
+        if (adapter == null) {
+            adapter = new ExPandableListViewAdapter(this, datas, new ExPandableListViewAdapter.erListen() {
+                @Override
+                public void onerClick(ArrayList<FatherData> data_list) {
+                    int s=0;
+                    for (int i = 0; i < data_list.size(); i++) {
+                        int checkCount = data_list.get(i).getCheckCount();
+                        s += checkCount;
+                    }
+                    allNowNumber.setText(s + "");
+                    allImg.setImageResource(s == sum ? R.mipmap.select : R.mipmap.select1);
+                }
+            });
+            alarmClockExpandablelist.setAdapter(adapter);
+        } else {
+            adapter.flashData(datas);
+        }
     }
 
     public void getOutData() {
         OkHttpUtils.get(ConfigKeys.DCGROUP, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-                Logger.e(response);
                 dcGroupBeans = Json.parseArr(response, DcGroupBean.class);
-                Logger.e(dcGroupBeans.toString());
-                for (int i = 0; i < dcGroupBeans.size(); i++) {
-                    getInData(dcGroupBeans.get(i).getId());
-                }
+                handler.sendEmptyMessage(0);
             }
 
             @Override
@@ -183,18 +283,24 @@ public class FeePersonActivity extends BaseActivity {
         });
     }
 
-    public void getInData(int id) {
+    public void getInData(int id, int count, String name) {
         String url = ConfigKeys.INDEX + "?groupId=" + id;
-        Logger.e(id + "");
         OkHttpUtils.get(url, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-                Logger.e(response);
+//                Logger.e("分组名称---"+name+"个数"+"---"+count+"---"+response);
                 List<IndexBean> indexBeans = Json.parseArr(response, IndexBean.class);
-                Logger.e(indexBeans.toString());
                 lists.add(indexBeans);
-
-                handler.sendEmptyMessage(0);
+                for (int i = 0; i < lists.size(); i++) {
+                    List<IndexBean> indexBeans1 = lists.get(i);
+                    for (int j = 0; j < indexBeans1.size(); j++) {
+                        Logger.e("i:" + i + "---j:" + j + "---分组名称:" + name + "---个数:" + count + "---name:" + indexBeans1.get(j).getNickName());
+                    }
+                }
+                f++;
+                if (f == dcGroupBeans.size()) {
+                    handler.sendEmptyMessage(1);
+                }
             }
 
             @Override

@@ -7,9 +7,12 @@ import java.util.ArrayList;
  */
 
 public class FatherData {
+    private int id;//分组id
     private String name;//分组名称
     private String docId;//医生id
     private int count;//分组人员统计
+    private boolean check;//选中状态
+    private int checkCount = 0;
     private ArrayList<ChildrenData> list;// 二级列表数据
 
     @Override
@@ -18,8 +21,18 @@ public class FatherData {
                 "name='" + name + '\'' +
                 ", docId='" + docId + '\'' +
                 ", count=" + count +
+                ", id=" + id +
+                ", check=" + check +
                 ", list=" + list +
                 '}';
+    }
+
+    public int getCheckCount() {
+        return checkCount;
+    }
+
+    public void setCheckCount(int checkCount) {
+        this.checkCount = checkCount;
     }
 
     public String getName() {
@@ -30,8 +43,24 @@ public class FatherData {
         this.name = name;
     }
 
+    public boolean isCheck() {
+        return check;
+    }
+
+    public void setCheck(boolean check) {
+        this.check = check;
+    }
+
     public String getDocId() {
         return docId;
+    }
+
+    public void setId(int Id) {
+        this.id = Id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setDocId(String docId) {

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <include layout="@layout/search_title" />
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/smrl_patient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_my_patient"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp15"
+                android:paddingTop="@dimen/dp17"
+                android:text="我的患者"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp17" />
+
+
+            <ListView
+                android:id="@+id/mlv_patient"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@color/gray_dddddd"
+                android:dividerHeight="@dimen/dp1"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_no_patient"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@mipmap/no_patient"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+</LinearLayout>

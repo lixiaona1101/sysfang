@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/person_rela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp10">
+
+        <ImageView
+            android:id="@+id/person_head"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"/>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp45"
+            android:layout_toRightOf="@id/person_head"
+            android:background="@drawable/water_raduis_left"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp10">
+
+            <TextView
+                android:id="@+id/person_contemn_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请内容内容入输回复内容内容"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp14"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/person_contemn_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/more1"
+                android:visibility="gone" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/doctor_rela"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp10">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp45"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_toLeftOf="@id/doctor_head"
+            android:background="@drawable/water_raduis_right"
+            android:paddingBottom="@dimen/dp10"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp10">
+
+            <TextView
+                android:id="@+id/doctor_content_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="请输入回复容内容容内容"
+                android:textColor="#212121"
+                android:textSize="@dimen/sp14"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/doctor_content_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/more1"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/doctor_head"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:layout_alignParentRight="true" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/sen_lin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/dp10"
+        android:background="@drawable/water_raduis_cen"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingLeft="@dimen/dp25"
+        android:paddingRight="@dimen/dp25"
+        android:paddingTop="@dimen/dp10">
+
+        <TextView
+            android:id="@+id/send_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您向患者发送了"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/send_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="“中医科问诊单”"
+            android:textColor="#db7f72"
+            android:textSize="@dimen/sp12" />
+    </LinearLayout>
+</LinearLayout>

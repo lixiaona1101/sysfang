@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.activity.mine.Other.BigImgActivity;
+import com.jiuhao.jhjk.utils.BigImgActivity;
 import com.jiuhao.jhjk.bean.DocAuthBean;
 
 /**
@@ -197,7 +197,12 @@ public class CertifiedPassActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initEvent() {
-
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         //call
         salesmanPhone.setOnClickListener(new View.OnClickListener() {
             @Override

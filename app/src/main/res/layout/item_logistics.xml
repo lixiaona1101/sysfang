@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/line"
+        android:layout_width="@dimen/dp1"
+        android:layout_height="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp50"
+        android:layout_marginTop="@dimen/dp10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp10">
+
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="00:39"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp15" />
+
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp20"
+            android:text="快件已经送达快件已经送达上海物流集散中心上海物流集散中心，正在分离按照分配快递员进行配送"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp15" />
+
+    </LinearLayout>
+</LinearLayout>

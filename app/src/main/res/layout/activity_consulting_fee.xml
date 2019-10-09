@@ -30,7 +30,7 @@
             android:layout_centerVertical="true"
             android:drawableRight="@mipmap/close"
             android:padding="@dimen/dp15"
-            android:text="自定义  "
+            android:text="未选择  "
             android:textColor="@color/c_333333"
             android:textSize="@dimen/sp15" />
 

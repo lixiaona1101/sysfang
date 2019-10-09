@@ -14,6 +14,7 @@ import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.bean.InviteFriendsBean;
+import com.jiuhao.jhjk.utils.BigImgActivity;
 import com.jiuhao.jhjk.utils.banner.BannerCreator;
 import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;

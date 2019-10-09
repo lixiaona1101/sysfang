@@ -66,12 +66,15 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list_list"
+    <ExpandableListView
+        android:id="@+id/alarm_clock_expandablelist"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
-
-    </ListView>
+        android:background="#ffffff"
+        android:divider="@null"
+        android:dividerHeight="@dimen/dp1"
+        android:gravity="center"
+        android:groupIndicator="@null"
+        android:listSelector="#ffffff" />
 
 </LinearLayout>

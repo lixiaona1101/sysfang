@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_model_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="肺结核"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp17" />
+
+        <TextView
+            android:id="@+id/tv_model_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textStyle="bold"
+            android:text="【颗粒】"
+            android:textColor="@color/yellow_d49e6a"
+            android:textSize="@dimen/sp15" />
+
+
+    </LinearLayout>
+
+    <com.jiuhao.jhjk.view.MyGridView
+        android:id="@+id/mgv_model_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="2"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
+        android:background="@color/gray_dddddd" />
+
+    <TextView
+        android:id="@+id/tv_model_plural"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp22"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="【付数】"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp15" />
+
+    <TextView
+        android:id="@+id/tv_model_freq"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp22"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="【频次】"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp15" />
+
+    <TextView
+        android:id="@+id/tv_model_meth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp22"
+        android:layout_marginTop="@dimen/dp10"
+        android:text="【用药方法】"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp15" />
+
+    <LinearLayout
+        android:id="@+id/ll_do"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dp10"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_delete_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp32"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="@drawable/radius_100_whit_gray_line"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp5"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp5"
+            android:text="删除模板"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/tv_use_temp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp32"
+            android:layout_marginLeft="@dimen/dp20"
+            android:background="@drawable/radius_16_yellow_d49e6a"
+            android:gravity="center"
+            android:paddingBottom="@dimen/dp5"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:paddingTop="@dimen/dp5"
+            android:text="使用模板"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_add_temp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp40"
+        android:background="@drawable/radius_6_origen"
+        android:gravity="center"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingTop="@dimen/dp10"
+        android:text="添加为模板"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp17"
+        android:visibility="visible" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@color/gray_dddddd" />
+</LinearLayout>

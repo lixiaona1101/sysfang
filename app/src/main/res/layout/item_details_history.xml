@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/date_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp10"
         android:gravity="center"
         android:text="今天 06:56"
         android:textColor="@color/gray_666666"
@@ -18,7 +18,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp140"
-        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp15"
         android:layout_marginLeft="@dimen/dp10"
         android:layout_marginRight="@dimen/dp10"
         android:background="@drawable/radius_8_card">
@@ -66,6 +66,7 @@
             android:layout_marginTop="@dimen/dp10">
 
             <TextView
+                android:id="@+id/chu_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="【处方】"
@@ -77,8 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/dp10"
+                android:lines="2"
                 android:ellipsize="end"
-                android:maxLines="2"
                 android:text="当归。玫瑰花。生当归。玫瑰花。生黄芪当归。玫瑰花。生黄芪黄芪当归。玫瑰花。生黄芪当归。玫瑰花。生黄芪当归。玫瑰花。生黄芪" />
         </LinearLayout>
 
@@ -92,6 +93,7 @@
 
 
             <TextView
+                android:id="@+id/fu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="【付数】"

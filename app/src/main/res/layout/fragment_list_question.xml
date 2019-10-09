@@ -32,22 +32,37 @@
             android:textColor="@color/gary_999999"
             android:textSize="@dimen/sp12" />
 
-        <TextView
-            android:id="@+id/all_check"
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/no_question"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="全选"
-            android:textColor="#ce503f"
-            android:textSize="@dimen/sp14" />
+            android:layout_above="@id/t"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/question" />
 
+        <TextView
+            android:id="@+id/t"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp15"
+            android:text="该科室暂无问题可以选择"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp14" />
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_question_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

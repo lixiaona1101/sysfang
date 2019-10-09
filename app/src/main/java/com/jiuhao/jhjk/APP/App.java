@@ -6,12 +6,14 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.StrictMode;
+import android.support.multidex.MultiDex;
 
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
+
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -40,6 +42,9 @@ public class App extends Application {
         mApplication = this;
         initRC();
 
+        //权限初始化
+        MultiDex.install(context);
+
 //        微信初始化
         WeChat.setAppId("wx19105639b52300a5");
         WeChat.setAppSecret("dc76a66a690f04f1309292d6a068bd06");
@@ -64,6 +69,7 @@ public class App extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+
     }
 
     public String sHA1(Context context) {

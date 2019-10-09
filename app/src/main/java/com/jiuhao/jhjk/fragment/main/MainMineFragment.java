@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.mine.AccountManagement.AccountManagementActivity;
@@ -171,7 +173,10 @@ public class MainMineFragment extends BaseFragment {
         getDocAuth();
         //医生头像
         String headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
-        GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
+        Logger.e(headUrl);
+
+        Glide.with(this).applyDefaultRequestOptions(new RequestOptions().circleCrop()).load(headUrl).into(mIvHead);
+//        GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
         //医生名字
         String name = SPUtils.getString(getContext(), ConfigKeys.NAME, "医生名字");
         mTvDocNameUser.setText(name);

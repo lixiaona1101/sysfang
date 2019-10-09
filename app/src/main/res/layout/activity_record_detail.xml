@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/dp40"
+            android:paddingTop="@dimen/dp5">
+
+            <TextView
+                android:id="@+id/act_no_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:padding="@dimen/dp10"
+                android:text="此药方没有患者扫取"
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/sp15"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_detail_record_customer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp1"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp10"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/iv_detail_record_customer_img"
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_marginLeft="@dimen/dp15" />
+
+                <TextView
+                    android:id="@+id/act_detail_record_customer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp10"
+                    android:text="患者信息"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp19" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp10"
+                android:background="@color/gray_dddddd" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="时间:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp15"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:background="@color/gray_dddddd" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="诊断:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_symptom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp15"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="处方:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_med_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_is_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="(图片处方)"
+                    android:textColor="@color/yellow_d49e6a"
+                    android:textSize="@dimen/sp15"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/im_record_detail_src"
+                android:visibility="gone"
+                android:layout_marginLeft="@dimen/dp25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/message" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mgv_record_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/gray_dddddd" />
+
+            <LinearLayout
+                android:id="@+id/ll_plural"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp15"
+                    android:text="付数:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_plural"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp15"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_freq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="频次:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_freq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_meth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="方法:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_meth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:background="@color/gray_dddddd" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="处方金额:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="￥"
+                    android:textColor="#cd503f"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_total_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="药材价格:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="￥"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_med_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_fees"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="诊        金:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="￥"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_fees"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_working"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="加  工  费:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="￥"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_working"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/gray_666666"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp25"
+                    android:paddingTop="@dimen/dp10"
+                    android:text="处方状态:"
+                    android:textColor="@color/text_black"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_record_detail_med_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp12"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingTop="@dimen/dp10"
+                    android:textColor="@color/theme_color"
+                    android:textSize="@dimen/sp15" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

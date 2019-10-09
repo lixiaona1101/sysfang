@@ -9,7 +9,7 @@ import com.jiuhao.jhjk.utils.SPUtils;
 public class Config {
 
     //用户id
-    public static int userId = -1;
+//    public static int userId = -1;
     //用户token
     public static String userToken ="";
 
@@ -20,7 +20,7 @@ public class Config {
     public static void quit(Context context){
 
         SPUtils.putInt(context, ConfigKeys.ID, 0);
-        SPUtils.putInt(context, ConfigKeys.USERID, -1);
+        SPUtils.putInt(context, ConfigKeys.USERID, 0);
         SPUtils.putString(context, ConfigKeys.HOSPITAL, "");
         SPUtils.putInt(context, ConfigKeys.DEPARTMENTID, 0);
         SPUtils.putString(context, ConfigKeys.TITLES, "");

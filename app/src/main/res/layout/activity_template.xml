@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/search_title" />
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl_temp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+
+
+                <ImageView
+                    android:id="@+id/iv_no_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@mipmap/no_template"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/add_but_lin"
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dp125"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="@drawable/radius_15_green"
+            android:gravity="center"
+            android:padding="@dimen/dp10"
+            android:text="添加模板"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/la_lin"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp150"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dp28"
+            android:layout_marginRight="@dimen/dp15"
+            android:background="@drawable/radius_30_2133"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp60"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_add_case_record"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="@dimen/dp16"
+                android:paddingRight="@dimen/dp16"
+                android:text="记录添加"
+                android:textColor="#4f4f4f"
+                android:textSize="@dimen/sp13"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_add_new_model"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/dp16"
+                android:paddingRight="@dimen/dp16"
+                android:paddingTop="@dimen/dp10"
+                android:text="新建"
+                android:textColor="#4f4f4f"
+                android:textSize="@dimen/sp13"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/up_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="@dimen/dp16"
+                android:paddingRight="@dimen/dp16"
+                android:paddingTop="@dimen/dp12"
+                android:src="@mipmap/up" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

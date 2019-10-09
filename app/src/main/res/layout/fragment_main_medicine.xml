@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <!--标题-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -34,6 +35,7 @@
                     android:gravity="center_vertical"
                     android:paddingBottom="@dimen/dp15"
                     android:paddingLeft="@dimen/dp15"
+                    android:visibility="gone"
                     android:paddingRight="@dimen/dp15"
                     android:paddingTop="@dimen/dp30"
                     android:text="名片"
@@ -42,6 +44,7 @@
             </RelativeLayout>
 
 
+            <!--轮播图-->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp200">
@@ -67,6 +70,7 @@
             </FrameLayout>
 
 
+            <!--在线开方/拍方上传-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,21 +125,100 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <com.jiuhao.jhjk.view.MyGridView
-                android:id="@+id/mgv_env"
+            <!--处方模板-->
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:numColumns="4" />
+                android:layout_marginBottom="@dimen/dp10"
+                android:layout_height="@dimen/dp75">
+                <LinearLayout
+                    android:id="@+id/prescription_template_lin1"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/icon_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="@dimen/dp5"
+                        android:text="处方模板"
+                        android:textColor="@color/c_333333"
+                        android:textSize="@dimen/sp14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp10"
-                android:background="@color/app_back_f2" />
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/prescribing_record_lin2"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/icon_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="@dimen/dp5"
+                        android:text="开方记录"
+                        android:textColor="@color/c_333333"
+                        android:textSize="@dimen/sp14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/famous_doctors_lin3"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/icon_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_marginTop="@dimen/dp5"
+                        android:text="名医专方"
+                        android:textColor="@color/c_333333"
+                        android:textSize="@dimen/sp14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/healthy_mall_lin4"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/icon_7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:text="健康商城"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textColor="@color/c_333333"
+                        android:textSize="@dimen/sp14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:background="@color/app_back_f2"
                 android:orientation="horizontal"
                 android:paddingTop="@dimen/dp10">
 
@@ -165,7 +248,10 @@
             </LinearLayout>
 
             <TextView
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
                 android:layout_width="match_parent"
+                android:background="@color/app_back_f2"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/new_five_record"
@@ -180,11 +266,13 @@
                 android:src="@mipmap/no_recording1"
                 android:visibility="gone" />
 
-            <com.jiuhao.jhjk.view.MyListView
-                android:id="@+id/mlv_five_record"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/medicine_recycler"
+                android:background="#f2f2f2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone" />
+                android:paddingBottom="@dimen/dp20"
+                android:visibility="visible" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

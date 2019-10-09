@@ -53,4 +53,28 @@
     <string name="title_activity_big_img">BigImgActivity</string>
     <string name="title_activity_message_certified_again">MessageCertifiedAgainActivity</string>
     <string name="title_activity_invite_customer">InviteCustomerActivity</string>
+    <string name="title_activity_template">TemplateActivity</string>
+    <string name="title_activity_case_record">CaseRecordActivity</string>
+    <string name="title_activity_main_evo">MainEvoActivity</string>
+    <string name="title_activity_camera_evo">CameraEvoActivity</string>
+    <string name="title_activity_group_detail">GroupDetailActivity</string>
+    <string name="title_activity_management">ManagementActivity</string>
+    <string name="title_activity_systematic_notification">SystematicNotificationActivity</string>
+    <string name="title_activity_recipe_notification">RecipeNotificationActivity</string>
+    <string name="title_activity_logistics">LogisticsActivity</string>
+    <string name="title_activity_record_detail">RecordDetailActivity</string>
+    <string name="title_activity_west_evo">WestEvoActivity</string>
+    <string name="title_activity_select_med">SelectMedActivity</string>
+    <string name="title_activity_import_med">ImportMedActivity</string>
+    <string name="title_activity_famous_doctors">FamousDoctorsActivity</string>
+    <string name="title_activity_famous">FamousActivity</string>
+    <string name="title_activity_template_record">TemplateRecordActivity</string>
+    <string name="title_activity_send_list_question">SendListQuestionActivity</string>
+
+    <!--解决调用相册（知乎开源）选择第二张照片报错问题-->
+    <!--<item quantity="many">You can only select up to %1$d media files</item>-->
+    <plurals name="error_over_count">
+        <item quantity="one">You can only select one media file</item>
+    </plurals>
+    <string name="title_activity_search_patient">SearchPatientActivity</string>
 </resources>

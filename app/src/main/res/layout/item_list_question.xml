@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/type"
+        android:id="@+id/questionType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp10"
@@ -20,36 +20,36 @@
         android:layout_marginLeft="@dimen/dp10"
         android:layout_marginRight="@dimen/dp60"
         android:layout_marginTop="@dimen/dp15"
-        android:layout_toRightOf="@id/type"
+        android:layout_toRightOf="@id/questionType"
         android:text="1.女积分没打咯方即那份进的回复莲富大厦?"
         android:textColor="@color/gray_444444"
         android:textSize="@dimen/sp16" />
 
     <TextView
-        android:id="@+id/check_item"
+        android:id="@+id/items"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/question"
         android:layout_marginLeft="@dimen/dp10"
         android:layout_marginTop="@dimen/dp10"
-        android:layout_toRightOf="@id/type"
+        android:layout_toRightOf="@id/questionType"
         android:text="共3个选项"
         android:textColor="@color/gary_999999"
         android:textSize="@dimen/sp15" />
 
     <ImageView
+        android:padding="@dimen/dp10"
         android:id="@+id/check_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:layout_marginRight="@dimen/dp10"
         android:src="@mipmap/select1" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp1"
-        android:layout_below="@id/check_item"
+        android:layout_below="@id/items"
         android:layout_marginLeft="@dimen/dp10"
         android:layout_marginRight="@dimen/dp10"
         android:layout_marginTop="@dimen/dp15"

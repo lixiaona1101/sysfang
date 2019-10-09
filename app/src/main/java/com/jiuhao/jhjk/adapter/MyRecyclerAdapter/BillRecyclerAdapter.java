@@ -1,6 +1,7 @@
 package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
+import com.jiuhao.jhjk.activity.mine.Bill.CompileBillActivity;
 import com.jiuhao.jhjk.bean.BillBean2;
 
 import java.util.List;
@@ -49,6 +51,10 @@ public class BillRecyclerAdapter extends RecyclerView.Adapter<BillRecyclerAdapte
             @Override
             public void onClick(View view) {
                 //跳转问诊单编辑
+                Intent intent=new Intent(context, CompileBillActivity.class);
+                intent.putExtra("id",billListBeans.get(i).getId());
+                intent.putExtra("title",billListBeans.get(i).getName());
+                context.startActivity(intent);
             }
         });
     }

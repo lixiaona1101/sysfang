@@ -118,6 +118,11 @@
         <item name="android:windowExitAnimation">@anim/msg_content_mask_hide</item>
     </style>
 
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -125,5 +130,10 @@
     <style name="AppTheme2.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme2.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="anim_panel_up_from_bottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 
 </resources>

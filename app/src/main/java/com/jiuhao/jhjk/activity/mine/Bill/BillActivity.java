@@ -12,11 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.jiuhao.jhjk.APP.Config;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.activity.welcome.RegisterActivity;
 import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.BillRecyclerAdapter;
 import com.jiuhao.jhjk.bean.BillBean2;
 import com.jiuhao.jhjk.dialog.MyDialog;
@@ -111,7 +109,7 @@ public class BillActivity extends BaseActivity {
         OkHttpUtils.get(ConfigKeys.INTERROGATION, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-                Logger.e(response);
+                Logger.e(code + "" + response);
                 billListBeans = Json.parseArr(response, BillBean2.class);
                 Logger.e(billListBeans.toString());
                 handler.sendEmptyMessage(0);
@@ -121,13 +119,7 @@ public class BillActivity extends BaseActivity {
             @Override
             public void onFailure(int code, Exception e) {
                 Logger.e(code + "" + e.getMessage());
-                if (code == 404) {
-                    ToastUtils.show("请求失败，请稍后再试...");
-                } else if (code == -1) {//token失效 重新登录
-                    ToastUtils.show("token失效，请重新登录！");
-                    Config.quit(getContext());
-                    startActivity(new Intent(getContext(), RegisterActivity.class));
-                }
+                ToastUtils.show(e.getMessage());
             }
         });
     }
@@ -144,7 +136,7 @@ public class BillActivity extends BaseActivity {
         rlTitleSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyDialog myDialog = new MyDialog();
+                MyDialog myDialog = new MyDialog("请输入问诊单名称");
 
                 myDialog.show(getSupportFragmentManager());
                 myDialog.setOnLeftClick(new MyDialog.OnLeftClick() {
@@ -178,8 +170,11 @@ public class BillActivity extends BaseActivity {
             @Override
             public void onSuccess(int code, String response) {
                 ToastUtils.show("新建成功");
+                getBillData();
+                int id = billListBeans.get(billListBeans.size() - 1).getId();
                 Intent intent = new Intent(getContext(), Bill2Activity.class);
                 intent.putExtra("title", edit);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
 
@@ -190,4 +185,6 @@ public class BillActivity extends BaseActivity {
             }
         });
     }
+
+
 }

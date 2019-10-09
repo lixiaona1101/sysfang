@@ -109,10 +109,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private int departmentId;
     private Uri imageuri;
     private int sexx;
-    private String headUri="1";
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,//写权限
-            Manifest.permission.CAMERA};//照相权限
+    private String headUri = "1";
 
     @Override
     protected void setContentLayout() {
@@ -270,7 +267,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         String lablee = label.getText().toString();//专业标签
         String resume = doctorSynopsis.getText().toString();//简介
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
-        if(!headUri.equals("1")){
+        if (!headUri.equals("1")) {
             linkedHashMap.put("avatar", headUri);//头像
         }
         linkedHashMap.put("sex", sexx);//性别
@@ -308,26 +305,12 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
             public void onTop() {
                 File file = new File(Environment.getExternalStorageDirectory().getPath() + "/" + System.currentTimeMillis() + ".jpg");
                 imageuri = Uri.fromFile(file);
-
-
-                //用于判断SDK版本是否大于23
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    //检查权限
-                    int i = ContextCompat.checkSelfPermission(getContext(), PERMISSIONS_STORAGE[0]);
-                    //如果权限申请失败，则重新申请权限
-                    if (i != PackageManager.PERMISSION_GRANTED) {
-                        //重新申请权限函数
-                        startRequestPermission();
-                        Logger.e("权限请求成功");
-                    }
-                }
-
                 PictureUtils.takePicture((Activity) getContext(), imageuri, 4001);
             }
 
             @Override
             public void onBottom() {
-                Matisse.from((Activity) getContext())
+                Matisse.from(PersonalDataActivity.this)
                         .choose(MimeType.of(MimeType.JPEG, MimeType.PNG)) // 选择 mime 的类型
                         .theme(R.style.Matisse_Dracula)//Zhihu（亮蓝色主题） Dracula（黑色主题）
                         .countable(true)
@@ -341,13 +324,6 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         }).show(getSupportFragmentManager());
     }
 
-    /**
-     * 重新申请权限函数
-     */
-    private void startRequestPermission() {
-        //4001为请求码
-        ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, 4001);
-    }
 
     //回传值
     @Override
@@ -363,13 +339,23 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         } else if (requestCode == 3001 && resultCode == 3002) {
             ArrayList<String> strings = data.getStringArrayListExtra("strings");
             label.setText(strings.toString() + "  ");
-        } else if (requestCode == 4001) {
-            headUri = imageuri.toString();
+        } else if (requestCode == 4001 && resultCode == RESULT_OK) {
+            headUri = getRealFilePath(imageuri);
             GlideUtil.loadCircle(getContext(), headUri, head);
-        } else if (requestCode == 5001) {
+        } else if (requestCode == 5001 && resultCode == RESULT_OK) {
             headUri = Matisse.obtainPathResult(data).get(0);
             GlideUtil.loadCircle(getContext(), headUri, head);
         }
+    }
+
+    /**
+     * 获取uri真实路径
+     */
+    public static String getRealFilePath(final Uri uri) {
+        String path = uri.getPath();
+        String data = path.replace("external_files", Environment.getExternalStorageDirectory().getPath());
+        Logger.d("获取uri真实路径: \nuri:" + path + "\npath:" + data);
+        return data;
     }
 
     //性别

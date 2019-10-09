@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.HomePage.FamousActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp75"
+        android:background="@color/app_back_f2"
+        android:paddingTop="@dimen/dp25">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_search_back2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:src="@mipmap/back" />
+
+            <TextView
+                android:id="@+id/et_title"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="专方详情"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp19" />
+
+            <TextView
+                android:id="@+id/collect_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/collect_src"
+                android:text="收藏"
+                android:textColor="@color/gary_999999"
+                android:textSize="@dimen/sp14" />
+
+            <ImageView
+                android:id="@+id/collect_src"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/dp10"
+                android:src="@mipmap/collection1" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp53"
+            android:background="@drawable/radius_20_back_white_gray_line"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp110"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/symptom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/c_333333"
+                        android:textSize="@dimen/sp18"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/secrecy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:background="@color/yellow_d49e6a"
+                        android:paddingBottom="@dimen/dp3"
+                        android:paddingLeft="@dimen/dp8"
+                        android:paddingRight="@dimen/dp8"
+                        android:paddingTop="@dimen/dp3"
+                        android:text="秘方"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp10" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:textColor="#F11D00"
+                        android:textSize="@dimen/sp14"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="【功效】"
+                        android:textColor="#ce503f"
+                        android:textSize="@dimen/sp15" />
+
+                    <TextView
+                        android:id="@+id/efficacy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:textColor="@color/gray_666666"
+                        android:textSize="@dimen/sp14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="【主治】"
+                        android:textColor="#ce503f"
+                        android:textSize="@dimen/sp15" />
+
+                    <TextView
+                        android:id="@+id/indication"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_666666"
+                        android:textSize="@dimen/sp14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="【剂型】"
+                        android:textColor="#ce503f"
+                        android:textSize="@dimen/sp15" />
+
+                    <TextView
+                        android:id="@+id/formulationName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/gray_666666"
+                        android:textSize="@dimen/sp14" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="【处方】"
+                        android:textColor="#ce503f"
+                        android:textSize="@dimen/sp15" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="详情应医师需求暂不显示"
+                        android:textColor="@color/gary_999999"
+                        android:textSize="@dimen/sp14" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="#f2f2f2" />
+
+            <Button
+                android:id="@+id/use_button"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:layout_marginBottom="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp72"
+                android:layout_marginRight="@dimen/dp72"
+                android:layout_marginTop="@dimen/dp21"
+                android:background="@drawable/radius_15_green"
+                android:text="使用"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp18" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/picUrl"
+            android:layout_width="@dimen/dp75"
+            android:layout_height="@dimen/dp75"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp15" />
+
+        <TextView
+            android:id="@+id/docName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/picUrl"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp10"
+            android:textStyle="bold"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp17" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/docName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp8"
+            android:background="@drawable/radius_2_ce503f"
+            android:paddingBottom="@dimen/dp3"
+            android:paddingLeft="@dimen/dp8"
+            android:paddingRight="@dimen/dp8"
+            android:paddingTop="@dimen/dp3"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp10" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:padding="@dimen/dp7"
             android:text="编辑"
             android:textColor="#ce503f"
             android:textSize="@dimen/sp14"
@@ -39,17 +40,25 @@
 
     </RelativeLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+    </android.support.v7.widget.RecyclerView>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/dp15"
+        android:paddingTop="@dimen/dp15">
 
         <Button
             android:id="@+id/button_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginBottom="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp40"
             android:background="@drawable/radius_6_origen"
             android:paddingBottom="@dimen/dp10"
@@ -64,9 +73,7 @@
             android:id="@+id/button_two"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_marginBottom="@dimen/dp15"
             android:layout_marginRight="@dimen/dp40"
             android:background="@drawable/radius_6_origen"
             android:paddingBottom="@dimen/dp10"

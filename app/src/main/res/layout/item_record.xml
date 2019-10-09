@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/radius_18_white_back"
+    android:paddingTop="@dimen/dp10"
+    android:layout_margin="@dimen/dp10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_record_customer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/iv_record_customer_img"
+            android:layout_width="@dimen/dp40"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp10" />
+
+        <TextView
+            android:id="@+id/actv_record_customer_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@id/iv_record_customer_img"
+            android:text="名字"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp17"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/actv_record_pay_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="right"
+            android:text="sddsf"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp14" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@color/gray_dddddd" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:text="时间:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/actv_record_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp11"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:text="诊断:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/actv_record_symptom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp11"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:text="处方:"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/actv_record_med"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/sp15" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp15"
+        android:background="@color/gray_dddddd" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_see_pres"
+            android:visibility="gone"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp35"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:layout_toLeftOf="@+id/btn_again_pres"
+            android:background="@drawable/radius_35_white_back_999"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:text="查看物流"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp16" />
+
+        <Button
+            android:id="@+id/btn_again_pres"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp35"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@drawable/radius_35_white_back_yellow_line"
+            android:paddingLeft="@dimen/dp20"
+            android:paddingRight="@dimen/dp20"
+            android:text="再次开方"
+            android:textColor="#af7f45"
+            android:textSize="@dimen/sp16" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

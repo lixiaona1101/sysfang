@@ -15,7 +15,7 @@ import java.util.List;
  * author：   zp
  * version    1.0
  * description recycler adapter 的基类,封装了ViewHolder
- * modify by  lxn
+ * modify by hb
  */
 public abstract class RecyclerBaseAdapter<T> extends RecyclerView.Adapter<ViewHolder> implements IRecyclerAdapter<T> {
     private static final String TAG = RecyclerBaseAdapter.class.getSimpleName();

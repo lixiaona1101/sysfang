@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp70">
+
+    <ImageView
+        android:id="@+id/notice"
+        android:layout_width="@dimen/dp50"
+        android:layout_height="@dimen/dp50"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp15"
+        android:src="@mipmap/notice" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp17"
+        android:layout_toRightOf="@+id/notice"
+        android:text="系统通知"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp16" />
+
+    <TextView
+        android:id="@+id/content_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title_text"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp5"
+        android:layout_toRightOf="@+id/notice"
+        android:singleLine="true"
+        android:text="最新的通知信息，最新的通知信息最新的通知信息啦啦啦啦"
+        android:textColor="@color/gary_999999"
+        android:textSize="@dimen/sp12" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:background="#f2f2f2" />
+</RelativeLayout>

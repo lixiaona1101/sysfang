@@ -1,14 +1,20 @@
 package com.jiuhao.jhjk.activity.patient;
 
-import android.os.Bundle;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
+import com.jiuhao.jhjk.Receiver.Logger;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
+import com.jiuhao.jhjk.utils.ToastUtils;
+import com.jiuhao.jhjk.utils.net.OkHttpUtils;
+
+import java.util.LinkedHashMap;
 
 /**
  * 付费咨询设置-患者
@@ -38,6 +44,8 @@ public class PaySetActivity extends BaseActivity {
      * 保存设置
      */
     private TextView saveSet;
+    private String nickName;
+    private int id;
 
     @Override
     protected void setContentLayout() {
@@ -62,7 +70,10 @@ public class PaySetActivity extends BaseActivity {
 
     @Override
     protected void obtainData() {
-
+        Intent intent = getIntent();
+        nickName = intent.getStringExtra("nickName");
+         id = intent.getIntExtra("id", 0);
+        personName.setText("【" + nickName + "】");
     }
 
     @Override
@@ -71,6 +82,43 @@ public class PaySetActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        //保存设置
+        saveSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = money.getText().toString();
+                if(!s.isEmpty()){
+                    int fee = Integer.valueOf(s);
+                    if(fee<=200){
+                        postData(fee);
+                    }else {
+                        ToastUtils.show("金额过大,<=200！");
+                    }
+                }else{
+                    ToastUtils.show("请输入服务费！");
+                }
+            }
+        });
+    }
+
+    public void postData(int fee) {
+        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("customerId",id);
+        linkedHashMap.put("priceType",1);
+        linkedHashMap.put("price",fee);
+        OkHttpUtils.putJson(ConfigKeys.PRICE, null, new OkHttpUtils.ResultCallback() {
+            @Override
+            public void onSuccess(int code, String response) {
+                ToastUtils.show("设置成功！");
+                finish();
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                com.orhanobut.logger.Logger.e(e.getMessage());
+                ToastUtils.show(e.getMessage());
             }
         });
     }

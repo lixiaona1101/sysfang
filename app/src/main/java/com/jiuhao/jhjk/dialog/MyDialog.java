@@ -1,5 +1,10 @@
 package com.jiuhao.jhjk.dialog;
 
+import android.annotation.SuppressLint;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +16,10 @@ import com.jiuhao.jhjk.dialog.base.BaseDialog;
 
 /**
  * 自定义dialog
- * Created by Administrator on 2019/8/27.
+ * Created by lxn on 2019/8/27.
  */
+@SuppressLint("ValidFragment")
 public class MyDialog extends BaseDialog {
-    private View view;
     /**
      * 请输入问诊单名称
      */
@@ -30,6 +35,13 @@ public class MyDialog extends BaseDialog {
 
     private OnRightClick onRightClick;
     private OnLeftClick onLeftClick;
+    private String editText;
+
+    @SuppressLint("ValidFragment")
+    public MyDialog(String editText) {
+        super();
+        this.editText=editText;
+    }
 
 
     @Override
@@ -63,7 +75,14 @@ public class MyDialog extends BaseDialog {
 
     @Override
     public void initData() {
-
+        // 新建一个可以添加属性的文本对象
+        SpannableString ss = new SpannableString(editText);
+        // 新建一个属性对象,设置文字的大小
+        AbsoluteSizeSpan ass = new AbsoluteSizeSpan(17,true);
+        // 附加属性到文本
+        ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        // 设置hint
+        dialogEditName.setHint(new SpannedString(ss)); // 一定要进行转换,否则属性会消失
     }
 
     @Override

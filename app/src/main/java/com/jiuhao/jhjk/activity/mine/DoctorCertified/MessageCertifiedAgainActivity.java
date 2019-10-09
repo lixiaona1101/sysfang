@@ -7,7 +7,6 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -23,7 +22,7 @@ import android.widget.TextView;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.activity.mine.Other.BigImgActivity;
+import com.jiuhao.jhjk.utils.BigImgActivity;
 import com.jiuhao.jhjk.bean.DocAuthBean;
 import com.jiuhao.jhjk.dialog.PictureDialog;
 import com.jiuhao.jhjk.utils.PictureUtils;
@@ -146,6 +145,12 @@ public class MessageCertifiedAgainActivity extends BaseActivity implements View.
 
     @Override
     protected void initEvent() {
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         //资格证重新提交
         upNoOk.setOnClickListener(new View.OnClickListener() {
             @Override

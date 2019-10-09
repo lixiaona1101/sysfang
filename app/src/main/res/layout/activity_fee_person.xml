@@ -40,7 +40,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp5"
             android:layout_toLeftOf="@id/all_img"
-            android:text="/120"
+            android:text="/0"
             android:textColor="@color/c_333333"
             android:textSize="@dimen/sp14" />
 
@@ -60,6 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:dividerHeight="@dimen/dp1"
-        android:gravity="center"
-        android:scrollbars="none" />
+        android:groupIndicator="@null"
+        android:divider="@null"
+        android:gravity="center"/>
 </LinearLayout>

@@ -41,7 +41,7 @@ public class LoginBean2 {
     private int sex;
     private String birthday;
     private int authStat;
-    private int fees;
+    private float fees;
     private int factoryId;
     private String businessCard;
     private String inviteCode;
@@ -49,8 +49,8 @@ public class LoginBean2 {
     private int areaId;
     private String name;
     private String registrationId;
-    private long createTime;
-    private long updateTime;
+    private String createTime;
+    private String updateTime;
     private String token;
     private String resume;
     private String phone;
@@ -138,11 +138,11 @@ public class LoginBean2 {
         this.authStat = authStat;
     }
 
-    public int getFees() {
+    public float getFees() {
         return fees;
     }
 
-    public void setFees(int fees) {
+    public void setFees(float fees) {
         this.fees = fees;
     }
 
@@ -202,19 +202,19 @@ public class LoginBean2 {
         this.registrationId = registrationId;
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public long getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

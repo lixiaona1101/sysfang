@@ -303,18 +303,22 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void login(final String phone, final String passCode, String b) {
 
         String registrationId = JPushInterface.getRegistrationID(getApplicationContext());//极光设备号
-        if (!registrationId.isEmpty()) {
-            Logger.e(registrationId);
-        } else {
-            Logger.e("加入极光失败！");
-        }
+//        if (!registrationId.isEmpty()) {
+//            Logger.e(registrationId);
+//        } else {
+//            Logger.e("加入极光失败！");
+//        }
+
+        Logger.e("phone:"+phone+"");
+        Logger.e("passCode:"+passCode+"");
+        Logger.e("registrationId:"+registrationId+"");
+        Logger.e("state:"+b+"");
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("phone", phone);
         linkedHashMap.put("passCode", passCode);
         linkedHashMap.put("registrationId", registrationId);
         linkedHashMap.put("state", b);
-        OkHttpUtils.postJson(ConfigKeys.LOGIN,
-                linkedHashMap, new OkHttpUtils.ResultCallback() {
+        OkHttpUtils.postJson(ConfigKeys.LOGIN, linkedHashMap, new OkHttpUtils.ResultCallback() {
                     @Override
                     public void onSuccess(int code, String response) {
                         Logger.e(response);
@@ -324,7 +328,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         ToastUtils.show("登录成功");
                         //登录成功用户的id跟token封装在OKhttp中
                         //如果id为-1 token为“” 那么就是未登录状态
-                        Config.userId = loginBean.getId();
+//                        Config.userId = loginBean.getId();
                         Config.userToken = loginBean.getToken();
                         check(loginBean);
                     }
@@ -349,14 +353,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         SPUtils.putInt(getContext(), ConfigKeys.SEX, data.getSex());
         SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, data.getBirthday());
         SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, data.getAuthStat());
-        SPUtils.putInt(getContext(), ConfigKeys.FEES, data.getFees());
+        SPUtils.putFloat(getContext(), ConfigKeys.FEES, data.getFees());
         SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, data.getFactoryId());
         SPUtils.putString(getContext(), ConfigKeys.BUSINESSCARD, data.getBusinessCard());
         SPUtils.putString(getContext(), ConfigKeys.INVITECODE, data.getInviteCode());
         SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, data.getClinicTime());
         SPUtils.putInt(getContext(), ConfigKeys.AREAID, data.getAreaId());
-        SPUtils.putLong(getContext(), ConfigKeys.CREATETIME, data.getCreateTime());
-        SPUtils.putLong(getContext(), ConfigKeys.UPDATETIME, data.getUpdateTime());
+        SPUtils.putString(getContext(), ConfigKeys.CREATETIME, data.getCreateTime());
+        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, data.getUpdateTime());
         SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
         SPUtils.putString(getContext(), ConfigKeys.RESUME, data.getResume());
         SPUtils.putString(getContext(), ConfigKeys.PHONE, data.getPhone());
@@ -433,7 +437,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     Gson gson = new Gson();
                     LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
                     Logger.e(loginBean.toString());
-                    Config.userId = loginBean.getId();
+//                    Config.userId = loginBean.getId();
                     Config.userToken = loginBean.getToken();
                     check(loginBean);
 

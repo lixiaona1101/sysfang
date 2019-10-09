@@ -210,7 +210,7 @@ public class UserPhoneActivity extends BaseActivity implements View.OnClickListe
 
     private void check() {
         SPUtils.putInt(getContext(), ConfigKeys.ID, 0);
-        SPUtils.putInt(getContext(), ConfigKeys.USERID, -1);
+        SPUtils.putInt(getContext(), ConfigKeys.USERID, 0);
         SPUtils.putString(getContext(), ConfigKeys.HOSPITAL, "");
         SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTID, 0);
         SPUtils.putString(getContext(), ConfigKeys.TITLES, "");

@@ -135,6 +135,7 @@
             android:id="@+id/dan_add_choice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="@dimen/dp5"
             android:layout_marginBottom="@dimen/dp10"
             android:layout_marginLeft="@dimen/dp20"
             android:layout_marginRight="@dimen/dp20"

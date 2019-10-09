@@ -22,6 +22,7 @@ import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -43,14 +44,24 @@ public class ConsultingActivity extends BaseActivity {
     private RelativeLayout mRlTitle;
     private RecyclerView mConsultingRecycler;
     private List<DocpricetimeBean> docpricetimeBeans;
+    private ConsultingRecyclerAdapter consultingRecyclerAdapter;
+    private int price;
+    private int markType;
+    private DocpricetimeBean docpricetimeBean;
 
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
             switch (message.what) {
                 case 0:
-                    if(docpricetimeBeans.size()!=0){
-                        ConsultingRecyclerAdapter consultingRecyclerAdapter = new ConsultingRecyclerAdapter(getContext(), docpricetimeBeans);
+                    if (docpricetimeBeans.size() != 0) {
+                        consultingRecyclerAdapter =
+                                new ConsultingRecyclerAdapter(getContext(), docpricetimeBeans, price, markType, new ConsultingRecyclerAdapter.onListen() {
+                                    @Override
+                                    public void onClick(int postion) {
+                                        docpricetimeBean = docpricetimeBeans.get(postion);
+                                    }
+                                });
                         mConsultingRecycler.setAdapter(consultingRecyclerAdapter);
                     }
                     break;
@@ -80,6 +91,9 @@ public class ConsultingActivity extends BaseActivity {
 
     @Override
     protected void obtainData() {
+        Intent intent = getIntent();
+        price = intent.getIntExtra("price", 0);
+        markType = intent.getIntExtra("markType", 0);
         getData();
     }
 
@@ -97,7 +111,7 @@ public class ConsultingActivity extends BaseActivity {
             @Override
             public void onFailure(int code, Exception e) {
                 Logger.e(e.getMessage());
-                if(code==-1){
+                if (code == -1) {
                     Config.quit(getContext());
                     ToastUtils.show("Token失效，请重新登录！");
                     startActivity(new Intent(getContext(), RegisterActivity.class));
@@ -109,6 +123,50 @@ public class ConsultingActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
+        mIvBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        //提交更改咨询费
+        mTvTitleSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                putData();
+            }
+        });
+    }
 
+    public void putData() {
+
+        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("id", docpricetimeBean.getId());
+        linkedHashMap.put("markType", docpricetimeBean.getMarkType());
+        if (docpricetimeBean.getMarkType() == 1) {//自定义
+            String edit = consultingRecyclerAdapter.getEdit();
+            if (edit.isEmpty()) {
+                ToastUtils.show("请输入咨询费金额！");
+                return;
+            } else {
+                linkedHashMap.put("price", edit);
+            }
+        } else {
+            linkedHashMap.put("price", docpricetimeBean.getPrice());
+        }
+        OkHttpUtils.putJson(ConfigKeys.DOCPRICEITEM, linkedHashMap, new OkHttpUtils.ResultCallback() {
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e("更改咨询费成功！");
+                setResult(1002);
+                finish();
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+                ToastUtils.show(e.getMessage());
+            }
+        });
     }
 }

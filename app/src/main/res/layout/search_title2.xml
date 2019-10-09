@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp75"
+    android:paddingTop="@dimen/dp25"
+    android:background="@color/app_back_f2">
+
+    <ImageView
+        android:id="@+id/iv_search_back2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:src="@mipmap/back" />
+
+    <com.jiuhao.jhjk.view.EditTextWithDel
+        android:id="@+id/et_search_title2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/dp7"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp7"
+        android:layout_toRightOf="@+id/iv_search_back2"
+        android:background="@drawable/radius_35_white"
+        android:gravity="center"
+        android:hint="输入关键字搜索处方"
+        android:lines="1"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:textSize="@dimen/sp15" />
+
+</RelativeLayout>

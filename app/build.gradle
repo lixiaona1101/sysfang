@@ -36,6 +36,8 @@ android {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
+
+
 }
 
 dependencies {
@@ -59,50 +61,68 @@ dependencies {
         exclude module: 'appcompat-v7'
     }
     compile 'com.facebook.fresco:fresco:0.11.0'
-    // compile 'com.alibaba:fastjson:1.1.46.android'
+
     // 图像剪切
     compile('com.kevin:crop:1.0.2') {
         // 如果已经引入 support:appcompat-v7 可以加上这句话
         exclude group: 'com.android.support', module: 'appcompat-v7'
     }
+
+    //gson
     compile 'com.google.code.gson:gson:2.8.5'
+
     //相册选择器
     compile 'com.zhihu.android:matisse:0.5.0-alpha4'
-    //RxPermissions
-    compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+
+
     //RxJava2
     compile 'io.reactivex.rxjava2:rxjava:2.1.9'
     compile 'com.alibaba:fastjson:1.2.46'
+
     //EventBus
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'com.squareup.okhttp3:okhttp:3.8.1'
+
     //glide 图片加载
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+
     compile 'com.github.chrisbanes.photoview:library:1.2.4'
     compile project(':shapeloading')
     implementation project(':barlibrary')
     implementation project(':library')
+
     compile 'com.zhy:okhttputils:2.6.2'
     compile 'com.xingliuhua:xlhratingbar_lib:1.0.1'
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7'
     implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.4-7'
     implementation files('libs/alipaySdk-20180403.jar')
     implementation 'com.orhanobut:logger:2.2.0'
+
     //轮播依赖
     implementation 'com.youth.banner:banner:1.4.10'
+
     //微信依赖（包含统计）
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:1.3.4'
+
     //流式布局
     implementation 'com.zhy:flowlayout-lib:1.0.3'
+
     //知乎 调用系统相册
     api 'com.zhihu.android:matisse:0.5.0-alpha4'
+
     //极光推送
     implementation files('libs/jcore-android-2.1.2.jar')
     implementation files('libs/jpush-android-3.3.4.jar')
+
     //Banner依赖
     implementation 'com.bigkoo:convenientbanner:2.0.5'
     implementation 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
 
+    //刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
 
+    //权限
+    implementation 'com.blankj:utilcode:1.25.9'
 }

@@ -1,9 +1,11 @@
 package com.jiuhao.jhjk.activity.welcome;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -159,7 +161,8 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
             return;
         }
         mEtBindCode.requestFocus();
-//        KeyboardUtils.hideSoftInput(_mActivity);
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
         mTvGetBindCode.setText("60s后重新获取");
         mTvGetBindCode.setTextColor(ContextCompat.getColor(getContext(), R.color.gray_666666));
         mTvGetBindCode.setClickable(false);
@@ -244,7 +247,7 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
                 Logger.d(response);
                 Gson gson = new Gson();
                 LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
-                Config.userId = loginBean.getId();
+//                Config.userId = loginBean.getId();
                 Config.userToken = loginBean.getToken();
                 Logger.d(loginBean.toString());
                 ToastUtils.show("绑定手机号成功");
@@ -270,14 +273,14 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
         SPUtils.putInt(getContext(), ConfigKeys.SEX, data.getSex());
         SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, data.getBirthday());
         SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, data.getAuthStat());
-        SPUtils.putInt(getContext(), ConfigKeys.FEES, data.getFees());
+        SPUtils.putFloat(getContext(), ConfigKeys.FEES, data.getFees());
         SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, data.getFactoryId());
         SPUtils.putString(getContext(), ConfigKeys.BUSINESSCARD, data.getBusinessCard());
         SPUtils.putString(getContext(), ConfigKeys.INVITECODE, data.getInviteCode());
         SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, data.getClinicTime());
         SPUtils.putInt(getContext(), ConfigKeys.AREAID, data.getAreaId());
-        SPUtils.putLong(getContext(), ConfigKeys.CREATETIME, data.getCreateTime());
-        SPUtils.putLong(getContext(), ConfigKeys.UPDATETIME, data.getUpdateTime());
+        SPUtils.putString(getContext(), ConfigKeys.CREATETIME, data.getCreateTime());
+        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, data.getUpdateTime());
         SPUtils.putString(getContext(), ConfigKeys.TOKEN, data.getToken());
         SPUtils.putString(getContext(), ConfigKeys.RESUME, data.getResume());
         SPUtils.putString(getContext(), ConfigKeys.PHONE, data.getPhone());

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp46">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="二维码处方"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp18" />
+
+        <ImageView
+            android:id="@+id/iv_cancel_med_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/dp10"
+            android:src="@mipmap/cancel" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="@color/gray_dddddd" />
+
+    <ImageView
+        android:id="@+id/iv_evo_code"
+        android:layout_width="@dimen/dp184"
+        android:layout_height="@dimen/dp184"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/dp24"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:gravity="center"
+        android:text="患者扫码  获取处方"
+        android:textColor="@color/gray_666666" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp40"
+        android:layout_marginTop="@dimen/dp24"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/_btn_share_med_to_wx"
+            android:layout_width="@dimen/dp130"
+            android:layout_height="@dimen/dp37"
+            android:layout_marginRight="@dimen/dp25"
+            android:background="@drawable/radius_35_white_back_yellow_line"
+            android:text="分享至微信"
+            android:textColor="#af7f45" />
+
+        <Button
+            android:id="@+id/btn_send_to_customer"
+            android:layout_width="@dimen/dp130"
+            android:layout_height="@dimen/dp37"
+            android:background="@drawable/radius_35_white_back_yellow_line"
+            android:text="发送给患者"
+            android:textColor="#af7f45" />
+    </LinearLayout>
+</LinearLayout>

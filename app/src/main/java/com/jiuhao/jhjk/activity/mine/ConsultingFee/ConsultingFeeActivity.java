@@ -1,13 +1,22 @@
 package com.jiuhao.jhjk.activity.mine.ConsultingFee;
 
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
+import com.jiuhao.jhjk.bean.ChoosedBean;
+import com.jiuhao.jhjk.utils.ToastUtils;
+import com.jiuhao.jhjk.utils.net.Json;
+import com.jiuhao.jhjk.utils.net.OkHttpUtils;
+import com.orhanobut.logger.Logger;
 
 /**
  * 咨询费设置
@@ -39,6 +48,19 @@ public class ConsultingFeeActivity extends BaseActivity {
      */
     private TextView number;
     private ImageView patientImg;
+    private ChoosedBean choosedBean;
+    public Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(Message message) {
+            switch (message.what) {
+                case 0:
+                    consultingImg.setText(choosedBean.getPrice() + "  ");
+                    number.setText(choosedBean.getCustomerCount() + "");
+                    break;
+            }
+            return false;
+        }
+    });
 
     @Override
     protected void setContentLayout() {
@@ -63,7 +85,24 @@ public class ConsultingFeeActivity extends BaseActivity {
 
     @Override
     protected void obtainData() {
+        getData();
+    }
 
+    public void getData() {
+        OkHttpUtils.get(ConfigKeys.DOCPRICEITEMCHOOSED, null, new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e(response);
+                choosedBean = Json.parseObj(response, ChoosedBean.class);
+                handler.sendEmptyMessage(0);
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+                ToastUtils.show(e.getMessage());
+            }
+        });
     }
 
     @Override
@@ -81,7 +120,9 @@ public class ConsultingFeeActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), ConsultingActivity.class);
-                startActivity(intent);
+                intent.putExtra("price", choosedBean.getPrice());
+                intent.putExtra("markType", choosedBean.getMarkType());
+                startActivityForResult(intent, 1001);
             }
         });
 
@@ -89,8 +130,26 @@ public class ConsultingFeeActivity extends BaseActivity {
         patientImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(),FeePersonActivity.class));
+                if (consultingImg.getText().toString().equals("未选择")) {
+                    ToastUtils.show("请先设置收费金额");
+                }else{
+                    Intent intent = new Intent(getContext(), FeePersonActivity.class);
+                    intent.putExtra("title", "选择患者");
+                    intent.putExtra("fee",choosedBean.getPrice());
+                    startActivityForResult(intent,101);
+                }
+
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1001 && resultCode == 1002) {
+            getData();
+        }else if (requestCode == 101 && resultCode == 102) {
+            getData();
+        }
     }
 }

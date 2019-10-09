@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp320"
+    android:layout_height="@dimen/dp160"
+    android:layout_gravity="center"
+    android:background="@drawable/normal_bg"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/dialog_EditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@null"
+        android:gravity="center"
+        android:textColor="@color/c_333333"
+        android:textSize="@dimen/sp18" />
+
+    <TextView
+        android:id="@+id/coment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialog_EditName"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:textSize="@dimen/sp15" />
+
+    <Button
+        android:id="@+id/dialog_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp50"
+        android:background="@drawable/radius_3_cancle"
+        android:text="取消"
+        android:textColor="#444444"
+        android:textSize="@dimen/sp17" />
+
+    <TextView
+        android:layout_width="@dimen/dp1"
+        android:layout_height="@dimen/dp25"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/dp30"
+        android:background="#f2f2f2" />
+
+    <Button
+        android:id="@+id/dialog_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp50"
+        android:background="@drawable/radius_4_confirm"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp17" />
+
+</RelativeLayout>

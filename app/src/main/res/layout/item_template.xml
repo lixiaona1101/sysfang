@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp10">
+
+        <TextView
+            android:id="@+id/symptom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="夏季感冒"
+            android:textColor="#212121"
+            android:textSize="@dimen/sp17"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/formulationName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_toRightOf="@id/symptom"
+            android:text="【饮片】"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp15" />
+
+        <ImageView
+            android:id="@+id/code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/close"
+            android:padding="@dimen/dp5"
+            android:src="@mipmap/erweima1" />
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/dp10"
+            android:src="@mipmap/close" />
+    </RelativeLayout>
+
+    <TextView
+        android:visibility="visible"
+        android:id="@+id/line_text"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_margin="@dimen/dp10"
+        android:background="#f2f2f2" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/show_lin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.jiuhao.jhjk.view.MyGridView
+            android:id="@+id/mgv_model_med"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="2"
+            android:padding="@dimen/dp10" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginBottom="@dimen/dp10"
+            android:background="#f2f2f2" />
+
+        <TextView
+            android:id="@+id/freq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:text="【频次】"
+            android:textColor="#444444"
+            android:textSize="@dimen/sp14" />
+
+        <TextView
+            android:id="@+id/medMethod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="【用药方法】"
+            android:textColor="#444444"
+            android:textSize="@dimen/sp14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginBottom="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/delete_but"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp30"
+                android:layout_weight="1"
+                android:background="@drawable/radius_100_444"
+                android:gravity="center"
+                android:text="删除模板"
+                android:textColor="#444444"
+                android:textSize="@dimen/sp15" />
+
+            <Button
+                android:id="@+id/use_but"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp25"
+                android:layout_marginRight="@dimen/dp30"
+                android:layout_weight="1"
+                android:background="@drawable/radius_15_green"
+                android:gravity="center"
+                android:text="使用模板开方"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp10"
+            android:background="#f2f2f2" />
+    </LinearLayout>
+</LinearLayout>

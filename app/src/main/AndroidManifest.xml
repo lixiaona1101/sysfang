@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jiuhao.jhjk">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -64,10 +65,10 @@
     <application
         android:name=".APP.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo_sysf"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
-        android:roundIcon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/logo_sysf"
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">
 
@@ -271,7 +272,7 @@
             android:label="@string/title_activity_invite_friends"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".activity.mine.Other.BigImgActivity"
+            android:name=".utils.BigImgActivity"
             android:label="@string/title_activity_big_img"
             android:theme="@style/AppTheme2" />
         <activity
@@ -281,6 +282,83 @@
         <activity
             android:name=".activity.patient.InviteCustomerActivity"
             android:label="@string/title_activity_invite_customer"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.TemplateActivity"
+            android:label="@string/title_activity_template"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.CaseRecordActivity"
+            android:label="@string/title_activity_case_record"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.MainEvoActivity"
+            android:label="@string/title_activity_main_evo"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.CameraEvoActivity"
+            android:label="@string/title_activity_camera_evo"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.GroupDetailActivity"
+            android:label="@string/title_activity_group_detail"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.ManagementActivity"
+            android:label="@string/title_activity_management"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.message.SystematicNotificationActivity"
+            android:label="@string/title_activity_systematic_notification"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.message.RecipeNotificationActivity"
+            android:label="@string/title_activity_recipe_notification"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.message.LogisticsActivity"
+            android:label="@string/title_activity_logistics"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.RecipientsActivity"
+            android:label="@string/title_activity_logistics"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.RecordDetailActivity"
+            android:label="@string/title_activity_record_detail"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.WestEvoActivity"
+            android:label="@string/title_activity_west_evo"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.SelectMedActivity"
+            android:label="@string/title_activity_select_med"
+            android:theme="@style/AppTheme2"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".activity.HomePage.ImportMedActivity"
+            android:label="@string/title_activity_import_med"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.FamousDoctorsActivity"
+            android:label="@string/title_activity_famous_doctors"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.FamousActivity"
+            android:label="@string/title_activity_famous"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.TemplateRecordActivity"
+            android:label="@string/title_activity_template_record"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.patient.SendListQuestionActivity"
+            android:label="@string/title_activity_send_list_question"
+            android:theme="@style/AppTheme2" />
+        <activity
+            android:name=".activity.HomePage.SearchPatientActivity"
+            android:label="@string/title_activity_search_patient"
             android:theme="@style/AppTheme2"></activity>
     </application>
 

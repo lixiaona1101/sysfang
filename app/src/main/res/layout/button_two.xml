@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/dp20"
+    android:layout_marginTop="@dimen/dp10"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btn_cancel_improve"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_weight="1"
+        android:background="@drawable/radius_16_gray"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:text="修改药品 "
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp15"
+        tools:ignore="ButtonStyle" />
+
+    <Button
+        android:id="@+id/btn_improve_now"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp40"
+        android:layout_weight="1"
+        android:background="@drawable/radius_16_yellow_d49e6a"
+        android:paddingLeft="@dimen/dp10"
+        android:paddingRight="@dimen/dp10"
+        android:text="确认开方"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp15"
+        tools:ignore="ButtonStyle" />
+</LinearLayout>

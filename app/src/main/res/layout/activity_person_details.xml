@@ -21,26 +21,42 @@
             android:src="@mipmap/back" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_alignTop="@+id/iv_back"
+            android:layout_centerInParent="true"
             android:gravity="center"
             android:text="详情"
             android:textColor="@color/text_black"
             android:textSize="@dimen/sp19" />
 
 
-        <TextView
+        <LinearLayout
             android:id="@+id/history_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/dp10"
-            android:drawableTop="@drawable/item_focus"
             android:gravity="center"
-            android:padding="@dimen/dp10"
-            android:text="特别关心"
-            android:textColor="@color/c_333333"
-            android:textSize="@dimen/sp10" />
+            android:orientation="vertical"
+            android:padding="@dimen/dp10">
+
+            <ImageView
+                android:id="@+id/history_like"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@mipmap/focus" />
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="特别关心"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/sp10" />
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -60,16 +76,17 @@
 
             <ImageView
                 android:id="@+id/person_head"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp50"
                 android:layout_marginLeft="@dimen/dp10"
                 android:src="@mipmap/icon_11" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp50"
                 android:layout_marginLeft="@dimen/dp10"
-                android:layout_toRightOf="@id/person_head">
+                android:layout_toRightOf="@id/person_head"
+                android:padding="@dimen/dp5">
 
                 <TextView
                     android:id="@+id/person_name"
@@ -85,8 +102,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp5"
-                    android:layout_toRightOf="@id/person_name"
-                    android:src="@mipmap/man" />
+                    android:layout_toRightOf="@id/person_name" />
 
                 <TextView
                     android:id="@+id/person_age"
@@ -100,8 +116,10 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/user_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
                     android:layout_below="@+id/person_name"
                     android:layout_marginTop="@dimen/dp5"
                     android:text="浙江省杭州市"
@@ -110,10 +128,10 @@
             </RelativeLayout>
 
             <Button
+                android:id="@+id/relation"
                 android:layout_width="@dimen/dp90"
                 android:layout_height="@dimen/dp35"
                 android:layout_alignParentRight="true"
-                android:layout_gravity="right"
                 android:layout_marginRight="@dimen/dp10"
                 android:background="@drawable/radius_15_green"
                 android:text="联系患者"
@@ -130,7 +148,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp45"
             android:orientation="horizontal">
 
             <TextView
@@ -153,7 +171,7 @@
                 android:text="暂无   "
                 android:textColor="@color/c_333333"
                 android:textSize="@dimen/sp16"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/person_group"
@@ -164,13 +182,14 @@
                 android:text="默认分组"
                 android:textColor="@color/c_333333"
                 android:textSize="@dimen/sp16"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp20"
         android:layout_marginLeft="@dimen/dp30"
         android:layout_marginRight="@dimen/dp30"
         android:layout_marginTop="@dimen/dp20"
@@ -180,7 +199,7 @@
         <TextView
             android:layout_width="@dimen/dp90"
             android:layout_height="@dimen/dp1"
-            android:background="@color/c_333333" />
+            android:background="@color/gary_999999" />
 
         <TextView
             android:id="@+id/history_number"
@@ -188,7 +207,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
-            android:text="历史病例 (3)"
+            android:text="历史病例 (0)"
             android:textColor="@color/c_333333"
             android:textSize="@dimen/sp16"
             android:textStyle="bold" />
@@ -196,7 +215,7 @@
         <TextView
             android:layout_width="@dimen/dp90"
             android:layout_height="@dimen/dp1"
-            android:background="@color/c_333333" />
+            android:background="@color/gary_999999" />
     </LinearLayout>
 
     <!--item_details_history-->

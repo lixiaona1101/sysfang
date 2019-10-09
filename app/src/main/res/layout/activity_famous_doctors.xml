@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jiuhao.jhjk.activity.mine.Bill.ListQuestionActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp75"
+        android:background="@color/app_back_f2"
+        android:paddingTop="@dimen/dp25">
+
+        <ImageView
+            android:id="@+id/iv_search_back2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:src="@mipmap/back" />
+
+        <com.jiuhao.jhjk.view.EditTextWithDel
+            android:id="@+id/et_search_title2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/dp7"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp7"
+            android:layout_toRightOf="@+id/iv_search_back2"
+            android:layout_toLeftOf="@+id/collect"
+            android:background="@drawable/radius_35_white"
+            android:gravity="center"
+            android:hint="科室/方剂/专家名称"
+            android:lines="1"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/collect"
+            android:padding="@dimen/dp10"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="我的收藏"
+            android:textColor="#ce503f"
+            android:textSize="@dimen/sp12" />
+    </RelativeLayout>
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        app:tabIndicatorColor="@color/green_009685"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/c_333333"
+        app:tabTextColor="@color/gary_999999">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

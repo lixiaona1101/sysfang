@@ -1,8 +1,9 @@
 package com.jiuhao.jhjk.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class IndexBean {
+public class IndexBean implements Serializable{
 
     /**
      * id : 100000989
@@ -42,11 +43,12 @@ public class IndexBean {
     private String allergy;
     private int starState;
     private String birthday;
-    private long createTime;
-    private long updateTime;
+    private String createTime;
+    private String updateTime;
     private int groupId;
     private String groupName;
     private String customerMsg;
+    private String customerMsgTime;
     private List<?> docCases;
 
     @Override
@@ -72,6 +74,7 @@ public class IndexBean {
                 ", groupName='" + groupName + '\'' +
                 ", customerMsg='" + customerMsg + '\'' +
                 ", docCases=" + docCases +
+                ", customerMsgTime=" + customerMsgTime +
                 '}';
     }
 
@@ -81,6 +84,14 @@ public class IndexBean {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCustomerMsgTime() {
+        return customerMsgTime;
+    }
+
+    public void setCustomerMsgTime(String customerMsgTime) {
+        this.customerMsgTime = customerMsgTime;
     }
 
     public int getUserId() {
@@ -187,19 +198,19 @@ public class IndexBean {
         this.birthday = birthday;
     }
 
-    public long getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(long createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public long getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(long updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

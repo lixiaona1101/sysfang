@@ -11,8 +11,6 @@ public class DcGroupBean {
      * docId : 273
      * groupType : 1
      * remark : 妙手回春
-     * createTime : 1567050684000
-     * updateTime : 1567050684000
      * count : 1
      */
 
@@ -21,23 +19,7 @@ public class DcGroupBean {
     private int docId;
     private int groupType;
     private String remark;
-    private long createTime;
-    private long updateTime;
     private int count;
-
-    @Override
-    public String toString() {
-        return "dcgroupbean{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", docId=" + docId +
-                ", groupType=" + groupType +
-                ", remark='" + remark + '\'' +
-                ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
-                ", count=" + count +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -79,22 +61,6 @@ public class DcGroupBean {
         this.remark = remark;
     }
 
-    public long getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(long createTime) {
-        this.createTime = createTime;
-    }
-
-    public long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public int getCount() {
         return count;
     }
@@ -102,4 +68,17 @@ public class DcGroupBean {
     public void setCount(int count) {
         this.count = count;
     }
+
+    @Override
+    public String toString() {
+        return "dcgroupbean{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", docId=" + docId +
+                ", groupType=" + groupType +
+                ", remark='" + remark + '\'' +
+                ", count=" + count +
+                '}';
+    }
+
 }

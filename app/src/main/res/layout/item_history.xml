@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp250"
+    android:layout_height="wrap_content"
     android:background="#f2f2f2"
     android:orientation="vertical">
 
@@ -18,21 +18,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="医嘱提醒"
+            android:layout_centerVertical="true"
             android:textColor="#ce503f"
             android:textSize="@dimen/sp16"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/time_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_toRightOf="@id/type_name"
             android:text="8月24日"
+            android:layout_centerVertical="true"
             android:textColor="@color/gary_999999"
             android:textSize="@dimen/sp15" />
 
         <Button
+            android:layout_centerVertical="true"
             android:id="@+id/again_send_button"
             android:layout_width="@dimen/dp60"
             android:layout_height="@dimen/dp25"
@@ -47,7 +50,7 @@
     <TextView
         android:id="@+id/details"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp100"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp10"
         android:layout_marginRight="@dimen/dp10"
         android:layout_marginTop="@dimen/dp10"
@@ -59,30 +62,34 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp55"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp10"
         android:layout_marginRight="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginTop="@dimen/dp5"
         android:background="@drawable/radius_8_card"
-        android:gravity="center_vertical">
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_marginBottom="@dimen/dp10"
             android:text="收件人："
             android:textColor="@color/c_333333"
             android:textSize="@dimen/sp16"
             android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp25"
-            android:layout_marginLeft="@dimen/dp5"
-            android:background="@drawable/radius_8_but"
-            android:gravity="center_vertical"
-            android:padding="@dimen/dp5"
-            android:text="分组"
-            android:textColor="@color/c_333333" />
+        <!--flow_group-->
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/flowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp10">
+
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
     </LinearLayout>
 </LinearLayout>

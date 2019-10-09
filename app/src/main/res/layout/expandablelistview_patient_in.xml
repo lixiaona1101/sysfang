@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp60">
+
+    <ImageView
+        android:id="@+id/user_head"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp20"
+        android:src="@mipmap/man" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp20"
+        android:layout_toRightOf="@id/user_head">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="姓名"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/user_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_toRightOf="@id/user_name"
+            android:text="42岁"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/user_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_toRightOf="@id/user_age"
+            android:text="男"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/sp15" />
+
+        <TextView
+            android:id="@+id/user_customerMsgTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="今天 9:42"
+            android:textColor="@color/gary_999999"
+            android:textSize="@dimen/sp12" />
+
+        <TextView
+            android:id="@+id/user_customerMsg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/user_name"
+            android:layout_marginRight="@dimen/dp35"
+            android:layout_marginTop="@dimen/dp10"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="[最近问诊]诊断病症/聊天内容/其他诊断病" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:background="#f2f2f2" />
+</RelativeLayout>

@@ -16,9 +16,7 @@
             android:id="@+id/base_titleLeftImg"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="@dimen/dp14"
-
-            android:src="@mipmap/ic_launcher" />
+            android:padding="@dimen/dp14"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/base_titleTv"

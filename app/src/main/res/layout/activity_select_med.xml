@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_back_f2"
+    android:orientation="vertical">
+
+    <include layout="@layout/title" />
+
+    <LinearLayout
+        android:id="@+id/ll_meth_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_title"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingTop="@dimen/dp10">
+
+        <TextView
+            android:id="@+id/tv_import"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/dp20"
+            android:background="@drawable/radius_16_whit_gray_line"
+            android:paddingBottom="@dimen/dp8"
+            android:paddingLeft="@dimen/dp15"
+            android:paddingRight="@dimen/dp15"
+            android:paddingTop="@dimen/dp8"
+            android:text="导入药方" />
+
+        <TextView
+            android:layout_width="@dimen/dp1"
+            android:layout_height="@dimen/dp15"
+            android:background="@color/gary_999999" />
+
+        <TextView
+            android:id="@+id/tv_clear_med"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp20"
+            android:background="@drawable/radius_16_whit_gray_line"
+            android:paddingBottom="@dimen/dp8"
+            android:paddingLeft="@dimen/dp15"
+            android:paddingRight="@dimen/dp15"
+            android:paddingTop="@dimen/dp8"
+            android:text="清空药方" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp38"
+        android:layout_marginBottom="@dimen/dp1"
+        android:layout_marginTop="@dimen/dp1"
+        android:background="#f2f2f2"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp10">
+
+        <TextView
+            android:id="@+id/tv_llllll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="已选药品价格："
+            android:textColor="#393939"
+            android:textSize="@dimen/sp16" />
+
+        <TextView
+            android:id="@+id/money_medicine"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="$0"
+            android:textColor="#e80000"
+            android:textSize="@dimen/sp16" />
+        <TextView
+            android:gravity="right"
+            android:text="点击药材名可插入煎法"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/sc_select_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tv_no_med_tip"
+        android:background="@color/white"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/medicine_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp10" />
+
+            <LinearLayout
+                android:id="@+id/add_lin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/add_medicine"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp5"
+                    android:background="@null"
+                    android:hint="请输入药名首字母或药名添加"
+                    android:textColor="@color/c_333333"
+                    android:textColorHint="#ce503f"
+                    android:textSize="@dimen/sp15" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="#f2f2f2" />
+            </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/list_recycler"
+                android:layout_width="match_parent"
+                android:background="#f2f2f2"
+                android:visibility="gone"
+                android:layout_height="@dimen/dp50">
+
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>
