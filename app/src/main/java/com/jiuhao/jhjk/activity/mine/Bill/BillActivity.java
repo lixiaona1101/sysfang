@@ -3,9 +3,11 @@ package com.jiuhao.jhjk.activity.mine.Bill;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -66,7 +68,18 @@ public class BillActivity extends BaseActivity {
                         linVisible.setVisibility(View.VISIBLE);
                         billNumber.setText("我的问诊单(" + billListBeans.size() + ")");
                         //recycler适配
-                        BillRecyclerAdapter billRecycleradpterAdapter = new BillRecyclerAdapter(getContext(), billListBeans);
+                        BillRecyclerAdapter billRecycleradpterAdapter =
+                                new BillRecyclerAdapter(getContext(), billListBeans,
+                                        new BillRecyclerAdapter.instem() {
+                                            @Override
+                                            public void onClick(int position) {
+                                                //跳转问诊单编辑
+                                                Intent intent=new Intent(getContext(), CompileBillActivity.class);
+                                                intent.putExtra("id",billListBeans.get(position).getId());
+                                                intent.putExtra("title",billListBeans.get(position).getName());
+                                                startActivityForResult(intent,1);
+                                            }
+                                        });
                         billRecycler.setAdapter(billRecycleradpterAdapter);
                     }
                     break;
@@ -186,5 +199,11 @@ public class BillActivity extends BaseActivity {
         });
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1 && resultCode==2){
+            getBillData();
+        }
+    }
 }

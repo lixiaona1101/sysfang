@@ -3,7 +3,7 @@ package com.jiuhao.jhjk.activity.patient;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;

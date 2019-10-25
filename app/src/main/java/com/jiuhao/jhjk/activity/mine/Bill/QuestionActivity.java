@@ -1,9 +1,9 @@
 package com.jiuhao.jhjk.activity.mine.Bill;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -19,10 +19,12 @@ import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.QuestionRcyclerAdapter;
 import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.QuestionerRcyclerAdapter;
+import com.jiuhao.jhjk.bean.IgQuestion2Bean;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -86,6 +88,9 @@ public class QuestionActivity extends BaseActivity {
     private int flag2 = 0;
     private QuestionRcyclerAdapter questionRcyclerAdapter;
     private QuestionerRcyclerAdapter questionerRcyclerAdapter;
+    private int flag;
+    private IgQuestion2Bean.DqsBean dqsBean;
+    private int questionId;//问题id
 
     @Override
     protected void setContentLayout() {
@@ -133,7 +138,66 @@ public class QuestionActivity extends BaseActivity {
     protected void obtainData() {
 
         intent = getIntent();
+         flag = intent.getIntExtra("flag", 2);
         id = intent.getIntExtra("id", 0);//问诊单id
+        if(flag==1){//編輯問題
+            dqsBean = (IgQuestion2Bean.DqsBean)intent.getSerializableExtra("bean");
+            tvTitle.setText("编辑问题");
+            tvTitleSure.setText("确定");
+            String content = dqsBean.getContent();
+            doctorSynopsis.setText(content);
+            nowNumber.setText(content.length() + "");
+             questionId = dqsBean.getId();
+
+            //问题答案list
+            List<String> stringList = new ArrayList<>();
+            //答案
+            String answerChoose = dqsBean.getAnswerChoose();
+            if(!answerChoose.isEmpty()){
+                String replace = answerChoose.replace("{", "");
+                String replace1 = replace.replace("}", "");
+                String replace2 = replace1.replace("\"", "");
+
+                String[] split = replace2.split(",");
+                for (int i = 0; i < split.length; i++) {
+                    String strings=split[i];
+                    String[] split1 = strings.split(":");
+                    for (int j = 0; j < split1.length; j++) {
+                        if(j%2==1){
+                            String s= split1[j];
+                            stringList.add(s);
+                        }
+                    }
+                }
+            }
+
+            //问题类型
+            int questionType = dqsBean.getQuestionType();//问题类型:0：单选，1：多选，2：简答题
+            if(questionType==0){
+                danChoice.setChecked(true);
+                danLin.setVisibility(View.VISIBLE);
+                duoLin.setVisibility(View.GONE);
+                for (int i = 0; i < stringList.size(); i++) {
+                    questionRcyclerAdapter.insertItem(stringList.get(i));
+                }
+            }else if(questionType==1){
+                duoChoice.setChecked(true);
+                danLin.setVisibility(View.GONE);
+                duoLin.setVisibility(View.VISIBLE);
+                for (int i = 0; i < stringList.size(); i++) {
+                    questionerRcyclerAdapter.insertItem(stringList.get(i));
+                }
+            }else if(questionType==2){
+                whiteChoice.setChecked(true);
+                danLin.setVisibility(View.GONE);
+                duoLin.setVisibility(View.GONE);
+            }
+
+        }else if(flag==2){//新建問題
+            tvTitle.setText("新建问题");
+            tvTitleSure.setText("保存");
+        }
+
         //长度
         doctorSynopsis.addTextChangedListener(new TextWatcher() {
             @Override
@@ -225,7 +289,6 @@ public class QuestionActivity extends BaseActivity {
         tvTitleSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 putQuestion();
             }
         });
@@ -303,20 +366,40 @@ public class QuestionActivity extends BaseActivity {
             linkedHashMap.put("answerChoose", stringStringLinkedHashMap.toString().replaceAll("=", ":"));//答案
         }
 
-        OkHttpUtils.postJson(ConfigKeys.IGQUESTION, linkedHashMap, new OkHttpUtils.ResultCallback<String>() {
-            @Override
-            public void onSuccess(int code, String response) {
-//                Logger.e(response);
-                ToastUtils.show("添加成功");
-                setResult(102);
-                finish();
-            }
+        if(flag==1){//编辑
+            linkedHashMap.put("id", questionId);//问题id
 
-            @Override
-            public void onFailure(int code, Exception e) {
-                Logger.e(e.getMessage());
-                ToastUtils.show(e.getMessage());
-            }
-        });
+            OkHttpUtils.putJson(ConfigKeys.IGQUESTION, linkedHashMap, new OkHttpUtils.ResultCallback<String>() {
+                @Override
+                public void onSuccess(int code, String response) {
+                    ToastUtils.show("编辑成功");
+                    setResult(102);
+                    finish();
+                }
+
+                @Override
+                public void onFailure(int code, Exception e) {
+                    Logger.e(e.getMessage());
+                    ToastUtils.show(e.getMessage());
+                }
+            });
+
+        }else if(flag==2){//新建
+
+            OkHttpUtils.postJson(ConfigKeys.IGQUESTION, linkedHashMap, new OkHttpUtils.ResultCallback<String>() {
+                @Override
+                public void onSuccess(int code, String response) {
+                    ToastUtils.show("添加成功");
+                    setResult(102);
+                    finish();
+                }
+
+                @Override
+                public void onFailure(int code, Exception e) {
+                    Logger.e(e.getMessage());
+                    ToastUtils.show(e.getMessage());
+                }
+            });
+        }
     }
 }

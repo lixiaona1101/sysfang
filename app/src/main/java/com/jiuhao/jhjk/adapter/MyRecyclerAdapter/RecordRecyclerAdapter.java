@@ -2,21 +2,34 @@ package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Handler;
+import android.os.Message;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.HomePage.RecordDetailActivity;
+import com.jiuhao.jhjk.activity.HomePage.SearchPatientActivity;
 import com.jiuhao.jhjk.activity.message.LogisticsActivity;
+import com.jiuhao.jhjk.bean.SaveImageBean;
 import com.jiuhao.jhjk.bean.SelectCaseBean;
+import com.jiuhao.jhjk.utils.DialogUtil;
+import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.glide.GlideUtil;
+import com.jiuhao.jhjk.utils.net.Json;
+import com.jiuhao.jhjk.utils.net.OkHttpUtils;
+import com.jiuhao.jhjk.wechat.JHJKWeChat;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
 
@@ -28,7 +41,62 @@ public class RecordRecyclerAdapter  extends RecyclerView.Adapter<RecordRecyclerA
 
     private Context context;
     private List<SelectCaseBean> selectCaseBeans;
+    private SaveImageBean saveImageBean;//再次開方二维码
+    private android.app.AlertDialog medCodeDialog;//二维码弹出框
 
+    public Handler handler=new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message message) {
+            switch (message.what){
+                case 0:
+                    initMedCodeDialog();
+                    break;
+            }
+            return false;
+        }
+    });
+
+    //处方二维码对话框
+    private void initMedCodeDialog() {
+        medCodeDialog = DialogUtil.createDialog(context, R.layout.dialog_med_evo);
+        medCodeDialog.show();
+        View view = DialogUtil.view;
+        final ImageView ivCancel = view.findViewById(R.id.iv_cancel_med_dialog);
+        ImageView ivEvoCode = view.findViewById(R.id.iv_evo_code);
+        Button btnSend = view.findViewById(R.id.btn_send_to_customer);
+        Button btnShare = view.findViewById(R.id._btn_share_med_to_wx);
+        Logger.e(saveImageBean.getUrl());
+        GlideUtil.load(context,saveImageBean.getUrl(),ivEvoCode);
+        ivCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medCodeDialog.dismiss();
+            }
+        });
+
+        //发送给患者
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medCodeDialog.dismiss();
+                Intent intent = new Intent(context, SearchPatientActivity.class);
+                intent.putExtra("caseid", saveImageBean.getCaseId());
+                context.startActivity(intent);
+            }
+        });
+        //分享至微信
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medCodeDialog.dismiss();
+                if (TextUtils.isEmpty(saveImageBean.getUrl())) {
+                    ToastUtils.show("开方出了点问题，请重新开具");
+                } else {
+                    JHJKWeChat.getInstance().shareImg(2, saveImageBean.getUrl());
+                }
+            }
+        });
+    }
     public RecordRecyclerAdapter(Context context, List<SelectCaseBean> selectChatListBeans) {
         this.context = context;
         this.selectCaseBeans = selectChatListBeans;
@@ -101,7 +169,31 @@ public class RecordRecyclerAdapter  extends RecyclerView.Adapter<RecordRecyclerA
                 context.startActivity(intent);
             }
         });
+        //再次開方
+        myHolder.btn_again_pres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               getCaseAg(selectCaseBeans.get(i).getCaseId());
+            }
+        });
     }
+
+    public void getCaseAg(int caseId){
+        OkHttpUtils.get(ConfigKeys.DOCCASEAG+"?caseId="+caseId, null, new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e(code+response);
+                saveImageBean = Json.parseObj(response, SaveImageBean.class);
+                handler.sendEmptyMessage(0);
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+
+            }
+        });
+    }
+
 
     @Override
     public int getItemCount() {

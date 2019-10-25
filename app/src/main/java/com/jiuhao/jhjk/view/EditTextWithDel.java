@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import com.jiuhao.jhjk.R;
 
 
-public class EditTextWithDel extends android.support.v7.widget.AppCompatAutoCompleteTextView {
+public class EditTextWithDel extends androidx.appcompat.widget.AppCompatAutoCompleteTextView {
 
     private final static String TAG = "EditTextWithDel";
     private Drawable imgInable;

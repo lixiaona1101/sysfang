@@ -4,11 +4,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 
 public class ConfigKeys {
-
-    //    private static final String BASE_URL = "http://192.168.0.104:8090/sysf/";//何
+    //      private static final String BASE_URL = "http://192.168.0.131:8090/sysf/";//何
+//    private static final String BASE_S_URL = "http://192.168.0.131:8090/sysf/";//何
     private static final String BASE_URL = "http://www.bbtian.cn/sysf/";//线上
     private static final String BASE_S_URL = "http://www.bbtian.cn/sysf/";//线上
-//    private static final String BASE_S_URL = "http://192.168.0.131:8092/sysf/";//苏
+    //    private static final String BASE_S_URL = "http://192.168.0.131:8092/sysf/";//苏
     private static final String BASE_SERVER = "http://www.hzsysf.com/";//网页
 
 
@@ -70,6 +70,7 @@ public class ConfigKeys {
     public static final String PHONE = "phone";
     //密码
     public static final String PASSWORD = "password";
+    //微信unionId
     public static final String UNIONID = "unionId";
     //科室名称
     public static final String DEPARTMENTNAME = "departmentName";
@@ -79,6 +80,8 @@ public class ConfigKeys {
     public static final String LOGIN_STATE = "login_state";
     //智能填写状态
     public static final String ZHI_FLAG = "zhiflag";
+    //极光设备号
+    public static final String REGISTRATIONID = "registrationId";
 
     /**
      * ---------------------------------接口------------------------------------
@@ -97,13 +100,13 @@ public class ConfigKeys {
     public static final String DOCLABEL = BASE_URL + "doclabel";
 
     //完善医生信息
-    public static final String DOC = BASE_URL + "doc";
+    public static final String DOC = BASE_URL + "user/doc";
 
     //修改密码
     public static final String PASSWORDD = BASE_URL + "password";
 
     //退出登录
-    public static final String LOGINOUT = BASE_URL + "loginout";
+    public static final String LOGOUT = BASE_URL + "user/logout";
 
     //更换手机号
     public static final String CHANGEPHONE = BASE_URL + "changephone";
@@ -150,7 +153,7 @@ public class ConfigKeys {
     //问诊单 问题列表 更新排序
     public static final String ORDERBY = BASE_URL + "igquestion/orderBy";
 
-    //患者详情
+    //患者详情get 刪除患者 dele
     public static final String CUSTOMER = BASE_URL + "customer";
 
     //取消关注
@@ -179,6 +182,21 @@ public class ConfigKeys {
 
     //群发消息get  群发消息发送 post
     public static final String DCMESSAGE = BASE_URL + "dcMessage";
+
+    //关于我们客服热线查询
+    public static final String ABOUTUS = BASE_URL + "aboutus";
+
+    //关于我们-客户反馈
+    public static final String SYYSFEE = BASE_URL + "sysfee";
+
+    //图片上传
+    public static final String UPLOADIMG = BASE_URL + "img/uploadImg";
+
+    //修改密码
+    public static final String UPDATAPASSWORD = BASE_URL + "user/password";
+
+    //更新极光设备号
+    public static final String UPREGISTRATIONID = BASE_URL + "user/upRegistrationId";
 
 
     /**
@@ -275,35 +293,50 @@ public class ConfigKeys {
     //发送问诊单
     public static final String SENDDOCINTERROGATION = BASE_S_URL + "interrogation/sendDocInterrogationToCustomer";
 
+    //查看患者回复问诊单
+    public static final String ANSWER = BASE_S_URL + "answer";
+
     //删除聊天室
     public static final String DELETEDOCPATIENTMAG = BASE_S_URL + "docPatientMsg/delete";
 
     //清空聊天记录
-    public static final String DOCPATIENTMSG=BASE_S_URL+"docPatientMsg/emptyChat";
+    public static final String DOCPATIENTMSG = BASE_S_URL + "docPatientMsg/emptyChat";
 
     //结束咨询
     public static final String ENDCONSULTATION = BASE_S_URL + "priceDetail/endConsultation";
 
     //药品查询
-    public static final String SHOPMEDSELECT=BASE_S_URL+"shopMed/select";
+    public static final String SHOPMEDSELECT = BASE_S_URL + "shopMed/select";
 
     //煎法下拉选择
-    public static final String MEDFRYING=BASE_S_URL+"docCase/selectMedFrying";
+    public static final String MEDFRYING = BASE_S_URL + "docCase/selectMedFrying";
 
     //病症联想下拉（智能填写）
-    public static final String SELECTSUGGEST=BASE_S_URL+"caseTemplate/selectSuggest";
+    public static final String SELECTSUGGEST = BASE_S_URL + "caseTemplate/selectSuggest";
 
     //拍方上传
-    public static final String SAVEIMAGE=BASE_S_URL+"docCase/saveImage";
+    public static final String SAVEIMAGE = BASE_S_URL + "docCase/saveImage";
 
     //在线开方
-    public static final String SAVECASE=BASE_S_URL+"docCase/saveCase";
+    public static final String SAVECASE = BASE_S_URL + "docCase/saveCase";
+
+    //在线开方-更改用药
+    public static final String SAVECASETOCUSTOMER = BASE_S_URL + "docCase/saveCaseToCustomer";
+
+    //再次開方
+    public static final String DOCCASEAG = BASE_S_URL + "docCase/caseAg";
 
     //患者查询 按名字 模糊
-    public static final String FINDBYNAME=BASE_S_URL+"customer/findByName";
+    public static final String FINDBYNAME = BASE_S_URL + "customer/findByName";
 
     //发送处方给患者
-    public static final String SENDCASE=BASE_S_URL+"docCase/sendCase";
+    public static final String SENDCASE = BASE_S_URL + "docCase/sendCase";
+
+    //获取新版信息
+    public static final String VERSION = BASE_S_URL + "version/getVersion";
+
+    //模板创建
+    public static final String CREATECODE = BASE_S_URL + "caseTemplate/createCode";
 
 
     /**
@@ -314,4 +347,11 @@ public class ConfigKeys {
 
     //使用帮助
     public static final String USER_HELP = BASE_SERVER + "help.html";
+
+    //订单统计
+    public static final String ORDERSTATISTICAL = "http://www.bbtian.cn/appweb/#/orderStatistical?docId=";
+
+    //咨询费统计
+    public static final String COUSULTINGFEE = "http://www.bbtian.cn/appweb/#/consultingFee?docId=";
+
 }

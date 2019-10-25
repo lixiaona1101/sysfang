@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.core.content.ContextCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import cn.jpush.android.api.JPushInterface;
+
 import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
@@ -38,8 +40,6 @@ import com.orhanobut.logger.Logger;
 import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.Timer;
-
-import cn.jpush.android.api.JPushInterface;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener, ITimerListener {
 
@@ -95,14 +95,14 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     //密码是否可见
     private boolean isPwdVisible = false;
 
-    //极光
-    public static boolean isForeground = false;
+//    //极光
+//    public static boolean isForeground = false;
 
     @Override
     protected void setContentLayout() {
         setContentView(R.layout.activity_register);
         translucentStatusBar(true);
-        registerMessageReceiver();//极光
+//        registerMessageReceiver();//极光
     }
 
     @Override
@@ -292,7 +292,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         login(phone, password, "1");
     }
 
-
     /**
      * 登录
      *
@@ -301,44 +300,37 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
      * @param b        1 密码登录 2验证码登录
      */
     private void login(final String phone, final String passCode, String b) {
+        String registrationId = SPUtils.getString(getContext(), ConfigKeys.REGISTRATIONID, "");
 
-        String registrationId = JPushInterface.getRegistrationID(getApplicationContext());//极光设备号
-//        if (!registrationId.isEmpty()) {
-//            Logger.e(registrationId);
-//        } else {
-//            Logger.e("加入极光失败！");
-//        }
-
-        Logger.e("phone:"+phone+"");
-        Logger.e("passCode:"+passCode+"");
-        Logger.e("registrationId:"+registrationId+"");
-        Logger.e("state:"+b+"");
+        Logger.e("phone:" + phone + "");
+        Logger.e("passCode:" + passCode + "");
+        Logger.e("registrationId:" + registrationId + "");
+        Logger.e("state:" + b + "");
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("phone", phone);
         linkedHashMap.put("passCode", passCode);
         linkedHashMap.put("registrationId", registrationId);
         linkedHashMap.put("state", b);
         OkHttpUtils.postJson(ConfigKeys.LOGIN, linkedHashMap, new OkHttpUtils.ResultCallback() {
-                    @Override
-                    public void onSuccess(int code, String response) {
-                        Logger.e(response);
-                        Gson gson = new Gson();
-                        LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
-                        Logger.e(loginBean.toString());
-                        ToastUtils.show("登录成功");
-                        //登录成功用户的id跟token封装在OKhttp中
-                        //如果id为-1 token为“” 那么就是未登录状态
-//                        Config.userId = loginBean.getId();
-                        Config.userToken = loginBean.getToken();
-                        check(loginBean);
-                    }
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e(response);
+                Gson gson = new Gson();
+                LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
+                Logger.e(loginBean.toString());
+                ToastUtils.show("登录成功");
+                //登录成功用户的id跟token封装在OKhttp中
+                Config.userToken = loginBean.getToken();
+                check(loginBean);
+                finish();
+            }
 
-                    @Override
-                    public void onFailure(int code, Exception e) {
-                        Logger.e(e.getMessage());
-                        ToastUtils.show(e.getMessage());
-                    }
-                });
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+                ToastUtils.show(e.getMessage());
+            }
+        });
     }
 
 
@@ -420,27 +412,21 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
 
     private void loginWx(final String unionId) {
-        //传入极光设备号
-        String registrationId = JPushInterface.getRegistrationID(getApplicationContext());//极光设备号
-        if (!registrationId.isEmpty()) {
-            Logger.e(registrationId);
-        } else {
-            Logger.e("加入极光失败！");
-        }
+        String registrationId = SPUtils.getString(getContext(), ConfigKeys.REGISTRATIONID, "");
+
         LinkedHashMap<String, Object> hashMap = new LinkedHashMap<>();
         hashMap.put("unionId", unionId);
-        hashMap.put("registrationId",registrationId);
+        hashMap.put("registrationId", registrationId);
         hashMap.put("state", "3");
         OkHttpUtils.postJson(ConfigKeys.LOGIN, hashMap, new OkHttpUtils.ResultCallback() {
             @Override
             public void onSuccess(int code, String response) {
-                    Gson gson = new Gson();
-                    LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
-                    Logger.e(loginBean.toString());
-//                    Config.userId = loginBean.getId();
-                    Config.userToken = loginBean.getToken();
-                    check(loginBean);
-
+                Gson gson = new Gson();
+                LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
+                Logger.e(loginBean.toString());
+                Config.userToken = loginBean.getToken();
+                check(loginBean);
+                finish();
             }
 
             @Override
@@ -455,66 +441,4 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             }
         });
     }
-
-
-    //极光
-    //用于从jpush服务器接收客户的msg
-    private MessageReceiver mMessageReceiver;
-    public static final String MESSAGE_RECEIVED_ACTION = "com.jiuhao.jhjk.MESSAGE_RECEIVED_ACTION";
-    public static final String KEY_TITLE = "title";
-    public static final String KEY_MESSAGE = "message";
-    public static final String KEY_EXTRAS = "extras";
-
-    public void registerMessageReceiver() {
-        mMessageReceiver = new MessageReceiver();
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(IntentFilter.SYSTEM_HIGH_PRIORITY);
-        filter.addAction(MESSAGE_RECEIVED_ACTION);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver, filter);
-    }
-
-    public class MessageReceiver extends BroadcastReceiver {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            try {
-                if (MESSAGE_RECEIVED_ACTION.equals(intent.getAction())) {
-                    String messge = intent.getStringExtra(KEY_MESSAGE);
-                    String extras = intent.getStringExtra(KEY_EXTRAS);
-                    StringBuilder showMsg = new StringBuilder();
-                    showMsg.append(KEY_MESSAGE + " : " + messge + "\n");
-                    if (!ExampleUtil.isEmpty(extras)) {
-                        showMsg.append(KEY_EXTRAS + " : " + extras + "\n");
-                    }
-                }
-            } catch (Exception e) {
-            }
-        }
-    }
-//   待加入 registeractivity/mainactivity
-//    @Override
-//    public void onResume() {
-//        isForeground = true;
-//        super.onResume();
-//    }
-//
-//    @Override
-//    public void onPause() {
-//        isForeground = false;
-//        super.onPause();
-//    }
-//
-//
-//    @Override
-//    protected void onDestroy() {
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
-//        super.onDestroy();
-//    }
-//
-//		case R.id.stopPush:
-//            JPushInterface.stopPush(getApplicationContext());
-//			break;
-//		case R.id.resumePush:
-//            JPushInterface.resumePush(getApplicationContext());
-
 }

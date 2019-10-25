@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.activity.mine.AccountManagement;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +15,6 @@ import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.activity.welcome.RegisterActivity;
-import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.fy.BaseTimerTask;
 import com.jiuhao.jhjk.utils.fy.ITimerListener;
@@ -174,7 +173,7 @@ public class UserPhoneActivity extends BaseActivity implements View.OnClickListe
             public void onSuccess(int code, String response) {
 
                 ToastUtils.show("更换手机号成功，请用新手机号重新登录");
-                check();
+                Config.quit(getContext());
                 startActivity(new Intent(getContext(), RegisterActivity.class));
             }
 
@@ -206,36 +205,5 @@ public class UserPhoneActivity extends BaseActivity implements View.OnClickListe
                 }
             }
         });
-    }
-
-    private void check() {
-        SPUtils.putInt(getContext(), ConfigKeys.ID, 0);
-        SPUtils.putInt(getContext(), ConfigKeys.USERID, 0);
-        SPUtils.putString(getContext(), ConfigKeys.HOSPITAL, "");
-        SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTID, 0);
-        SPUtils.putString(getContext(), ConfigKeys.TITLES, "");
-        SPUtils.putString(getContext(), ConfigKeys.LABEL, "");
-        SPUtils.putString(getContext(), ConfigKeys.AVATAR, "");
-        SPUtils.putInt(getContext(), ConfigKeys.SEX, 0);
-        SPUtils.putString(getContext(), ConfigKeys.BIRTHDAY, "");
-        SPUtils.putInt(getContext(), ConfigKeys.AUTHSTAT, 0);
-        SPUtils.putInt(getContext(), ConfigKeys.FEES, 0);
-        SPUtils.putInt(getContext(), ConfigKeys.FACTORYID, 0);
-        SPUtils.putString(getContext(), ConfigKeys.BUSINESSCARD, "");
-        SPUtils.putString(getContext(), ConfigKeys.INVITECODE, "");
-        SPUtils.putString(getContext(), ConfigKeys.CLINICTIME, "");
-        SPUtils.putInt(getContext(), ConfigKeys.AREAID, 0);
-        SPUtils.putString(getContext(), ConfigKeys.CREATETIME, "");
-        SPUtils.putString(getContext(), ConfigKeys.UPDATETIME, "");
-        SPUtils.putString(getContext(), ConfigKeys.TOKEN, "");
-        SPUtils.putString(getContext(), ConfigKeys.RESUME, "");
-        SPUtils.putString(getContext(), ConfigKeys.PHONE, "");
-        SPUtils.putString(getContext(), ConfigKeys.PASSWORD, "");
-        SPUtils.putString(getContext(), ConfigKeys.UNIONID, "");
-        SPUtils.putString(getContext(), ConfigKeys.DEPARTMENTNAME, "");
-        SPUtils.putString(getContext(), ConfigKeys.NAME, "");
-
-        //登录状态
-        SPUtils.putBoolean(getContext(), ConfigKeys.LOGIN_STATE, false);
     }
 }

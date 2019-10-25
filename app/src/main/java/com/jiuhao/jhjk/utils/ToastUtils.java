@@ -3,7 +3,7 @@ package com.jiuhao.jhjk.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Looper;
-import android.support.annotation.StringRes;
+import androidx.annotation.StringRes;
 import android.widget.Toast;
 
 import static android.widget.Toast.makeText;

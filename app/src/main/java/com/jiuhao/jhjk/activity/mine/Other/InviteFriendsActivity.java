@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.activity.mine.Other;
 
 import android.content.Intent;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -76,24 +76,22 @@ public class InviteFriendsActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void obtainData() {
-        if (!(imgList.size() > 0)) {
-
-            OkHttpUtils.get(ConfigKeys.DSIMG, null, new OkHttpUtils.ResultCallback<String>() {
-                @Override
-                public void onSuccess(int code, String response) {
-                    List<InviteFriendsBean> inviteFriendsBeans = Json.parseArr(response, InviteFriendsBean.class);
-                    for (int i = 0; i < inviteFriendsBeans.size(); i++) {
-                        imgList.add(inviteFriendsBeans.get(i).getImgUrl());
-                    }
-                    BannerCreator.setDefault(cbInviteFriend, imgList, InviteFriendsActivity.this, 2);
+        OkHttpUtils.get(ConfigKeys.DSIMG, null, new OkHttpUtils.ResultCallback<String>() {
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e(response);
+                List<InviteFriendsBean> inviteFriendsBeans = Json.parseArr(response, InviteFriendsBean.class);
+                for (int i = 0; i < inviteFriendsBeans.size(); i++) {
+                    imgList.add(inviteFriendsBeans.get(i).getImgUrl());
                 }
+                BannerCreator.setDefault(cbInviteFriend, imgList, InviteFriendsActivity.this, 2);
+            }
 
-                @Override
-                public void onFailure(int code, Exception e) {
-                    Logger.e(e.getMessage());
-                }
-            });
-        }
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+            }
+        });
     }
 
     @Override

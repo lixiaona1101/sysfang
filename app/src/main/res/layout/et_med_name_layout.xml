@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_marginBottom="@dimen/dp15"
+    android:orientation="vertical">
+
+
+    <EditText
+        android:id="@+id/et_med_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="请输入药名首字母或药名添加"
+        android:paddingBottom="@dimen/dp10"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp20"
+        android:textColor="@color/black"
+        android:textColorHint="@color/hint_orange"
+        android:textSize="@dimen/sp15" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="@color/gray_dddddd" />
+
+</LinearLayout>

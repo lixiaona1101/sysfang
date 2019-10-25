@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +19,7 @@ import android.widget.TextView;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.SelectMedRecyclerAdapter;
+import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.SelectMedRecyclerAdapter2;
 import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.ShopedSelectRecyclerAdapter;
 import com.jiuhao.jhjk.bean.SelectByIdBean;
 import com.jiuhao.jhjk.bean.SelectTempBean;
@@ -38,6 +36,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 添加药品
@@ -77,7 +79,6 @@ public class SelectMedActivity extends BaseActivity {
     /**
      * 请输入药名首字母或药名添加
      */
-    private EditText addMedicine;
     private LinearLayout addLin;
     private ScrollView scSelectMed;
     private Intent intent;
@@ -87,7 +88,9 @@ public class SelectMedActivity extends BaseActivity {
     private List<ShopedSelectBean> shopedSelectBeans;//查询药品数据源
     private List<ShopedSelectBean> shopedSelectBeanList = new ArrayList<>();//所有药品列表数据
     private ShopedSelectRecyclerAdapter shopedSelectRecyclerAdapter;
-    private SelectMedRecyclerAdapter selectMedRecyclerAdapter;
+    private SelectMedRecyclerAdapter2 selectMedRecyclerAdapter2;
+    private View footer;
+    private EditText etMedName;
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
@@ -98,12 +101,17 @@ public class SelectMedActivity extends BaseActivity {
                         shopedSelectRecyclerAdapter = new ShopedSelectRecyclerAdapter(getContext(), shopedSelectBeans, new ShopedSelectRecyclerAdapter.instem() {
                             @Override
                             public void onClickInstem(int postion) {
-                                addMedicine.setText("");
+                                etMedName.setText("");
                                 ShopedSelectBean shopedSelectBean = shopedSelectBeans.get(postion);
                                 setDataList(shopedSelectBean);
                             }
                         });
                         listRecycler.setAdapter(shopedSelectRecyclerAdapter);
+                        scSelectMed.post(new Runnable() {
+                            public void run() {
+                                scSelectMed.fullScroll(View.FOCUS_DOWN);
+                            }
+                        });
                     } else {
                         ToastUtils.show("没有找到和“" + keyword + "”相关的内容");
                     }
@@ -134,8 +142,6 @@ public class SelectMedActivity extends BaseActivity {
         moneyMedicine = (TextView) findViewById(R.id.money_medicine);
         medicineRecycler = (RecyclerView) findViewById(R.id.medicine_recycler);
         listRecycler = (RecyclerView) findViewById(R.id.list_recycler);
-        addMedicine = (EditText) findViewById(R.id.add_medicine);
-        addLin = (LinearLayout) findViewById(R.id.add_lin);
         scSelectMed = (ScrollView) findViewById(R.id.sc_select_med);
         tvTitle.setText("添加药材");
         rlTitleSure.setVisibility(View.VISIBLE);
@@ -145,53 +151,42 @@ public class SelectMedActivity extends BaseActivity {
 
     @Override
     protected void obtainData() {
+
+        footer = LayoutInflater.from(this).inflate(R.layout.et_med_name_layout, null, false);
+        etMedName = footer.findViewById(R.id.et_med_name);
+
         intent = getIntent();
         metType = intent.getIntExtra("med_type", -1);
         List<ShopedSelectBean> shopedSelectBeans = intent.getParcelableArrayListExtra("med_data");
 
-        selectMedRecyclerAdapter = new SelectMedRecyclerAdapter(getContext(), shopedSelectBeanList,
-                new SelectMedRecyclerAdapter.instem() {
+        selectMedRecyclerAdapter2 = new SelectMedRecyclerAdapter2(R.layout.item_select_med, shopedSelectBeanList,
+                new SelectMedRecyclerAdapter2.instem() {
                     @Override
-                    public void onClickInst(int postion) {//删除
-                        selectMedRecyclerAdapter.removeItem(postion);
+                    public void onClickInst(int postion) {
+                        selectMedRecyclerAdapter2.remove(postion);
                     }
                 },
-                new SelectMedRecyclerAdapter.insnum() {
+                new SelectMedRecyclerAdapter2.insnum() {
                     @Override
                     public void onClinkInsNum(HashMap<String, Float> herbsPriceMap) {
                         sumMescine = 0;
                         for (Float v : herbsPriceMap.values()) {
                             sumMescine += v;
                         }
-                        moneyMedicine.setText("￥" + sumMescine);
+                        moneyMedicine.setText("￥" + NumberUtils.formatPoint(sumMescine));
                     }
                 });
-        medicineRecycler.setAdapter(selectMedRecyclerAdapter);
+        medicineRecycler.setAdapter(selectMedRecyclerAdapter2);
+        selectMedRecyclerAdapter2.addFooterView(footer);
 
-        if(shopedSelectBeans!=null && shopedSelectBeans.size()!=0){
+        if (shopedSelectBeans != null && shopedSelectBeans.size() != 0) {
             for (int i = 0; i < shopedSelectBeans.size(); i++) {
                 setDataList(shopedSelectBeans.get(i));
             }
         }
-//
-//        if(shopedSelectBeans!=null&& shopedSelectBeans.size()!=0){
-//            if (dataList != null && dataList.size() != 0) {
-//                for (int i = 0; i < dataList.size(); i++) {
-//                    for (int j = 0; j < shopedSelectBeans.size(); j++) {
-//                        if (!dataList.get(i).getMedName().equals(shopedSelectBeans.get(j).getMedName())) {
-//                            selectMedRecyclerAdapter.insertItem(shopedSelectBeans.get(j));
-//                        }
-//                    }
-//                }
-//            } else {
-//                for (int i = 0; i < shopedSelectBeans.size(); i++) {
-//                    selectMedRecyclerAdapter.insertItem(shopedSelectBeans.get(i));
-//                }
-//            }
-//        }
-//
 
     }
+
 
     @Override
     protected void initEvent() {
@@ -214,7 +209,8 @@ public class SelectMedActivity extends BaseActivity {
         tvClearMed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (selectMedRecyclerAdapter.getDataList().size() != 0 && !selectMedRecyclerAdapter.getDataList().isEmpty()) {
+
+                if (selectMedRecyclerAdapter2.getData().size() != 0 && !selectMedRecyclerAdapter2.getData().isEmpty()) {
                     HintTitleDialog myDialog = new HintTitleDialog("确定要清空药方吗？");
                     myDialog.show(getSupportFragmentManager());
                     myDialog.setOnLeftClick(new HintDialog.OnLeftClick() {
@@ -229,18 +225,18 @@ public class SelectMedActivity extends BaseActivity {
                             myDialog.dismiss();
                             sumMescine = 0;
                             moneyMedicine.setText("￥0.00");
-                            selectMedRecyclerAdapter.removeAll();
+                            selectMedRecyclerAdapter2.getData().clear();
+                            selectMedRecyclerAdapter2.notifyDataSetChanged();
                         }
                     });
                 } else {
                     ToastUtils.show("无药方可清除！");
                 }
-
             }
         });
 
         //添加药方 增加recycler长度
-        addMedicine.addTextChangedListener(new TextWatcher() {
+        etMedName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 listRecycler.setVisibility(View.GONE);
@@ -253,13 +249,14 @@ public class SelectMedActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                keyword = addMedicine.getText().toString();//输入首字母或者药品的全拼
+                keyword = etMedName.getText().toString();//输入首字母或者药品的全拼
                 if (!keyword.isEmpty()) {
                     examineData();
                 }
             }
         });
-        addMedicine.setOnKeyListener(new View.OnKeyListener() {
+
+        etMedName.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -273,7 +270,7 @@ public class SelectMedActivity extends BaseActivity {
         tvTitleSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<ShopedSelectBean> shopedSelectBeans = selectMedRecyclerAdapter.getDataList();
+                List<ShopedSelectBean> shopedSelectBeans = selectMedRecyclerAdapter2.getData();
                 Logger.e(shopedSelectBeans.toString());
                 if (shopedSelectBeans != null && shopedSelectBeans.size() != 0) {
                     int size = shopedSelectBeans.size();//几位药
@@ -367,9 +364,9 @@ public class SelectMedActivity extends BaseActivity {
 
     //导入数据
     public void setDataList(ShopedSelectBean shopedSelectBean) {
-        List<ShopedSelectBean> dataList = selectMedRecyclerAdapter.getDataList();
+        List<ShopedSelectBean> dataList = selectMedRecyclerAdapter2.getData();
         if (dataList == null && dataList.size() == 0) {
-            selectMedRecyclerAdapter.insertItem(shopedSelectBean);
+            selectMedRecyclerAdapter2.addData(shopedSelectBean);
         } else {
             //是否存在药方
             int s = 0;
@@ -385,17 +382,17 @@ public class SelectMedActivity extends BaseActivity {
                 float itemNum = new BigDecimal(v).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();//单个药品总价
 
                 if (medNumber != 0) {
-                    selectMedRecyclerAdapter.herbsNumMap.put(shopedSelectBean.getMedName(), medNumber + "");
+                    selectMedRecyclerAdapter2.herbsNumMap.put(shopedSelectBean.getMedName(), medNumber + "");
                 }
-                selectMedRecyclerAdapter.herbsPriceMap.put(shopedSelectBean.getMedName(), itemNum);
+                selectMedRecyclerAdapter2.herbsPriceMap.put(shopedSelectBean.getMedName(), itemNum);
 
                 sumMescine = 0;
-                for (Float w : selectMedRecyclerAdapter.herbsPriceMap.values()) {
+                for (Float w : selectMedRecyclerAdapter2.herbsPriceMap.values()) {
                     sumMescine += w;
                 }
-                moneyMedicine.setText("￥" + sumMescine);
+                moneyMedicine.setText("￥" + NumberUtils.formatPoint(sumMescine));
 
-                selectMedRecyclerAdapter.insertItem(shopedSelectBean);
+                selectMedRecyclerAdapter2.addData(shopedSelectBean);
             } else {
                 ToastUtils.show("存在该药方");
             }
@@ -405,7 +402,7 @@ public class SelectMedActivity extends BaseActivity {
     //    高效率
     private void importData(List<SelectTempBean.MedBean> beanList) {
         for (SelectTempBean.MedBean medBean : beanList) {
-            List<ShopedSelectBean> dataList = selectMedRecyclerAdapter.getDataList();
+            List<ShopedSelectBean> dataList = selectMedRecyclerAdapter2.getData();
 
             //是否存在药方
             boolean isHave = false;
@@ -435,9 +432,9 @@ public class SelectMedActivity extends BaseActivity {
                 double v = medNumber * medPrice;
                 float itemNum = new BigDecimal(v).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();//单个药品总价
 
-                selectMedRecyclerAdapter.herbsNumMap.put(shopedSelectBean.getMedName(), medNumber + "");
-                selectMedRecyclerAdapter.herbsPriceMap.put(shopedSelectBean.getMedName(), itemNum);
-                selectMedRecyclerAdapter.insertItem(shopedSelectBean);
+                selectMedRecyclerAdapter2.herbsNumMap.put(shopedSelectBean.getMedName(), medNumber + "");
+                selectMedRecyclerAdapter2.herbsPriceMap.put(shopedSelectBean.getMedName(), itemNum);
+                selectMedRecyclerAdapter2.addData(shopedSelectBean);
             }
 
         }

@@ -77,4 +77,5 @@
         <item quantity="one">You can only select one media file</item>
     </plurals>
     <string name="title_activity_search_patient">SearchPatientActivity</string>
+    <string name="title_activity_question_answer">QuestionAnswerActivity</string>
 </resources>

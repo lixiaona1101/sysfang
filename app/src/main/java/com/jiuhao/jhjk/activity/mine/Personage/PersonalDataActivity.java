@@ -1,17 +1,11 @@
 package com.jiuhao.jhjk.activity.mine.Personage;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -20,23 +14,30 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jiuhao.jhjk.APP.Config;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
+import com.jiuhao.jhjk.view.net.RestClient;
+import com.jiuhao.jhjk.view.net.callback.IError;
+import com.jiuhao.jhjk.view.net.callback.ISuccess;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
+import com.jiuhao.jhjk.bean.UpdataPhoto;
 import com.jiuhao.jhjk.dialog.PictureDialog;
 import com.jiuhao.jhjk.utils.PictureUtils;
 import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.glide.GlideEngine;
 import com.jiuhao.jhjk.utils.glide.GlideUtil;
+import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
+
+import androidx.annotation.Nullable;
 
 /**
  * 完善个人资料
@@ -110,6 +111,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     private Uri imageuri;
     private int sexx;
     private String headUri = "1";
+    private Intent intent;
 
     @Override
     protected void setContentLayout() {
@@ -150,9 +152,10 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void obtainData() {
+        intent = getIntent();
         //医生头像
-        String headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
-        GlideUtil.loadCircle(getContext(), headUrl, head);
+        headUri = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
+        GlideUtil.loadCircle(getContext(), headUri, head);
         //性别 0未知 1男 2女
         int sex = SPUtils.getInt(getContext(), ConfigKeys.SEX, 0);
         show(sex);
@@ -219,6 +222,7 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), OccupationActivity.class);
+                intent.putExtra("titlesstr", titlesstr);
                 startActivityForResult(intent, 2001);
             }
         });
@@ -226,13 +230,11 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         major.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String departmentName1 = departmentName.getText().toString();
-                com.orhanobut.logger.Logger.e(departmentName1);
-                if (departmentName1.contains("未选择")) {
+                if (departmentnamestr.contains("未选择")) {
                     ToastUtils.show("请先选择科室！");
                 } else {
                     Intent intent = new Intent(getContext(), LabelActivity.class);
-                    intent.putExtra("departmentName", departmentName1);//科室名
+                    intent.putExtra("departmentName", departmentnamestr);//科室名
                     intent.putExtra("departmentId", departmentId);   //科室id
                     intent.putExtra("labelstr", labelstr);//专业标签
                     startActivityForResult(intent, 3001);
@@ -263,6 +265,10 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     //上传更新信息
     public void upData() {
 
+        if(headUri.contains("头像上传失败")){
+            ToastUtils.show("头像上传失败,请重新上传！");
+           return;
+        }
         String text = titles.getText().toString();//职称
         String lablee = label.getText().toString();//专业标签
         String resume = doctorSynopsis.getText().toString();//简介
@@ -284,9 +290,15 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
         OkHttpUtils.putJson(ConfigKeys.DOC, linkedHashMap, new OkHttpUtils.ResultCallback() {
             @Override
             public void onSuccess(int code, String response) {
-//                DocBean docBean = Json.parseObj(response, DocBean.class);
-//                docBean.getStatus();
+                SPUtils.putString(getContext(), ConfigKeys.AVATAR, headUri);
+                SPUtils.putInt(getContext(), ConfigKeys.SEX, sexx);
+                SPUtils.putInt(getContext(), ConfigKeys.DEPARTMENTID, departmentId);
+                SPUtils.putString(getContext(), ConfigKeys.TITLES, text);
+                SPUtils.putString(getContext(), ConfigKeys.LABEL, lablee);
+                SPUtils.putString(getContext(), ConfigKeys.RESUME, resume);
+                SPUtils.putString(getContext(), ConfigKeys.DEPARTMENTNAME, departmentnamestr);
                 ToastUtils.show("更新成功");
+                setResult(22, intent);
                 finish();
             }
 
@@ -330,22 +342,50 @@ public class PersonalDataActivity extends BaseActivity implements View.OnClickLi
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1001 && resultCode == 1002) {
-            String departmentyes = data.getStringExtra("departmentyes");
+            departmentnamestr = data.getStringExtra("departmentyes");
             departmentId = data.getIntExtra("departmentId", 1);
-            departmentName.setText(departmentyes + "  ");
+            departmentName.setText(departmentnamestr + "  ");
         } else if (requestCode == 2001 && resultCode == 2002) {
-            String occupation = data.getStringExtra("occupation");
-            titles.setText(occupation + "  ");
+            titlesstr = data.getStringExtra("occupation");
+            titles.setText(titlesstr + "  ");
         } else if (requestCode == 3001 && resultCode == 3002) {
-            ArrayList<String> strings = data.getStringArrayListExtra("strings");
-            label.setText(strings.toString() + "  ");
+            labelstr = data.getStringExtra("strings");
+            label.setText(labelstr + "  ");
         } else if (requestCode == 4001 && resultCode == RESULT_OK) {
             headUri = getRealFilePath(imageuri);
             GlideUtil.loadCircle(getContext(), headUri, head);
+            updataPhoto(headUri);
         } else if (requestCode == 5001 && resultCode == RESULT_OK) {
             headUri = Matisse.obtainPathResult(data).get(0);
             GlideUtil.loadCircle(getContext(), headUri, head);
+            updataPhoto(headUri);
         }
+    }
+
+    public void updataPhoto(String url) {
+
+        Config.showProgressDialog(getContext(),"正在上传头像...");
+
+        RestClient.builder().url(ConfigKeys.UPLOADIMG).file(url).success(new ISuccess() {
+            @Override
+            public void onSuccess(String response) {
+                Logger.e(response);
+                Config.dismissProgressDialog();
+                UpdataPhoto updataPhoto = Json.parseObj(response, UpdataPhoto.class);
+                headUri = updataPhoto.getData();
+                ToastUtils.show(updataPhoto.getMsg());
+                Logger.e("头像：" + headUri);
+
+            }
+        }).error(new IError() {
+            @Override
+            public void onError(int code, String msg) {
+                Logger.e(code + ":" + msg);
+                Config.dismissProgressDialog();
+                ToastUtils.show(msg);
+                headUri = "头像上传失败";
+            }
+        }).build().upload();
     }
 
     /**

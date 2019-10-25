@@ -4,7 +4,9 @@ package com.jiuhao.jhjk.fragment.main;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
@@ -20,6 +22,7 @@ import com.jiuhao.jhjk.activity.patient.PersonDetailsActivity;
 import com.jiuhao.jhjk.adapter.ExPandableListView.PatientExPandableListViewAdapter;
 import com.jiuhao.jhjk.bean.DcGroupBean;
 import com.jiuhao.jhjk.bean.IndexBean;
+import com.jiuhao.jhjk.dialog.HintDialog;
 import com.jiuhao.jhjk.fragment.base.BaseFragment;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.net.Json;
@@ -57,15 +60,19 @@ public class MainPatientFragment extends BaseFragment {
     private List<DcGroupBean> dcGroupBeans;
     private List<List<IndexBean>> lists = new ArrayList<>();
     private int f = 0;
+    private Intent PersonDetailsintent;
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
             switch (message.what) {
                 case 0:
                     for (int i = 0; i < dcGroupBeans.size(); i++) {
-                        getInData(dcGroupBeans.get(i).getId(), dcGroupBeans.get(i).getCount(), dcGroupBeans.get(i).getName());
+                        lists.add(new ArrayList<>());
                     }
 
+                    for (int i = 0; i < dcGroupBeans.size(); i++) {
+                        getInData(i,dcGroupBeans.get(i).getId(), dcGroupBeans.get(i).getCount(), dcGroupBeans.get(i).getName());
+                    }
                     break;
                 case 1:
                     setData();
@@ -118,7 +125,7 @@ public class MainPatientFragment extends BaseFragment {
         alarmClockExpandablelist.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
-                ToastUtils.show(datas.get(i).getName());
+//                ToastUtils.show(datas.get(i).getName());
                 return false;
             }
         });
@@ -129,11 +136,45 @@ public class MainPatientFragment extends BaseFragment {
             public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
                 String groupName = datas.get(i).getName();//分组名称
                 IndexBean indexBean = lists.get(i).get(i1);
-                Intent intent = new Intent(getContext(), PersonDetailsActivity.class);
-                intent.putExtra("GroupName", groupName);//分组名称
-                intent.putExtra("indexBean", indexBean);//用户详情bean
-                startActivity(intent);
-                return false;
+                 PersonDetailsintent = new Intent(getContext(), PersonDetailsActivity.class);
+                PersonDetailsintent.putExtra("GroupName", groupName);//分组名称
+                PersonDetailsintent.putExtra("indexBean", indexBean);//用户详情bean
+                startActivityForResult(PersonDetailsintent,111);
+                return true;
+            }
+        });
+
+        //二级列表item长按事件
+        alarmClockExpandablelist.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if(ExpandableListView.getPackedPositionType(l)==ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                    long packPos = ((ExpandableListView) adapterView).getExpandableListPosition(i);
+                    int groupPosition = ExpandableListView.getPackedPositionGroup(packPos);
+                    int childPosition = ExpandableListView.getPackedPositionChild(packPos);
+                    Logger.e("------------------------------->" + groupPosition);
+                    Logger.e("--------------------------------------->" + childPosition);
+
+
+                    HintDialog hintDialog = new HintDialog("提示",
+                            "确定刪除“" + datas.get(groupPosition).getList().get(childPosition).getUserName()  + "”患者？");
+                    hintDialog.show(getFragmentManager());
+                    hintDialog.setOnLeftClick(new HintDialog.OnLeftClick() {
+                        @Override
+                        public void onLeft() {
+                            ToastUtils.show("取消");
+                        }
+                    });
+                    hintDialog.setOnRightClick(new HintDialog.OnRightClick() {
+                        @Override
+                        public void onRight() {
+                            hintDialog.dismiss();
+                            delePerson(datas.get(groupPosition).getList().get(childPosition).getId());
+                        }
+                    });
+                }
+                return true;
             }
         });
 
@@ -147,6 +188,23 @@ public class MainPatientFragment extends BaseFragment {
         });
     }
 
+    //刪除患者
+    public void delePerson(int id){
+        OkHttpUtils.dele(ConfigKeys.CUSTOMER+"?id="+id, null, new OkHttpUtils.ResultCallback() {
+            @Override
+            public void onSuccess(int code, String response) {
+                ToastUtils.show("刪除成功！");
+                //適配器刷新
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(code+e.getMessage());
+                ToastUtils.show(e.getMessage());
+            }
+        });
+    }
     // 定义数据
     private void setData() {
         if (datas == null) {
@@ -161,8 +219,9 @@ public class MainPatientFragment extends BaseFragment {
             ArrayList<ChildData> itemList = new ArrayList<>();
             for (int j = 0; j < lists.get(i).size(); j++) {
                 ChildData childData = new ChildData();
+                childData.setId(lists.get(i).get(j).getId());
                 childData.setAvatar(lists.get(i).get(j).getAvatar());
-                childData.setUserName(lists.get(i).get(j).getNickName());
+                childData.setUserName(lists.get(i).get(j).getUserName());
                 childData.setCustomerMsg(lists.get(i).get(j).getCustomerMsg());
                 childData.setCustomerMsgTime(lists.get(i).get(j).getCustomerMsgTime());
                 String aged = lists.get(i).get(j).getAged();
@@ -191,7 +250,7 @@ public class MainPatientFragment extends BaseFragment {
      */
     private void setAdapter() {
         if (adapter == null) {
-            adapter = new PatientExPandableListViewAdapter(getContext(), datas);
+            adapter = new PatientExPandableListViewAdapter(getContext(), datas, getFragmentManager());
             alarmClockExpandablelist.setAdapter(adapter);
         } else {
             adapter.flashData(datas);
@@ -204,6 +263,9 @@ public class MainPatientFragment extends BaseFragment {
             @Override
             public void onSuccess(int code, String response) {
                 dcGroupBeans = Json.parseArr(response, DcGroupBean.class);
+                for (int i = 0; i < dcGroupBeans.size(); i++) {
+                    Logger.e(dcGroupBeans.get(i).toString());
+                }
                 handler.sendEmptyMessage(0);
             }
 
@@ -214,20 +276,21 @@ public class MainPatientFragment extends BaseFragment {
         });
     }
 
-    public void getInData(int id, int count, String name) {
+    public void getInData(int i, int id, int count, String name) {
         String url = ConfigKeys.INDEX + "?groupId=" + id;
         OkHttpUtils.get(url, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-//                Logger.e("分组名称---"+name+"个数"+"---"+count+"---"+response);
+                Logger.e("分组名称---" + name + "个数" + "---" + count + "---" + response);
                 List<IndexBean> indexBeans = Json.parseArr(response, IndexBean.class);
-                lists.add(indexBeans);
-//                for (int i = 0; i < lists.size(); i++) {
-//                    List<IndexBean> indexBeans1 = lists.get(i);
-//                    for (int j = 0; j < indexBeans1.size(); j++) {
-//                        Logger.e("i:" + i + "---j:" + j + "---分组名称:" + name + "---个数:" + count + "---name:" + indexBeans1.get(j).getNickName());
-//                    }
-//                }
+                lists.set(i,indexBeans);
+
+                for (int i = 0; i < lists.size(); i++) {
+                    List<IndexBean> indexBeans1 = lists.get(i);
+                    for (int j = 0; j < indexBeans1.size(); j++) {
+                        Logger.e("i:" + i + "---j:" + j + "---分组名称:" + name + "---个数:" + count + "---name:" + indexBeans1.get(j).getNickName());
+                    }
+                }
                 f++;
                 if (f == dcGroupBeans.size()) {
                     handler.sendEmptyMessage(1);
@@ -241,5 +304,11 @@ public class MainPatientFragment extends BaseFragment {
         });
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==111 && resultCode==222){
+            setAdapter();
+        }
+    }
 }

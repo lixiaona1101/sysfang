@@ -3,7 +3,9 @@ package com.jiuhao.jhjk.activity.patient;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -50,13 +52,14 @@ public class SendListQuestionActivity extends BaseActivity {
     private Intent intent;
     private int customerId;//患者id
     private int docInterrogationId;//选中要发送的问诊单id
+    private String docInterrogationName;//问诊单name
 
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
             switch (message.what) {
                 case 0:
-                    if (billListBeans.size() == 0) {
+                    if (billListBeans == null && billListBeans.size() == 0) {
                         linGone.setVisibility(View.VISIBLE);
                         linVisible.setVisibility(View.GONE);
                     } else {
@@ -70,6 +73,7 @@ public class SendListQuestionActivity extends BaseActivity {
                                             @Override
                                             public void onclickInstem(int i) {
                                                 docInterrogationId = billListBeans.get(i).getId();
+                                                docInterrogationName = billListBeans.get(i).getName();
                                             }
                                         });
                         billRecycler.setAdapter(sendListQuestionRecyclerAdapter);
@@ -88,7 +92,6 @@ public class SendListQuestionActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
         ivBack = (ImageView) findViewById(R.id.iv_back);
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitleSure = (TextView) findViewById(R.id.tv_title_sure);
@@ -98,6 +101,7 @@ public class SendListQuestionActivity extends BaseActivity {
         billNumber = (TextView) findViewById(R.id.bill_number);
         billRecycler = (RecyclerView) findViewById(R.id.bill_recycler);
         linVisible = (LinearLayout) findViewById(R.id.lin_visible);
+        billRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         tvTitle.setText("问诊单");
         rlTitleSure.setVisibility(View.VISIBLE);
     }
@@ -117,7 +121,6 @@ public class SendListQuestionActivity extends BaseActivity {
                 billListBeans = Json.parseArr(response, BillBean2.class);
                 Logger.e(billListBeans.toString());
                 handler.sendEmptyMessage(0);
-
             }
 
             @Override
@@ -151,11 +154,15 @@ public class SendListQuestionActivity extends BaseActivity {
          * customerId 患者id
          docInterrogationId 问诊单id
          */
-        OkHttpUtils.get(ConfigKeys.SENDDOCINTERROGATION+"?customerId="+customerId+"&docInterrogationId="+docInterrogationId, null, new OkHttpUtils.ResultCallback<String>() {
+        String url=ConfigKeys.SENDDOCINTERROGATION+"?customerId="+customerId+"&docInterrogationId="+docInterrogationId;
+        Logger.e(url);
+        OkHttpUtils.get(url, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
                 Logger.e(response);
-                ToastUtils.show(response);
+                ToastUtils.show("发送问诊单成功");
+                intent.putExtra("docInterrogationName",docInterrogationName);
+                setResult(123);
                 finish();
             }
 

@@ -2,7 +2,6 @@ package com.jiuhao.jhjk.activity.welcome;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -33,7 +32,7 @@ import java.text.MessageFormat;
 import java.util.LinkedHashMap;
 import java.util.Timer;
 
-import cn.jpush.android.api.JPushInterface;
+import androidx.core.content.ContextCompat;
 
 public class BindPhoneActivity extends BaseActivity implements View.OnClickListener, ITimerListener {
 
@@ -184,20 +183,6 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
                 Logger.e("验证码发送error：" + e);
             }
         });
-
-//        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
-//        linkedHashMap.put("phone", phone);
-//        OkHttpUtils.post(true, ConfigKeys.GET_CODE, linkedHashMap, new OkHttpUtils.ResultCallback() {
-//            @Override
-//            public void onSuccess(int code, String response) {
-//                ToastUtils.show("验证码发送成功");
-//            }
-//
-//            @Override
-//            public void onFailure(int code, Exception e) {
-//                Logger.e("验证码发送error：" + e);
-//            }
-//        });
     }
 
     //用户协议
@@ -227,16 +212,11 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
         Logger.e(phone);
         Logger.e(code);
         Logger.e(unionId);
-        String registrationId = JPushInterface.getRegistrationID(getApplicationContext());//极光设备号
-        if (!registrationId.isEmpty()) {
-            Logger.e(registrationId);
-        } else {
-            Logger.e("加入极光失败！");
-        }
+        String registrationId = SPUtils.getString(getContext(), ConfigKeys.REGISTRATIONID, "");
+        Logger.e(registrationId);
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("phone", phone);
         linkedHashMap.put("passCode", code);
-        //加入极光设备号
         linkedHashMap.put("registrationId", registrationId);
         linkedHashMap.put("unionId", unionId);
         linkedHashMap.put("state", "3");
@@ -247,11 +227,11 @@ public class BindPhoneActivity extends BaseActivity implements View.OnClickListe
                 Logger.d(response);
                 Gson gson = new Gson();
                 LoginBean2 loginBean = gson.fromJson(response, LoginBean2.class);
-//                Config.userId = loginBean.getId();
                 Config.userToken = loginBean.getToken();
                 Logger.d(loginBean.toString());
                 ToastUtils.show("绑定手机号成功");
                 check(loginBean);
+                finish();
             }
 
             @Override

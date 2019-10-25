@@ -15,8 +15,12 @@ import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.MainActivity;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.utils.SPUtils;
+import com.jiuhao.jhjk.utils.ToastUtils;
+import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 import com.tencent.mm.opensdk.utils.Log;
+
+import java.util.LinkedHashMap;
 
 /**
  * Created by lxn on 2019/8/12.
@@ -68,7 +72,7 @@ public class WelcomeActivity extends BaseActivity {
                     AppUtils.exitApp();
                 }
             }).request();
-        }else{
+        } else {
             startTime1();
         }
 
@@ -110,18 +114,40 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     public void startAc() {
-        finish();
         boolean aBoolean = SPUtils.getBoolean(getContext(), ConfigKeys.LOGIN_STATE, false);
+        SPUtils.putBoolean(getContext(),ConfigKeys.ZHI_FLAG,true);
         Logger.e("登录状态" + aBoolean);
-        if (aBoolean) {//登录状态
-//            Config.userId=SPUtils.getInt(getContext(),ConfigKeys.ID,-1);
+        if (aBoolean) {//登录状态 主页面
             Config.userToken = SPUtils.getString(getContext(), ConfigKeys.TOKEN, "");
-            Logger.e("usertoken:"+Config.userToken);
-            //跳转主页面
-            startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-        } else {//未登录状态
-            //跳转引领页再到登录注册页面再到主页面
+            updateRegistration();
+        } else {//未登录状态 登录
             startActivity(new Intent(WelcomeActivity.this, WelcomeSiActivity.class));
+            finish();
         }
+    }
+
+    //更新设备号
+    public void updateRegistration() {
+
+        String registrationid = SPUtils.getString(getContext(), ConfigKeys.REGISTRATIONID, "");
+
+        Logger.e(registrationid);
+        Logger.e(SPUtils.getString(getContext(), ConfigKeys.TOKEN, ""));
+        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("registrationId", registrationid);
+        OkHttpUtils.putJson(ConfigKeys.UPREGISTRATIONID, linkedHashMap, new OkHttpUtils.ResultCallback() {
+            @Override
+            public void onSuccess(int code, String response) {
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                finish();
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(code+e.getMessage());
+                ToastUtils.show(e.getMessage());
+                finish();
+            }
+        });
     }
 }

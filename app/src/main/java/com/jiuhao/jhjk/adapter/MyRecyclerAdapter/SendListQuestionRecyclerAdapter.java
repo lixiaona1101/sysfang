@@ -1,8 +1,8 @@
 package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +34,7 @@ public class SendListQuestionRecyclerAdapter extends RecyclerView.Adapter<SendLi
     @NonNull
     @Override
     public SendListQuestionRecyclerAdapter.BillHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_list_question, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_send_listquestion, viewGroup, false);
         return new SendListQuestionRecyclerAdapter.BillHolder(view);
     }
 
@@ -81,7 +81,7 @@ public class SendListQuestionRecyclerAdapter extends RecyclerView.Adapter<SendLi
 
         public BillHolder(@NonNull View itemView) {
             super(itemView);
-            name = itemView.findViewById(R.id.name);
+            name = itemView.findViewById(R.id.list_name);
             redact = itemView.findViewById(R.id.redact);
             question_number = itemView.findViewById(R.id.question_number);
         }

@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 
-public class AutoScrollTextView extends android.support.v7.widget.AppCompatTextView {
+public class AutoScrollTextView extends androidx.appcompat.widget.AppCompatTextView {
     public AutoScrollTextView(Context context) {
         super(context);
     }

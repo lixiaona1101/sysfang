@@ -3,9 +3,9 @@ package com.jiuhao.jhjk.activity.patient;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -82,7 +82,7 @@ public class PersonDetailsActivity extends BaseActivity implements View.OnClickL
             switch (message.what) {
                 case 0:
                     docCases = customerBean.getDocCases();
-                    if (docCases.size() != 0 || !docCases.isEmpty()) {
+                    if (docCases != null && docCases.size() != 0) {
                         HistoryRcyclerAdapter historyRcyclerAdapter = new HistoryRcyclerAdapter(getContext(), docCases);
                         historyRecycler.setAdapter(historyRcyclerAdapter);
                         historyNumber.setText("历史病例(" + docCases.size() + ")");
@@ -129,7 +129,7 @@ public class PersonDetailsActivity extends BaseActivity implements View.OnClickL
         indexBean = (IndexBean) intent.getSerializableExtra("indexBean");//用户详情bean
         getData();
         personGroup.setText(groupName);
-        nickName = indexBean.getNickName();
+        nickName = indexBean.getUserName();
         personName.setText(nickName);
         String address = indexBean.getAddress();
         userAddress.setText(address);
@@ -188,6 +188,7 @@ public class PersonDetailsActivity extends BaseActivity implements View.OnClickL
                 Intent intent1 = new Intent(getContext(), DialogueActivity.class);
                 intent1.putExtra("nickName",nickName);//患者姓名
                 intent1.putExtra("id", indexBean.getId());//患者id
+                intent1.putExtra("img", indexBean.getAvatar());//患者头像
                 startActivity(intent1);
                 break;
         }
@@ -213,7 +214,7 @@ public class PersonDetailsActivity extends BaseActivity implements View.OnClickL
         OkHttpUtils.putJson(ConfigKeys.WATCH, linkedHashMap, new OkHttpUtils.ResultCallback() {
             @Override
             public void onSuccess(int code, String response) {
-
+                setResult(222);
             }
 
             @Override

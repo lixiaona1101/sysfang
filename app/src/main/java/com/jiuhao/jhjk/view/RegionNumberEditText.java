@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 
 import com.jiuhao.jhjk.utils.ToastUtils;
 
-public class RegionNumberEditText extends android.support.v7.widget.AppCompatEditText {
+public class RegionNumberEditText extends androidx.appcompat.widget.AppCompatEditText {
     private Context context;
     private int max;
     private int min;

@@ -15,8 +15,8 @@
         android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
-        android:paddingBottom="@dimen/dp10"
-        android:paddingTop="@dimen/dp10">
+        android:paddingTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10">
 
         <TextView
             android:id="@+id/tv_import"
@@ -24,10 +24,10 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="@dimen/dp20"
             android:background="@drawable/radius_16_whit_gray_line"
-            android:paddingBottom="@dimen/dp8"
             android:paddingLeft="@dimen/dp15"
-            android:paddingRight="@dimen/dp15"
             android:paddingTop="@dimen/dp8"
+            android:paddingRight="@dimen/dp15"
+            android:paddingBottom="@dimen/dp8"
             android:text="导入药方" />
 
         <TextView
@@ -41,10 +41,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp20"
             android:background="@drawable/radius_16_whit_gray_line"
-            android:paddingBottom="@dimen/dp8"
             android:paddingLeft="@dimen/dp15"
-            android:paddingRight="@dimen/dp15"
             android:paddingTop="@dimen/dp8"
+            android:paddingRight="@dimen/dp15"
+            android:paddingBottom="@dimen/dp8"
             android:text="清空药方" />
 
     </LinearLayout>
@@ -52,8 +52,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp38"
-        android:layout_marginBottom="@dimen/dp1"
         android:layout_marginTop="@dimen/dp1"
+        android:layout_marginBottom="@dimen/dp1"
         android:background="#f2f2f2"
         android:orientation="horizontal"
         android:padding="@dimen/dp10">
@@ -70,75 +70,93 @@
             android:id="@+id/money_medicine"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="$0"
+            android:text="￥0"
             android:textColor="#e80000"
             android:textSize="@dimen/sp16" />
+
         <TextView
-            android:gravity="right"
-            android:text="点击药材名可插入煎法"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="点击药材名可插入煎法" />
 
     </LinearLayout>
 
     <ScrollView
         android:id="@+id/sc_select_med"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_alignParentBottom="true"
+        android:layout_height="0dp"
         android:layout_below="@+id/tv_no_med_tip"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="1"
         android:background="@color/white"
-        android:scrollbars="vertical">
+        android:fillViewport="true"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/medicine_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/dp10" />
 
-            <LinearLayout
-                android:id="@+id/add_lin"
+<!--            <LinearLayout-->
+<!--                android:id="@+id/add_lin"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/add_medicine"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@null"-->
+<!--                    android:hint="请输入药名首字母或药名添加"-->
+<!--                    android:paddingLeft="@dimen/dp10"-->
+<!--                    android:paddingTop="@dimen/dp10"-->
+<!--                    android:paddingRight="@dimen/dp10"-->
+<!--                    android:paddingBottom="@dimen/dp5"-->
+<!--                    android:textColor="@color/c_333333"-->
+<!--                    android:textColorHint="#ce503f"-->
+<!--                    android:textSize="@dimen/sp15" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/dp1"-->
+<!--                    android:layout_marginTop="@dimen/dp10"-->
+<!--                    android:background="#f2f2f2" />-->
+<!--            </LinearLayout>-->
+
+            <!--fitsSystemWindows弹起-->
+            <!--android:fitsSystemWindows="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true"-->
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fitsSystemWindows="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
 
-                <EditText
-                    android:id="@+id/add_medicine"
-                    android:paddingTop="@dimen/dp10"
-                    android:paddingLeft="@dimen/dp10"
-                    android:paddingRight="@dimen/dp10"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/dp5"
-                    android:background="@null"
-                    android:hint="请输入药名首字母或药名添加"
-                    android:textColor="@color/c_333333"
-                    android:textColorHint="#ce503f"
-                    android:textSize="@dimen/sp15" />
+                    android:layout_height="@dimen/dp50"
+                    android:layout_alignParentBottom="true"
+                    android:background="#f2f2f2"
+                    android:visibility="gone">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp1"
-                    android:layout_marginTop="@dimen/dp10"
-                    android:background="#f2f2f2" />
-            </LinearLayout>
+                </androidx.recyclerview.widget.RecyclerView>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/list_recycler"
-                android:layout_width="match_parent"
-                android:background="#f2f2f2"
-                android:visibility="gone"
-                android:layout_height="@dimen/dp50">
+            </RelativeLayout>
 
-            </android.support.v7.widget.RecyclerView>
         </LinearLayout>
 
-
     </ScrollView>
+
 </LinearLayout>

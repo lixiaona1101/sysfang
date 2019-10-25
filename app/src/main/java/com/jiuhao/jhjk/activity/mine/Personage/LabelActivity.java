@@ -80,7 +80,6 @@ public class LabelActivity extends BaseActivity {
         departmentName = intent.getStringExtra("departmentName");//科室ming
         departmentId = intent.getIntExtra("departmentId", 1);//科室id
         labelstr = intent.getStringExtra("labelstr");//专业标签
-        Logger.e(labelstr);
         subject.setText(departmentName);
         getData();
     }
@@ -96,6 +95,7 @@ public class LabelActivity extends BaseActivity {
                 stringList = new String[docLadelBeans.size()];
                 for (int i = 0; i < docLadelBeans.size(); i++) {
                     stringList[i] = docLadelBeans.get(i).getSpecialty();
+                    Logger.e(docLadelBeans.get(i).getSpecialty());
                 }
 
                 TagAdapter<String> tagAdapter = new TagAdapter<String>(stringList) {
@@ -122,9 +122,13 @@ public class LabelActivity extends BaseActivity {
 
     @Override
     protected void initEvent() {
-
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         ArrayList<String> strings = new ArrayList<>();
-        ArrayList<Integer> ints = new ArrayList<Integer>();
         //展示哪些标签处于选中状态,这个很重要我们设置标签可点击就是为了把用户选中状态的标签中的数据上传.
         tagflowlayout.setOnSelectListener(new TagFlowLayout.OnSelectListener() {
             @Override
@@ -136,9 +140,6 @@ public class LabelActivity extends BaseActivity {
                     if (!strings.contains(str)) {
                         strings.add(str);
                     }
-                    if (!ints.contains(s)) {
-                        ints.add(s);
-                    }
                 }
             }
         });
@@ -147,7 +148,10 @@ public class LabelActivity extends BaseActivity {
         rlTitleSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent.putStringArrayListExtra("strings", strings);
+                StringBuffer stringBuffer = new StringBuffer(strings.toString());
+                StringBuffer delete = stringBuffer.delete(0, 1);
+                StringBuffer delete1 = delete.delete(delete.length() - 1, delete.length());
+                intent.putExtra("strings", delete1.toString());
                 setResult(3002, intent);
                 finish();
             }

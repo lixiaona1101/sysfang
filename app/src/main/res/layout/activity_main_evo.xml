@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -47,9 +47,9 @@
                     android:completionThreshold="1"
                     android:dropDownHeight="@dimen/dp200"
                     android:hint="请输入病症描述"
-                    android:paddingBottom="@dimen/dp8"
                     android:paddingLeft="@dimen/dp20"
                     android:paddingTop="@dimen/dp17"
+                    android:paddingBottom="@dimen/dp8"
                     android:textColor="@color/text_black"
                     android:textSize="@dimen/sp14" />
 
@@ -89,8 +89,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/dp10"
-                        android:drawablePadding="@dimen/dp10"
                         android:drawableRight="@mipmap/right"
+                        android:drawablePadding="@dimen/dp10"
                         android:gravity="end"
                         android:text="选择处方剂型"
                         android:textColor="@color/yellow_d49e6a"
@@ -112,63 +112,69 @@
                 </RelativeLayout>
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:background="@color/white"
-                    android:paddingLeft="@dimen/dp23"
-                    android:paddingTop="@dimen/dp14"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp23"
+                    android:paddingTop="@dimen/dp14">
+
                     <TextView
                         android:id="@+id/tv_med_desc"
-                        android:text="药方: 共"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="药方: 共"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
+
                     <TextView
                         android:id="@+id/medicine_type_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="0"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/text_black"
-                        android:textSize="@dimen/sp15" />
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:text="味、"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="味、"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
+
                     <TextView
                         android:id="@+id/medicine_weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="0"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/text_black"
-                        android:textSize="@dimen/sp15" />
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:text="克、"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="克、"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
+
                     <TextView
                         android:id="@+id/weight_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="0.00"
-                        android:textStyle="bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/text_black"
-                        android:textSize="@dimen/sp15" />
+                        android:textSize="@dimen/sp15"
+                        android:textStyle="bold" />
+
                     <TextView
-                        android:text="元"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:text="元"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
                 </LinearLayout>
-
 
 
                 <TextView
@@ -176,12 +182,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:drawablePadding="@dimen/dp10"
                     android:drawableRight="@mipmap/right"
+                    android:drawablePadding="@dimen/dp10"
                     android:gravity="end"
-                    android:paddingBottom="@dimen/dp10"
-                    android:paddingRight="@dimen/dp10"
                     android:paddingTop="@dimen/dp13"
+                    android:paddingRight="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
                     android:text="添加药品"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/sp16"
@@ -200,13 +206,13 @@
                         android:background="@color/gray_dddddd" />
                 </RelativeLayout>
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/mgv_selected_med"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:paddingBottom="@dimen/dp20"
-                    android:paddingLeft="@dimen/dp22" />
+                    android:paddingLeft="@dimen/dp22"
+                    android:paddingBottom="@dimen/dp20" />
 
                 <LinearLayout
                     android:id="@+id/ll_working"
@@ -223,9 +229,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingBottom="@dimen/dp10"
                             android:paddingLeft="@dimen/dp23"
                             android:paddingTop="@dimen/dp10"
+                            android:paddingBottom="@dimen/dp10"
                             android:text="加工辅料："
                             android:textColor="@color/text_black"
                             android:textSize="@dimen/sp16"
@@ -238,23 +244,23 @@
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
                             android:layout_marginRight="@dimen/dp10"
-                            android:drawablePadding="@dimen/dp10"
                             android:drawableRight="@mipmap/right"
-                            android:paddingBottom="@dimen/dp10"
+                            android:drawablePadding="@dimen/dp10"
                             android:paddingTop="@dimen/dp10"
+                            android:paddingBottom="@dimen/dp10"
                             android:text="请选择"
                             android:textColor="@color/yellow_d49e6a"
                             android:textSize="@dimen/sp16"
                             android:textStyle="bold" />
                     </RelativeLayout>
 
-                    <android.support.v7.widget.RecyclerView
-                        android:visibility="visible"
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/word_info_recycler"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:visibility="visible">
 
-                    </android.support.v7.widget.RecyclerView>
+                    </androidx.recyclerview.widget.RecyclerView>
                 </LinearLayout>
 
                 <TextView
@@ -280,9 +286,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dp10"
                         android:paddingLeft="@dimen/dp23"
                         android:paddingTop="@dimen/dp17"
+                        android:paddingBottom="@dimen/dp10"
                         android:text="付数:"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
@@ -323,8 +329,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dp8"
                         android:paddingLeft="@dimen/dp23"
+                        android:paddingBottom="@dimen/dp8"
                         android:text="用药频次："
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
@@ -366,8 +372,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingBottom="@dimen/dp8"
                         android:paddingLeft="@dimen/dp23"
+                        android:paddingBottom="@dimen/dp8"
                         android:text="用药方法："
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
@@ -426,28 +432,30 @@
                         android:id="@+id/tv_fees"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:background="@color/white"
-                        android:paddingBottom="@dimen/dp8"
                         android:paddingLeft="@dimen/dp23"
-                        android:paddingTop="@dimen/dp10"
                         android:text="免费"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/et_fees"
                         android:layout_width="@dimen/dp60"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginLeft="@dimen/dp10"
                         android:gravity="center"
+                        android:inputType="number"
                         android:textColor="@color/orange"
                         android:textSize="@dimen/sp15"
                         android:visibility="gone" />
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:orientation="horizontal">
 
@@ -455,9 +463,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:paddingBottom="@dimen/dp8"
                         android:paddingLeft="@dimen/dp23"
                         android:paddingTop="@dimen/dp10"
+                        android:paddingBottom="@dimen/dp8"
                         android:text="服务费"
                         android:textColor="@color/text_black"
                         android:textSize="@dimen/sp15" />
@@ -467,39 +475,39 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/dp10"
-                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/right"
+                        android:gravity="center_vertical|right"
                         android:paddingRight="@dimen/dp10"
                         android:text="请先添加药品  "
                         android:textColor="@color/gary_999999"
                         android:textSize="@dimen/sp15" />
+
                     <TextView
 
                         android:id="@+id/service_charge_check"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/dp10"
-                        android:gravity="center_vertical|right"
                         android:drawableRight="@mipmap/right"
+                        android:gravity="center_vertical|right"
                         android:paddingRight="@dimen/dp10"
                         android:text="每付0元  "
                         android:textColor="#ce503f"
                         android:textSize="@dimen/sp15" />
 
                 </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/dp40"
                     android:layout_marginTop="@dimen/dp10"
-                    android:background="@color/white"
-                    android:paddingBottom="@dimen/dp5"
-                    android:paddingTop="@dimen/dp15">
+                    android:background="@color/white">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
                         android:background="@color/white"
-                        android:gravity="center_vertical"
                         android:paddingLeft="@dimen/dp15"
                         android:text="保密处方"
                         android:textColor="@color/text_black"
@@ -511,6 +519,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/dp10"
                         android:src="@mipmap/off" />
                 </RelativeLayout>
@@ -519,8 +528,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
-                    android:paddingBottom="@dimen/dp10"
                     android:paddingLeft="@dimen/dp15"
+                    android:paddingBottom="@dimen/dp10"
                     android:text="(开启后,处方详细信息将会对患者隐藏）" />
 
 
@@ -535,10 +544,10 @@
                         style="?android:attr/borderlessButtonStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp20"
                         android:layout_marginLeft="@dimen/dp30"
-                        android:layout_marginRight="@dimen/dp30"
                         android:layout_marginTop="@dimen/dp20"
+                        android:layout_marginRight="@dimen/dp30"
+                        android:layout_marginBottom="@dimen/dp20"
                         android:background="@drawable/radius_15_green"
                         android:text="立即开方"
                         android:textColor="@color/white"
@@ -547,25 +556,24 @@
 
             </LinearLayout>
 
-            <ScrollView
-                android:id="@+id/scroll_view"
-                android:scrollbarThumbHorizontal="@color/b5b5b5"
-                android:layout_marginTop="@dimen/dp80"
+            <LinearLayout
+                android:id="@+id/zhi_flag_line"
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/dp80"
                 android:visibility="gone"
-                android:layout_height="wrap_content">
+                android:background="@drawable/radius_2_f2f2"
+                android:paddingBottom="@dimen/dp10"
+                android:layout_height="@dimen/dp200">
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_zhi_flag"
-                    android:paddingBottom="@dimen/dp15"
-                    android:background="@drawable/radius_2_f2f2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
 
-                </android.support.v7.widget.RecyclerView>
-            </ScrollView>
         </FrameLayout>
     </ScrollView>
 
 
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

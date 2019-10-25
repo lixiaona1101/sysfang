@@ -1,7 +1,6 @@
 package com.jiuhao.jhjk.activity.mine.AccountManagement;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -85,10 +84,9 @@ public class CutUserActivity extends BaseActivity {
 
     //退出账号
     public void outLogin() {
-        OkHttpUtils.get(ConfigKeys.LOGINOUT, null, new OkHttpUtils.ResultCallback<String>() {
+        OkHttpUtils.get(ConfigKeys.LOGOUT, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-
                 Config.quit(getContext());
                 ToastUtils.show("退出登录成功！");
                 startActivity(new Intent(getContext(), RegisterActivity.class));

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#7389ec</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#999999</color>
     <!-- 线线颜色-->
     <color name="stroke_line">#ededed</color>v
     <color name="textcolor_yellow">#ffc801</color>

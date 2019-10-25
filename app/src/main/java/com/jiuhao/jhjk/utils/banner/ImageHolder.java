@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.utils.banner;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.holder.Holder;

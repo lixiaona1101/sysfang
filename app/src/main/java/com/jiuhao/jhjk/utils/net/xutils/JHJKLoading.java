@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.utils.net.xutils;
 
 import android.app.Activity;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentManager;
 
 
 public class JHJKLoading {

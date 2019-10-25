@@ -1,11 +1,10 @@
 package com.jiuhao.jhjk.activity.HomePage;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -128,7 +127,7 @@ public class RecordDetailActivity extends BaseActivity {
         } else if (isImg == 2 || isImg == 3) {
             tvRecordDetailIsImg.setVisibility(View.VISIBLE);
             imRecordDetailSrc.setVisibility(View.VISIBLE);
-            GlideUtil.loadCircle(getContext(),selectDetailsBean.getCaseImg(),imRecordDetailSrc);
+            GlideUtil.load(getContext(),selectDetailsBean.getCaseImg(),imRecordDetailSrc);
         }
 
         List<String> med = selectDetailsBean.getMed();
@@ -141,7 +140,14 @@ public class RecordDetailActivity extends BaseActivity {
         tvRecordDetailTotalPrice.setText(selectDetailsBean.getCasePrice()+"");
         tvRecordDetailMedPrice.setText(selectDetailsBean.getMedPrice()+"");
         tvRecordDetailFees.setText(selectDetailsBean.getFeePrice()+"");
-        tvRecordDetailMedStatus.setText(selectDetailsBean.getOrderState()+"");
+        int orderState = selectDetailsBean.getOrderState();//处方状态0 未下单 1未支付 2 已支付 (大于等于2的都显示已支付)
+        if (orderState==0){
+            tvRecordDetailMedStatus.setText("未下单");
+        }else if (orderState==1){
+            tvRecordDetailMedStatus.setText("未支付");
+        }else if (orderState>=2){
+            tvRecordDetailMedStatus.setText("已支付");
+        }
     }
 
     @Override
@@ -229,6 +235,8 @@ public class RecordDetailActivity extends BaseActivity {
                 Intent intent1 = new Intent(getContext(), DialogueActivity.class);
                 intent1.putExtra("nickName",selectDetailsBean.getName());//患者姓名
                 intent1.putExtra("id", selectDetailsBean.getCustomerId());//患者id
+                intent1.putExtra("img",  selectDetailsBean.getCaseImg());//患者头像
+                startActivity(intent1);
             }
         });
     }

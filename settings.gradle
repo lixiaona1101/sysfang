@@ -1,1 +1,1 @@
-include ':app', ':barlibrary', ':shapeloading', ':library', ':IMKit', ':IMLib'
+include ':app', ':barlibrary', ':shapeloading', ':library', ':IMKit', ':IMLib', ':jpushDemo'

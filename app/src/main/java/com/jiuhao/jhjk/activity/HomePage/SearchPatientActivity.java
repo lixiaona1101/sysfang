@@ -3,19 +3,17 @@ package com.jiuhao.jhjk.activity.HomePage;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.adapter.GridListAdapter.PatientAdapter;
+import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.PatientRecyclerAdapter;
 import com.jiuhao.jhjk.bean.FindByNameBean;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.net.Json;
@@ -31,10 +29,14 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * 开方成功 发送给患者
  */
-public class SearchPatientActivity extends BaseActivity implements OnRefreshListener, OnLoadMoreListener {
+public class SearchPatientActivity extends BaseActivity{
 
     private ImageView ivSearchBack;
     /**
@@ -45,17 +47,17 @@ public class SearchPatientActivity extends BaseActivity implements OnRefreshList
      * 我的患者
      */
     private TextView tvMyPatient;
-    private ListView mlvPatient;
+    private RecyclerView mlvPatient;
     private ImageView ivNoPatient;
-    private SmartRefreshLayout smrlPatient;
+//    private SmartRefreshLayout smrlPatient;
 
     private Intent intent;
     private int caseid;
     private String name = "";
-    private int page = 0;
-    private int limit = 5;
-    private PatientAdapter patientAdapter;
-    private List<FindByNameBean> findByNameBeans;
+    private int page = 1;
+    private int limit = 10;
+    private PatientRecyclerAdapter patientRecyclerAdapter;
+    private List<FindByNameBean> findByNameBeans = new ArrayList<>();
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
@@ -70,7 +72,7 @@ public class SearchPatientActivity extends BaseActivity implements OnRefreshList
                         tvMyPatient.setText("我的患者(" + size + ")");
                         mlvPatient.setVisibility(View.VISIBLE);
                         ivNoPatient.setVisibility(View.GONE);
-                        patientAdapter.notifyDataSetChanged();
+                        patientRecyclerAdapter.addData(findByNameBeans);
                     }
                     break;
             }
@@ -90,12 +92,13 @@ public class SearchPatientActivity extends BaseActivity implements OnRefreshList
         ivSearchBack = (ImageView) findViewById(R.id.iv_search_back);
         etSearchTitle = (EditTextWithDel) findViewById(R.id.et_search_title);
         tvMyPatient = (TextView) findViewById(R.id.tv_my_patient);
-        mlvPatient = (ListView) findViewById(R.id.mlv_patient);
+        mlvPatient = (RecyclerView) findViewById(R.id.mlv_patient);
         ivNoPatient = (ImageView) findViewById(R.id.iv_no_patient);
-        smrlPatient = (SmartRefreshLayout) findViewById(R.id.smrl_patient);
+//        smrlPatient = (SmartRefreshLayout) findViewById(R.id.smrl_patient);
         etSearchTitle.setHint("输入姓名搜索患者");
-        smrlPatient.setRefreshHeader(new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true));
-        smrlPatient.setOnRefreshListener(this);
+//        smrlPatient.setRefreshHeader(new BezierRadarHeader(getContext()).setEnableHorizontalDrag(true));
+//        smrlPatient.setOnRefreshListener(this);
+        mlvPatient.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
     @Override
@@ -103,11 +106,15 @@ public class SearchPatientActivity extends BaseActivity implements OnRefreshList
         intent = getIntent();
         caseid = intent.getIntExtra("caseid", 0);
 
-        findByNameBeans = new ArrayList<>();
-        patientAdapter = new PatientAdapter(getContext(), findByNameBeans);
-        mlvPatient.setAdapter(patientAdapter);
-        page = 0;
         getByNameData();
+        patientRecyclerAdapter = new PatientRecyclerAdapter(R.layout.item_patient, findByNameBeans,
+                new PatientRecyclerAdapter.instem() {
+                    @Override
+                    public void onClick(FindByNameBean findByNameBean) {
+                        getSendId(findByNameBean.getId());
+                    }
+                });
+        mlvPatient.setAdapter(patientRecyclerAdapter);
     }
 
     @Override
@@ -135,17 +142,12 @@ public class SearchPatientActivity extends BaseActivity implements OnRefreshList
                 getByNameData();
             }
         });
-        mlvPatient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                getSendId(findByNameBeans.get(position).getDocId());
-            }
-        });
+
     }
 
     //发送处方给患者
     public void getSendId(int docid) {
-        OkHttpUtils.get(ConfigKeys.FINDBYNAME + "?caseId=" + caseid + "&customerId=" + docid, null, new OkHttpUtils.ResultCallback<String>() {
+        OkHttpUtils.get(ConfigKeys.SENDCASE + "?caseId=" + caseid + "&customerId=" + docid, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
                 Logger.e(response);
@@ -167,28 +169,28 @@ public class SearchPatientActivity extends BaseActivity implements OnRefreshList
         OkHttpUtils.get(ConfigKeys.FINDBYNAME + "?name=" + name + "&page=" + page + "&limit=" + limit, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-                com.orhanobut.logger.Logger.e(response);
+                Logger.e(response);
                 findByNameBeans = Json.parseArr(response, FindByNameBean.class);
                 handler.sendEmptyMessage(0);
             }
 
             @Override
             public void onFailure(int code, Exception e) {
-                com.orhanobut.logger.Logger.e(e.getMessage());
+                Logger.e(e.getMessage());
                 ToastUtils.show(e.getMessage());
             }
         });
     }
-
-    @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        page = 0;
-        getByNameData();
-    }
-
-    @Override
-    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        page++;
-        getByNameData();
-    }
+//
+//    @Override
+//    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+//        page = 1;
+//        getByNameData();
+//    }
+//
+//    @Override
+//    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+//        page++;
+//        getByNameData();
+//    }
 }

@@ -10,22 +10,26 @@
 
     <include layout="@layout/title"></include>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp30"
-        android:layout_marginTop="@dimen/dp77"
-        android:src="@mipmap/icon_9" />
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--    <ImageView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="@dimen/dp30"-->
+    <!--        android:layout_marginTop="@dimen/dp77"-->
+    <!--        android:src="@mipmap/icon_9" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dp40"
-        android:layout_marginLeft="@dimen/dp40"
-        android:layout_marginRight="@dimen/dp40"
-        android:lineSpacingExtra="@dimen/dp4"
-        android:text="积分系统进行维护，具体收益以【开方记录】中具体【已付款】处方进行统计、结算。如有疑问请联系业务员或者客服。"
-        android:textColor="@color/gary_999999"
-        android:textSize="@dimen/sp14" />
+    <!--    <TextView-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="@dimen/dp40"-->
+    <!--        android:layout_marginLeft="@dimen/dp40"-->
+    <!--        android:layout_marginRight="@dimen/dp40"-->
+    <!--        android:lineSpacingExtra="@dimen/dp4"-->
+    <!--        android:text="积分系统进行维护，具体收益以【开方记录】中具体【已付款】处方进行统计、结算。如有疑问请联系业务员或者客服。"-->
+    <!--        android:textColor="@color/gary_999999"-->
+    <!--        android:textSize="@dimen/sp14" />-->
 
 </LinearLayout>

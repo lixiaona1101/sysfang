@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp12"
             android:layout_toRightOf="@+id/salesman"
-            android:text="赵璐 13145897536"
+            android:text=""
             android:textColor="@color/c_333333"
             android:textSize="@dimen/sp16" />
 
@@ -154,7 +154,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dp15"
-            android:text="赵璐"
+            android:text=""
             android:textColor="@color/text_black"
             android:textSize="@dimen/sp15"
             android:textStyle="bold" />

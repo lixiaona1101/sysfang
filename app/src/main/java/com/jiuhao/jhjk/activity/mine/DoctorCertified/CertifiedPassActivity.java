@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.utils.BigImgActivity;
 import com.jiuhao.jhjk.bean.DocAuthBean;
+import com.jiuhao.jhjk.utils.BigImgActivity;
 
 /**
  * 认证是否通过
@@ -157,6 +157,7 @@ public class CertifiedPassActivity extends BaseActivity implements View.OnClickL
         Intent intent = getIntent();
         docAuthBean = (DocAuthBean) intent.getSerializableExtra("bean");
 
+        com.orhanobut.logger.Logger.e(docAuthBean.toString());
         String name = docAuthBean.getSalesman().getName();
         String phone = docAuthBean.getSalesman().getPhone();
         salesmanNamePhone.setText(name + "  " + phone);
@@ -279,6 +280,7 @@ public class CertifiedPassActivity extends BaseActivity implements View.OnClickL
                 Intent intent = new Intent(getContext(), MessageCertifiedAgainActivity.class);
                 intent.putExtra("docbean", docAuthBean);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

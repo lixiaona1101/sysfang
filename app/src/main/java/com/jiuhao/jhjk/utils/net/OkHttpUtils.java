@@ -379,6 +379,7 @@ public class OkHttpUtils {
             }
         }
 
+
         RequestBody requestBody = RequestBody.create(MEDIA_TYPE_TEXT, sb.toString());
         Request request = new Request.Builder()
                 .addHeader("token", userToken)
@@ -541,12 +542,11 @@ public class OkHttpUtils {
                 //原Body
                 try {
                     if (!url.contains("https://api.weixin.qq.com/sns/oauth2/access_token?appid=")
-//                            && !url.contains("https://api.weixin.qq.com/sns/userinfo?access_token=")
                             && !TextUtils.isEmpty(body)) {
 
                         JSONObject object1 = JSON.parseObject(body);
 
-                        if (object1.containsKey("status")) {
+                        if (object1.containsKey("status") || object1.containsKey("code")) {
                             code = object1.getIntValue("status");
                             body = object1.getString("data");
                             msg = object1.getString("msg");

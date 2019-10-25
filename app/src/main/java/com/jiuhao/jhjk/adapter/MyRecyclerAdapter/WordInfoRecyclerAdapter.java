@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.KeyboardUtils;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.adapter.base.RecyclerBaseAdapter;
 import com.jiuhao.jhjk.adapter.base.ViewHolder;
@@ -44,6 +45,7 @@ public class WordInfoRecyclerAdapter extends RecyclerBaseAdapter<SelectingBean> 
         TextView tv_select_name = holder.getView(R.id.tv_select_name);
         EditText et_select_num = holder.getView(R.id.et_select_num);
         RelativeLayout rl_select_delete = holder.getView(R.id.rl_select_delete);
+        KeyboardUtils.showSoftInput(et_select_num);
 
         if (herbsNumMap.containsKey(selectingBean.getName())) {
             et_select_num.setText(herbsNumMap.get(selectingBean.getName()));

@@ -3,9 +3,9 @@ package com.jiuhao.jhjk.activity.mine.Bill;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +16,7 @@ import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.CompileBillRecyclerAdapter;
+import com.jiuhao.jhjk.bean.IgQuestion2Bean;
 import com.jiuhao.jhjk.bean.IgQuestionBean;
 import com.jiuhao.jhjk.dialog.MyDialog;
 import com.jiuhao.jhjk.utils.ToastUtils;
@@ -60,19 +61,30 @@ public class Bill2Activity extends BaseActivity implements View.OnClickListener 
     private Button buttonTwo;
     private RecyclerView recycler;
     private int id;
-    private List<IgQuestionBean> igQuestionBeans;
+    private IgQuestion2Bean igQuestionBeans;
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
             switch (message.what) {
                 case 0:
-                    if (igQuestionBeans.size() != 0) {
+                    if (igQuestionBeans!=null && igQuestionBeans.getDqs().size() != 0) {
                         CompileBillRecyclerAdapter compileBillRecyclerAdapter =
-                                new CompileBillRecyclerAdapter(getContext(), igQuestionBeans,
+                                new CompileBillRecyclerAdapter(getContext(), igQuestionBeans.getDqs(),
                                         new CompileBillRecyclerAdapter.deleListen() {
                                             @Override
                                             public void onDele(int i) {
-                                                deleData(igQuestionBeans.get(i).getId());
+                                                deleData(igQuestionBeans.getDqs().get(i).getId());
+                                            }
+                                        } ,
+                                        new CompileBillRecyclerAdapter.upListen() {
+                                            @Override
+                                            public void onUp(int i, IgQuestion2Bean.DqsBean dqsBean) {
+
+                                                Intent intent = new Intent(getContext(), QuestionActivity.class);
+                                                intent.putExtra("flag",1);//flag 1编辑问题 2新建问题
+                                                intent.putExtra("id", id);
+                                                intent.putExtra("bean",dqsBean);
+                                                startActivityForResult(intent, 101);
                                             }
                                         });
                         recycler.setAdapter(compileBillRecyclerAdapter);
@@ -172,8 +184,8 @@ public class Bill2Activity extends BaseActivity implements View.OnClickListener 
         String url = ConfigKeys.ORDERBY + "?igId=" + id;
         //igIds 问题ID
         StringBuffer stringBuffer = new StringBuffer();
-        for (int i = 0; i < igQuestionBeans.size(); i++) {
-            int id = igQuestionBeans.get(i).getId();
+        for (int i = 0; i < igQuestionBeans.getDqs().size(); i++) {
+            int id = igQuestionBeans.getDqs().get(i).getId();
             stringBuffer.append(id + ",");
         }
         String igIds = stringBuffer.delete(stringBuffer.length() - 1, stringBuffer.length()).toString();
@@ -252,7 +264,7 @@ public class Bill2Activity extends BaseActivity implements View.OnClickListener 
             @Override
             public void onSuccess(int code, String response) {
                 Logger.e(response);
-                igQuestionBeans = Json.parseArr(response, IgQuestionBean.class);
+                igQuestionBeans = Json.parseObj(response, IgQuestion2Bean.class);
                 handler.sendEmptyMessage(0);
             }
 

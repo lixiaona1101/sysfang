@@ -12,7 +12,7 @@ import com.jiuhao.jhjk.activity.base.BaseActivity;
 /**
  * 职称
  */
-public class OccupationActivity extends BaseActivity implements View.OnClickListener{
+public class OccupationActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView ivBack;
     /**
@@ -30,6 +30,8 @@ public class OccupationActivity extends BaseActivity implements View.OnClickList
     private ImageView occupation3;
     private ImageView occupation4;
     private String occupation;
+    private Intent intent;
+    private String titlesstr;//当前传过来的选中职称
 
     @Override
     protected void setContentLayout() {
@@ -60,7 +62,21 @@ public class OccupationActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void obtainData() {
-
+        intent = getIntent();
+        titlesstr = intent.getStringExtra("titlesstr");
+        if(titlesstr.contains("主治医生")){
+            occupation = "主治医生";
+            show(1);
+        }else if(titlesstr.contains("副主任医师")){
+            occupation = "副主任医师";
+            show(2);
+        }else if(titlesstr.contains("主任医生")){
+            occupation = "主任医生";
+            show(3);
+        }else if(titlesstr.contains("其他")){
+            occupation = "其他";
+            show(4);
+        }
     }
 
     @Override
@@ -75,8 +91,8 @@ public class OccupationActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
-                intent.putExtra("occupation",occupation);
-                setResult(2002,intent);
+                intent.putExtra("occupation", occupation);
+                setResult(2002, intent);
                 finish();
             }
         });
@@ -86,25 +102,26 @@ public class OccupationActivity extends BaseActivity implements View.OnClickList
     public void onClick(View view) {
 
         int id = view.getId();
-        switch (id){
+        switch (id) {
             case R.id.occupation1:
-                occupation="主治医生";
+                occupation = "主治医生";
                 show(1);
                 break;
             case R.id.occupation2:
-                occupation="副主任医师";
+                occupation = "副主任医师";
                 show(2);
                 break;
             case R.id.occupation3:
-                occupation="主任医生";
+                occupation = "主任医生";
                 show(3);
                 break;
             case R.id.occupation4:
-                occupation="其他";
+                occupation = "其他";
                 show(4);
                 break;
         }
     }
+
     public void show(int i) {
         occupation1.setImageResource(R.mipmap.select1);
         occupation2.setImageResource(R.mipmap.select1);

@@ -5,9 +5,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -65,7 +65,8 @@ public class ListQuestionFragment extends BaseFragment implements OnLoadMoreList
                         noQuestion.setVisibility(View.VISIBLE);
                     } else {
                         listQuestionRecycler.setVisibility(View.VISIBLE);
-                        QuestionlibraryRecyclerAdapter questionlibraryRecyclerAdapter = new QuestionlibraryRecyclerAdapter(getContext(), keShiBeans,
+                        QuestionlibraryRecyclerAdapter questionlibraryRecyclerAdapter =
+                                new QuestionlibraryRecyclerAdapter(getContext(), keShiBeans,
                                 new QuestionlibraryRecyclerAdapter.OnListen() {
                                     @Override
                                     public void upListen() {
@@ -112,6 +113,7 @@ public class ListQuestionFragment extends BaseFragment implements OnLoadMoreList
 
     @Override
     protected void setListener() {
+
     }
 
     public void getData(int page) {
@@ -137,11 +139,13 @@ public class ListQuestionFragment extends BaseFragment implements OnLoadMoreList
 
     public StringBuffer getIdStr() {
         StringBuffer stringBuffer = new StringBuffer();
-        for (int i = 0; i < keShiBeans.size(); i++) {
-            boolean check = keShiBeans.get(i).isCheck();
-            if (check) {
-                int id = keShiBeans.get(i).getId();
-                stringBuffer.append(id + ",");
+        if(keShiBeans!=null  && keShiBeans.size()!=0){
+            for (int i = 0; i < keShiBeans.size(); i++) {
+                boolean check = keShiBeans.get(i).isCheck();
+                if (check) {
+                    int id = keShiBeans.get(i).getId();
+                    stringBuffer.append(id + ",");
+                }
             }
         }
         return stringBuffer;

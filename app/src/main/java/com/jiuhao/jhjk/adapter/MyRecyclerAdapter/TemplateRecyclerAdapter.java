@@ -2,12 +2,14 @@ package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,17 +18,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.jiuhao.jhjk.APP.Config;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.HomePage.MainEvoActivity;
 import com.jiuhao.jhjk.adapter.GridListAdapter.GvSelectedAdapter;
 import com.jiuhao.jhjk.bean.CaseTemplateBean;
+import com.jiuhao.jhjk.bean.SaveImageBean;
 import com.jiuhao.jhjk.bean.TemplateBean;
 import com.jiuhao.jhjk.dialog.HintDialog;
 import com.jiuhao.jhjk.utils.BigImgActivity;
 import com.jiuhao.jhjk.utils.BottomDialogCreator;
 import com.jiuhao.jhjk.utils.CollectionUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
+import com.jiuhao.jhjk.utils.glide.GlideUtil;
 import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.jiuhao.jhjk.view.MyGridView;
@@ -50,6 +56,8 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
     private boolean codeCeck = false;//标识是否生成二维码
     private AlertDialog popDialog;//底部弹出框
     private CaseTemplateBean caseTemplateBeans;//单个模板详情
+    private SaveImageBean  saveImageBean;
+    private String codeUrl;//二維碼
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
@@ -80,8 +88,16 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
         return new MyHolder(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
+
+        int flag = templateBeans.get(i).getFlag();
+        if (flag==0){
+            myHolder.code.setImageDrawable(context.getDrawable(R.mipmap.erweima1));
+        }else if (flag==1){
+            myHolder.code.setImageDrawable(context.getDrawable(R.mipmap.erweima));
+        }
 
         myHolder.symptom.setText(templateBeans.get(i).getSymptom());
         if (!templateBeans.get(i).getFormulationName().isEmpty()) {
@@ -114,8 +130,14 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
         myHolder.code.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //底部提醒分享框
-                showTemplate(templateBeans.get(i));
+                if(flag==0){
+                    //先生成二维码 成功 底部弹框
+                    getcreateCode(templateBeans.get(i),myHolder.code);
+                }else if(flag==1){
+                    //底部提醒分享框
+                    showTemplate(templateBeans.get(i));
+                }
+
             }
         });
 
@@ -136,6 +158,32 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
             @Override
             public void onClick(View view) {
                 getSelectorById(templateBeans.get(i).getId());
+            }
+        });
+    }
+
+    //二维码生成
+    public void getcreateCode(TemplateBean templateBean, ImageView codeImageview){
+        Config.showProgressDialog(context,"正在生成二维码！");
+
+        OkHttpUtils.get(ConfigKeys.CREATECODE+"?id="+templateBean.getId(), null, new OkHttpUtils.ResultCallback<String>() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+            @Override
+            public void onSuccess(int code, String response) {
+                Logger.e(response);
+                codeUrl=response;//二維碼
+                Config.dismissProgressDialog();
+                templateBean.setFlag(1);
+                codeImageview.setImageDrawable(context.getDrawable(R.mipmap.erweima));
+                //底部提醒分享框
+                showTemplate(templateBean);
+            }
+
+            @Override
+            public void onFailure(int code, Exception e) {
+                Logger.e(e.getMessage());
+                Config.dismissProgressDialog();
+                ToastUtils.show(e.getMessage());
             }
         });
     }
@@ -181,6 +229,7 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
 
     //删除模板
     public void deleteData(int id, String name, int i) {
+
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("id", id);
         OkHttpUtils.postJson(ConfigKeys.TEMPLATEDELETE, linkedHashMap, new OkHttpUtils.ResultCallback<String>() {
@@ -231,14 +280,13 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
                 }
             });
         }
-        String code = entity.getCode();
         String name = entity.getSymptom();
         tvTemplateName.setText(name);
         tvSharePy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popDialog.dismiss();
-                JHJKWeChat.getInstance().shareImg(1, code);
+                JHJKWeChat.getInstance().shareImg(1, codeUrl);
             }
         });
 
@@ -246,17 +294,17 @@ public class TemplateRecyclerAdapter extends RecyclerView.Adapter<TemplateRecycl
             @Override
             public void onClick(View v) {
                 popDialog.dismiss();
-                JHJKWeChat.getInstance().shareImg(2, code);
+                JHJKWeChat.getInstance().shareImg(2, codeUrl);
             }
-
         });
+
         tvShareCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 popDialog.dismiss();
                 codeCeck = true;
                 Intent intent = new Intent(context, BigImgActivity.class);
-                intent.putExtra("imgUrl", code);
+                intent.putExtra("imgUrl", codeUrl);
                 context.startActivity(intent);
             }
         });

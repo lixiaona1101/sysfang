@@ -12,18 +12,17 @@
         android:id="@+id/question_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="1.中医科问题文档上分别缴纳保存的VB补充十多个对吧是双方各打玻尿酸？"
         android:textColor="@color/gray_444444"
         android:textSize="@dimen/sp15" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/question_name"
         android:layout_marginTop="@dimen/dp10">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/te"

@@ -2,9 +2,9 @@ package com.jiuhao.jhjk.activity.patient;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.constraint.Group;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;

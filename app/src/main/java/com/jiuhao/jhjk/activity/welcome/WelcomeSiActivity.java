@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.activity.welcome;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
@@ -43,4 +43,5 @@ public class WelcomeSiActivity extends BaseActivity {
     protected void initEvent() {
 
     }
+
 }

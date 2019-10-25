@@ -2,8 +2,9 @@ package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,10 @@ import android.widget.TextView;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.HomePage.FamousActivity;
+import com.jiuhao.jhjk.activity.HomePage.SearchPatientActivity;
 import com.jiuhao.jhjk.bean.FamousDoctorBean;
 import com.jiuhao.jhjk.bean.SpecialFamousDoctorBean;
+import com.jiuhao.jhjk.utils.DialogUtil;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.glide.GlideUtil;
 import com.jiuhao.jhjk.utils.net.Json;
@@ -36,6 +39,7 @@ public class FamousDoctorRecyclerAdapter extends RecyclerView.Adapter<FamousDoct
     private Context context;
     private List<FamousDoctorBean> famousDoctorBeans;
     private boolean check = false;
+    private android.app.AlertDialog medCodeDialog;//二维码弹出框
 
     public FamousDoctorRecyclerAdapter(Context context, List<FamousDoctorBean> famousDoctorBeans) {
         this.context = context;
@@ -114,44 +118,6 @@ public class FamousDoctorRecyclerAdapter extends RecyclerView.Adapter<FamousDoct
         });
     }
 
-    /**
-     * 初始化处方二维码对话框
-     */
-//    private void initMedCodeDialog() {
-//        medCodeDialog = DialogUtil.createDialog(_mActivity, R.layout.dialog_med_evo);
-//        View view = DialogUtil.view;
-//        final ImageView ivCancel = view.findViewById(R.id.iv_cancel_med_dialog);
-//        ivEvoCode = view.findViewById(R.id.iv_evo_code);
-//        Button btnSend = view.findViewById(R.id.btn_send_to_customer);
-//        Button btnShare = view.findViewById(R.id._btn_share_med_to_wx);
-//        ivCancel.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                medCodeDialog.dismiss();
-//            }
-//        });
-//
-//        //发送给患者
-//        btnSend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                medCodeDialog.dismiss();
-//                start(new SearchPatientDelegate());
-//            }
-//        });
-//        btnShare.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                medCodeDialog.dismiss();
-//                if (TextUtils.isEmpty(imgUrlResult)) {
-//                    RxToast.error("开方出了点问题，请重新开具");
-//                } else {
-//                    JHJKWeChat.getInstance().shareImg(2, imgUrlResult);
-//                }
-//            }
-//        });
-//    }
-
     public void postUserData(int postion) {
         LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
         linkedHashMap.put("id",famousDoctorBeans.get(postion).getId());
@@ -161,12 +127,55 @@ public class FamousDoctorRecyclerAdapter extends RecyclerView.Adapter<FamousDoct
                 Logger.e(response);
                 SpecialFamousDoctorBean specialFamousDoctorBean = Json.parseObj(response, SpecialFamousDoctorBean.class);
                 //二维码弹窗
+                initMedCodeDialog(specialFamousDoctorBean);
             }
 
             @Override
             public void onFailure(int code, Exception e) {
                 Logger.e(e.getMessage());
                 ToastUtils.show(e.getMessage());
+            }
+        });
+    }
+    /**
+     * 处方二维码对话框
+     */
+    private void initMedCodeDialog(SpecialFamousDoctorBean specialFamousDoctorBean ) {
+        medCodeDialog = DialogUtil.createDialog(context, R.layout.dialog_med_evo);
+        medCodeDialog.show();
+        View view = DialogUtil.view;
+        final ImageView ivCancel = view.findViewById(R.id.iv_cancel_med_dialog);
+        ImageView ivEvoCode = view.findViewById(R.id.iv_evo_code);
+        Button btnSend = view.findViewById(R.id.btn_send_to_customer);
+        Button btnShare = view.findViewById(R.id._btn_share_med_to_wx);
+        GlideUtil.load(context,specialFamousDoctorBean.getUrl(),ivEvoCode);
+        ivCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medCodeDialog.dismiss();
+            }
+        });
+
+        //发送给患者
+        btnSend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medCodeDialog.dismiss();
+                Intent intent = new Intent(context, SearchPatientActivity.class);
+                intent.putExtra("caseid", specialFamousDoctorBean.getCaseId());
+                context.startActivity(intent);
+            }
+        });
+        //分享至微信
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                medCodeDialog.dismiss();
+                if (TextUtils.isEmpty(specialFamousDoctorBean.getUrl())) {
+                    ToastUtils.show("开方出了点问题，请重新开具");
+                } else {
+                    JHJKWeChat.getInstance().shareImg(2, specialFamousDoctorBean.getUrl());
+                }
             }
         });
     }

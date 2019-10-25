@@ -4,8 +4,53 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/title" />
 
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp75"
+        android:background="#f2f2f2"
+        android:paddingTop="@dimen/dp25">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/dp10"
+            android:paddingRight="@dimen/dp10"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="标题"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/sp19" />
+
+        <RelativeLayout
+            android:id="@+id/rl_title_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_title_sure"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp30"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp10"
+                android:gravity="center"
+                android:paddingLeft="@dimen/dp10"
+                android:paddingRight="@dimen/dp10"
+                android:text="费用统计"
+                android:textColor="#ce503f" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -51,8 +96,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="@dimen/dp20"
+            android:layout_marginBottom="20dp"
             android:paddingLeft="@dimen/dp16"
             android:text="选择需要收取咨询费的患者"
             android:textColor="@color/text_black"
@@ -63,8 +108,8 @@
             android:id="@+id/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="@dimen/dp55"
+            android:layout_marginBottom="20dp"
             android:paddingLeft="@dimen/dp16"
             android:text="当前已选择"
             android:textColor="@color/text_black"
@@ -74,8 +119,8 @@
             android:id="@+id/number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="@dimen/dp55"
+            android:layout_marginBottom="20dp"
             android:layout_toRightOf="@id/text2"
             android:paddingLeft="@dimen/dp5"
             android:text="0"
@@ -86,8 +131,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_marginTop="@dimen/dp55"
+            android:layout_marginBottom="20dp"
             android:layout_toRightOf="@id/number"
             android:paddingLeft="@dimen/dp5"
             android:text="位"

@@ -1,9 +1,9 @@
 package com.jiuhao.jhjk.APP;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 
-import com.jiuhao.jhjk.Receiver.Logger;
 import com.jiuhao.jhjk.utils.SPUtils;
 
 public class Config {
@@ -11,13 +11,23 @@ public class Config {
     //用户id
 //    public static int userId = -1;
     //用户token
-    public static String userToken ="";
+    public static String userToken = "";
 
+    public static double LONGITUDE = 0;
+    public static double LATITUDE = 0;
 
-    public static double LONGITUDE =0;
-    public static double LATITUDE =0;
+    //加载框变量
+    private static ProgressDialog progressDialog;
 
-    public static void quit(Context context){
+    //手机号中间隐藏
+    public static String centerPhone(String phoneNum) {
+        String substring1 = phoneNum.substring(0, 3);
+        String substring2 = phoneNum.substring(7, 11);
+        String substr = substring1 + "****" + substring2;
+        return substr;
+    }
+
+    public static void quit(Context context) {
 
         SPUtils.putInt(context, ConfigKeys.ID, 0);
         SPUtils.putInt(context, ConfigKeys.USERID, 0);
@@ -48,5 +58,23 @@ public class Config {
         //登录状态
         SPUtils.putBoolean(context, ConfigKeys.LOGIN_STATE, false);
         com.orhanobut.logger.Logger.e("登录状态false");
+    }
+
+    public static void showProgressDialog(Context context, String text) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        }
+        progressDialog.setMessage(text);
+        progressDialog.setCancelable(false);//返回键失效
+        progressDialog.show();
+    }
+
+    public static void dismissProgressDialog() {
+        if (progressDialog != null) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        }
     }
 }

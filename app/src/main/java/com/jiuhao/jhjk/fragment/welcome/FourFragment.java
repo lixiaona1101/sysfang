@@ -2,7 +2,7 @@ package com.jiuhao.jhjk.fragment.welcome;
 
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.widget.TextView;
 
@@ -44,6 +44,7 @@ public class FourFragment extends BaseFragment {
             public void onClick(View view) {
                 //进入登录页面
                 startActivity(new Intent(getContext(), RegisterActivity.class));
+                getActivity().finish();
             }
         });
     }

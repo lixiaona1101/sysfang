@@ -6,8 +6,9 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.StrictMode;
-import android.support.multidex.MultiDex;
+import androidx.multidex.MultiDex;
 
+import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -49,10 +50,6 @@ public class App extends Application {
         WeChat.setAppId("wx19105639b52300a5");
         WeChat.setAppSecret("dc76a66a690f04f1309292d6a068bd06");
 
-//        极光推送初始化
-        JPushInterface.setDebugMode(true);
-        JPushInterface.init(this);
-
         //logger 初始化
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
                 .showThreadInfo(false)      //（可选）是否显示线程信息。 默认值为true
@@ -69,6 +66,13 @@ public class App extends Application {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         builder.detectFileUriExposure();
+
+//        极光推送初始化
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
+        String registrationId = JPushInterface.getRegistrationID(getContext());//极光设备号
+        Logger.e("极光设备号："+registrationId);
+        SPUtils.putString(getContext(),ConfigKeys.REGISTRATIONID,registrationId);
 
     }
 

@@ -5,10 +5,10 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -211,7 +211,7 @@ public class TemplateActivity extends BaseActivity implements View.OnClickListen
             public void onClick(View view) {
                 Intent intent=new Intent(getContext(),MainEvoActivity.class);
                 intent.putExtra("orinType",1);
-                startActivity(intent);
+                startActivityForResult(intent,1010);
             }
         });
     }
@@ -220,6 +220,8 @@ public class TemplateActivity extends BaseActivity implements View.OnClickListen
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==100 && resultCode==1000){
+            getTemplateData(page1,1,"");
+        }else if(requestCode==1010 &&  resultCode==2020) {
             getTemplateData(page1,1,"");
         }
     }

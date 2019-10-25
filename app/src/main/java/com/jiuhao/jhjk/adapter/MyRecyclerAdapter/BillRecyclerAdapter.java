@@ -2,8 +2,8 @@ package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,10 +23,12 @@ public class BillRecyclerAdapter extends RecyclerView.Adapter<BillRecyclerAdapte
 
     private Context context;
     private List<BillBean2> billListBeans;
+    private instem instem;
 
-    public BillRecyclerAdapter(Context context, List<BillBean2> billListBeans) {
+    public BillRecyclerAdapter(Context context, List<BillBean2> billListBeans,instem instem) {
         this.context = context;
         this.billListBeans = billListBeans;
+        this.instem=instem;
     }
 
     @NonNull
@@ -50,11 +52,8 @@ public class BillRecyclerAdapter extends RecyclerView.Adapter<BillRecyclerAdapte
         billHolder.redact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //跳转问诊单编辑
-                Intent intent=new Intent(context, CompileBillActivity.class);
-                intent.putExtra("id",billListBeans.get(i).getId());
-                intent.putExtra("title",billListBeans.get(i).getName());
-                context.startActivity(intent);
+                instem.onClick(i);
+
             }
         });
     }
@@ -64,6 +63,9 @@ public class BillRecyclerAdapter extends RecyclerView.Adapter<BillRecyclerAdapte
         return billListBeans.size();
     }
 
+    public interface instem{
+        void onClick(int position);
+    }
 
     class BillHolder extends RecyclerView.ViewHolder {
 

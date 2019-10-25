@@ -3,7 +3,6 @@ package com.jiuhao.jhjk.activity.mine.ConsultingFee;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,10 +12,14 @@ import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.bean.ChoosedBean;
+import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
+import com.jiuhao.jhjk.view.WebviewActivity;
 import com.orhanobut.logger.Logger;
+
+import androidx.annotation.Nullable;
 
 /**
  * 咨询费设置
@@ -115,6 +118,19 @@ public class ConsultingFeeActivity extends BaseActivity {
             }
         });
 
+        //统计
+        tvTitleSure.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String html = ConfigKeys.COUSULTINGFEE + SPUtils.getInt(getContext(), ConfigKeys.USERID, 0);
+                Logger.e(html);
+                Intent intent = new Intent(getContext(), WebviewActivity.class);
+                intent.putExtra("title", "咨询费用统计");
+                intent.putExtra("html", html);
+                startActivity(intent);
+            }
+        });
+
         //设置咨询费
         consultingImg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,11 +148,11 @@ public class ConsultingFeeActivity extends BaseActivity {
             public void onClick(View view) {
                 if (consultingImg.getText().toString().equals("未选择")) {
                     ToastUtils.show("请先设置收费金额");
-                }else{
+                } else {
                     Intent intent = new Intent(getContext(), FeePersonActivity.class);
                     intent.putExtra("title", "选择患者");
-                    intent.putExtra("fee",choosedBean.getPrice());
-                    startActivityForResult(intent,101);
+                    intent.putExtra("fee", choosedBean.getPrice());
+                    startActivityForResult(intent, 101);
                 }
 
             }
@@ -148,7 +164,7 @@ public class ConsultingFeeActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1001 && resultCode == 1002) {
             getData();
-        }else if (requestCode == 101 && resultCode == 102) {
+        } else if (requestCode == 101 && resultCode == 102) {
             getData();
         }
     }

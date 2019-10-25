@@ -17,16 +17,35 @@ public class ReadedBean {
     private int shielding;
     private String customerName;
     private List<DataBean> data;
+    private int caseInConsultation;
+    private int chating;
 
     @Override
     public String toString() {
         return "ReadedBean{" +
                 "picUrl='" + picUrl + '\'' +
                 ", lastCastId=" + lastCastId +
+                ", caseInConsultation=" + caseInConsultation +
+                ", chating=" + chating +
                 ", shielding=" + shielding +
                 ", customerName='" + customerName + '\'' +
                 ", data=" + data +
                 '}';
+    }
+    public int getCaseInConsultation() {
+        return caseInConsultation;
+    }
+
+    public void setCaseInConsultation(int caseInConsultation) {
+        this.caseInConsultation = caseInConsultation;
+    }
+
+    public int getChating() {
+        return chating;
+    }
+
+    public void setChating(int chating) {
+        this.chating = chating;
     }
 
     public String getPicUrl() {

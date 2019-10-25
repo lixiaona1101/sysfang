@@ -32,11 +32,13 @@ public class TemplateBean implements Serializable{
     private String ingredients;
     private String remark;
     private List<String> med;
+    private int flag;//標記是否生成二維碼 0未生成 1已生成
 
     @Override
     public String toString() {
         return "TemplateBean{" +
                 "id=" + id +
+                ", flag=" + flag +
                 ", symptom='" + symptom + '\'' +
                 ", formulationId=" + formulationId +
                 ", formulationName='" + formulationName + '\'' +
@@ -75,6 +77,15 @@ public class TemplateBean implements Serializable{
 
     public void setWorkingType(int workingType) {
         this.workingType = workingType;
+    }
+
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 
 

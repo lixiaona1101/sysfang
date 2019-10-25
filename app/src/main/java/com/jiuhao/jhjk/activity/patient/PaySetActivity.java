@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
-import com.jiuhao.jhjk.Receiver.Logger;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
@@ -108,10 +107,11 @@ public class PaySetActivity extends BaseActivity {
         linkedHashMap.put("customerId",id);
         linkedHashMap.put("priceType",1);
         linkedHashMap.put("price",fee);
-        OkHttpUtils.putJson(ConfigKeys.PRICE, null, new OkHttpUtils.ResultCallback() {
+        OkHttpUtils.postJson(ConfigKeys.PRICE, linkedHashMap, new OkHttpUtils.ResultCallback() {
             @Override
             public void onSuccess(int code, String response) {
                 ToastUtils.show("设置成功！");
+                setResult(221);
                 finish();
             }
 

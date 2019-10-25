@@ -79,7 +79,7 @@ public class AccountManagementActivity extends BaseActivity implements View.OnCl
     @Override
     protected void initEvent() {
         String phoneNum = SPUtils.getString(getContext(), ConfigKeys.PHONE, "11111111111");
-        phoneNumber.setText(centerPhone(phoneNum));
+        phoneNumber.setText(Config.centerPhone(phoneNum));
 
         ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,10 +122,11 @@ public class AccountManagementActivity extends BaseActivity implements View.OnCl
 
     //退出账号
     public void outLogin() {
-        OkHttpUtils.get(ConfigKeys.LOGINOUT, null, new OkHttpUtils.ResultCallback<String>() {
+        String userToken = Config.userToken;
+        Logger.e(userToken);
+        OkHttpUtils.get(ConfigKeys.LOGOUT, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-
                 Config.quit(getContext());
                 ToastUtils.show("退出登录成功！");
                 startActivity(new Intent(getContext(), RegisterActivity.class));
@@ -133,19 +134,12 @@ public class AccountManagementActivity extends BaseActivity implements View.OnCl
 
             @Override
             public void onFailure(int code, Exception e) {
-                Logger.e(e.getMessage());
                 ToastUtils.show(e.getMessage());
             }
         });
     }
 
-    //手机号中间隐藏
-    public String centerPhone(String phoneNum) {
-        String substring1 = phoneNum.substring(0, 3);
-        String substring2 = phoneNum.substring(7, 11);
-        String substr = substring1 + "****" + substring2;
-        return substr;
-    }
+
 
     @Override
     public void onClick(View view) {

@@ -65,7 +65,11 @@ public class RecipientsActivity extends BaseActivity {
             switch (message.what) {
                 case 0:
                     for (int i = 0; i < dcGroupBeans.size(); i++) {
-                        getInData(dcGroupBeans.get(i).getId(), dcGroupBeans.get(i).getCount(), dcGroupBeans.get(i).getName());
+                        lists.add(new ArrayList<>());
+                    }
+
+                    for (int i = 0; i < dcGroupBeans.size(); i++) {
+                        getInData(i,dcGroupBeans.get(i).getId(), dcGroupBeans.get(i).getCount(), dcGroupBeans.get(i).getName());
                     }
                     break;
                 case 1:
@@ -294,14 +298,15 @@ public class RecipientsActivity extends BaseActivity {
         });
     }
 
-    public void getInData(int id, int count, String name) {
+    public void getInData(int i, int id, int count, String name) {
         String url = ConfigKeys.INDEX + "?groupId=" + id;
         OkHttpUtils.get(url, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
-//                Logger.e("分组名称---"+name+"个数"+"---"+count+"---"+response);
+//                Log.e("分组名称---"+name+"个数"+"---"+count+"---"+response);
                 List<IndexBean> indexBeans = Json.parseArr(response, IndexBean.class);
-                lists.add(indexBeans);
+//                lists.add(indexBeans);
+                lists.set(i,indexBeans);
                 for (int i = 0; i < lists.size(); i++) {
                     List<IndexBean> indexBeans1 = lists.get(i);
                     for (int j = 0; j < indexBeans1.size(); j++) {

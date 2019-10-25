@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.KeyboardUtils;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.adapter.base.RecyclerBaseAdapter;
 import com.jiuhao.jhjk.adapter.base.ViewHolder;
@@ -38,6 +39,7 @@ public class QuestionerRcyclerAdapter extends RecyclerBaseAdapter<String> {
     protected void bindDataForView(ViewHolder holder, String s, int position) {
         EditText answer = holder.getView(R.id.answer);
         ImageView delete = holder.getView(R.id.delete);
+        KeyboardUtils.showSoftInput(answer);
         answer.setText(s);
         answer.addTextChangedListener(new TextWatcher() {
             @Override

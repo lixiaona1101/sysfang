@@ -1,6 +1,6 @@
 package com.jiuhao.jhjk.activity.mine.AccountManagement;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,15 +8,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jiuhao.jhjk.APP.Config;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
-import com.jiuhao.jhjk.bean.PassWordBean;
 import com.jiuhao.jhjk.utils.SPUtils;
 import com.jiuhao.jhjk.utils.ToastUtils;
 import com.jiuhao.jhjk.utils.fy.BaseTimerTask;
 import com.jiuhao.jhjk.utils.fy.ITimerListener;
-import com.jiuhao.jhjk.utils.net.Json;
 import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 
@@ -92,7 +91,11 @@ public class UserPassActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void obtainData() {
         phoneNum = SPUtils.getString(getContext(), ConfigKeys.PHONE, "未绑定");
-        oldphone.setText(phoneNum);
+        if (phoneNum.equals("未绑定")) {
+            oldphone.setText(phoneNum);
+        } else {
+            oldphone.setText(Config.centerPhone(phoneNum));
+        }
 
     }
 
@@ -164,8 +167,6 @@ public class UserPassActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            default:
-                break;
             case R.id.btn_save_phone:
                 keepPass();
                 break;
@@ -174,26 +175,34 @@ public class UserPassActivity extends BaseActivity implements View.OnClickListen
 
     //保存
     public void keepPass() {
-
-        String passCode = etSetPhoneCode.getText().toString();
         String newPassWord = etNewPhone.getText().toString();
-        LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
-        linkedHashMap.put("phone", phoneNum);
-        linkedHashMap.put("passCode", passCode);
-        linkedHashMap.put("newPassWord", newPassWord);
+        String passCode = etSetPhoneCode.getText().toString();
+        if (newPassWord != null && !newPassWord.isEmpty()) {
+            if (passCode != null && !passCode.isEmpty()) {
+                LinkedHashMap<String, Object> linkedHashMap = new LinkedHashMap<>();
+                linkedHashMap.put("phone",phoneNum);
+                linkedHashMap.put("passCode",passCode);
+                linkedHashMap.put("newPassWord",newPassWord);
+                Logger.e(phoneNum+"***"+passCode+"***"+newPassWord);
+                OkHttpUtils.putJson(ConfigKeys.UPDATAPASSWORD, linkedHashMap, new OkHttpUtils.ResultCallback<String>() {
+                    @Override
+                    public void onSuccess(int code, String response) {
+                        ToastUtils.show("设置成功！");
+                        finish();
+                    }
 
-        OkHttpUtils.put(ConfigKeys.PASSWORDD, linkedHashMap, new OkHttpUtils.ResultCallback() {
-            @Override
-            public void onSuccess(int code, String response) {
-//                PassWordBean passWordBean = Json.parseObj(response, PassWordBean.class);
-                ToastUtils.show("更改成功");
-                finish();
+                    @Override
+                    public void onFailure(int code, Exception e) {
+                        Logger.e(e.getMessage());
+                        ToastUtils.show(e.getMessage());
+                    }
+                });
+            } else {
+                ToastUtils.show("请输入验证码");
             }
+        } else {
+            ToastUtils.show("请输入登录密码");
+        }
 
-            @Override
-            public void onFailure(int code, Exception e) {
-                ToastUtils.show(e.getMessage());
-            }
-        });
     }
 }

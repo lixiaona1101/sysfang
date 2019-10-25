@@ -1,8 +1,6 @@
 package com.jiuhao.jhjk.adapter.MyRecyclerAdapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +8,12 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.bean.ShopedSelectBean;
+import com.orhanobut.logger.Logger;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by lxn on 2019/9/23.
@@ -41,8 +43,15 @@ public class ShopedSelectRecyclerAdapter extends RecyclerView.Adapter<ShopedSele
 
         String medName = shopedSelectBeans.get(i).getMedName();//药品名称
         String medSpec = shopedSelectBeans.get(i).getMedSpec();//规格
-        String cine = medName + " " + medSpec;
+        double medPrice = shopedSelectBeans.get(i).getMedPrice();//单价
+        String medUnit = shopedSelectBeans.get(i).getMedUnit();//单位
+        int id = shopedSelectBeans.get(i).getId();
+        Logger.e(medName + id);
+        String cine = medName + "  " + medSpec;
         billHolder.medicine_name.setText(cine);
+        String price = medPrice + "/" + medUnit;
+        Logger.e(cine + "***" + price);
+        billHolder.price_text_num.setText(price);
 
         billHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,10 +73,12 @@ public class ShopedSelectRecyclerAdapter extends RecyclerView.Adapter<ShopedSele
     class BillHolder extends RecyclerView.ViewHolder {
 
         public TextView medicine_name;
+        public TextView price_text_num;
 
         public BillHolder(@NonNull View itemView) {
             super(itemView);
             medicine_name = itemView.findViewById(R.id.medicine_name);
+            price_text_num = itemView.findViewById(R.id.price_text_num);
         }
     }
 }

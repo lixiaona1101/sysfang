@@ -49,6 +49,7 @@
             android:layout_height="@dimen/dp60"
             android:background="@null"
             android:hint="输入验证码"
+            android:maxLength="6"
             android:inputType="number"
             android:paddingLeft="@dimen/dp15"
             android:textColor="@color/text_black"
@@ -76,7 +77,6 @@
 
     <Button
         android:id="@+id/btn_save_phone"
-        style="?android:attr/borderlessButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp40"
         android:layout_marginLeft="@dimen/dp33"

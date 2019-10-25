@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:paddingLeft="@dimen/dp5"
+    android:paddingLeft="@dimen/dp25"
     android:paddingRight="@dimen/dp25"
     android:gravity="start"
     android:lines="1"

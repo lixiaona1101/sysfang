@@ -5,14 +5,14 @@
     android:background="#f2f2f2"
     tools:context="com.jiuhao.jhjk.fragment.homepage.FamousDoctorsFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/famous_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/dp10"
         android:visibility="gone">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <LinearLayout
         android:id="@+id/no_lin"

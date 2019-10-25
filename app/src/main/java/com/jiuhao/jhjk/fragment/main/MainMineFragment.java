@@ -21,7 +21,6 @@ import com.jiuhao.jhjk.activity.mine.DoctorCertified.CertifiedPassActivity;
 import com.jiuhao.jhjk.activity.mine.DoctorCertified.MessageCertifiedActivity;
 import com.jiuhao.jhjk.activity.mine.Other.AboutOurActivity;
 import com.jiuhao.jhjk.activity.mine.Other.FillInActivity;
-import com.jiuhao.jhjk.activity.mine.Other.IntegralActivity;
 import com.jiuhao.jhjk.activity.mine.Other.InviteFriendsActivity;
 import com.jiuhao.jhjk.activity.mine.Other.OutCallActivity;
 import com.jiuhao.jhjk.activity.mine.Personage.PersonalDataActivity;
@@ -105,6 +104,7 @@ public class MainMineFragment extends BaseFragment {
     private TextView mAboutOur;
     private LinearLayout mLin4;
     private boolean isWhite = true;
+    private String headUrl;
 
     //医生认证
     private DocAuthBean docAuthBean;
@@ -172,16 +172,14 @@ public class MainMineFragment extends BaseFragment {
     protected void initData() {
         getDocAuth();
         //医生头像
-        String headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
-        Logger.e(headUrl);
-
-        Glide.with(this).applyDefaultRequestOptions(new RequestOptions().circleCrop()).load(headUrl).into(mIvHead);
-//        GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
+        headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
+        GlideUtil.loadCircle(getContext(), headUrl, mIvHead);
         //医生名字
         String name = SPUtils.getString(getContext(), ConfigKeys.NAME, "医生名字");
-        mTvDocNameUser.setText(name);
+        if (name != null) {
+            mTvDocNameUser.setText(name);
+        }
         //认证状态 1,  "未认证"  2, "审核中"   3, "已认证"   4,"审核失败";
-//        int authstat = SPUtils.getInt(getContext(), ConfigKeys.AUTHSTAT, 1);
 
     }
 
@@ -193,9 +191,8 @@ public class MainMineFragment extends BaseFragment {
             public void onSuccess(int code, String response) {
                 Logger.e(response);
                 docAuthBean = Json.parseObj(response, DocAuthBean.class);
-                Logger.e(docAuthBean.getAuthStat()+"");
+                Logger.e(docAuthBean.getAuthStat() + "");
                 handler.sendEmptyMessage(0);
-
             }
 
             @Override
@@ -213,9 +210,9 @@ public class MainMineFragment extends BaseFragment {
         mAuthenticationRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (authStat == 1) {//未认证
+                if (authStat == 1 || authStat == 0) {//未认证
                     Intent intent = new Intent(getContext(), MessageCertifiedActivity.class);
-                    startActivity(intent);
+                    startActivityForResult(intent, 12);
                 } else if (authStat == 3 || authStat == 2 || authStat == 4) {//已认证//审核中//审核失败
                     Intent intent = new Intent(getContext(), CertifiedPassActivity.class);
                     intent.putExtra("bean", docAuthBean);
@@ -240,11 +237,16 @@ public class MainMineFragment extends BaseFragment {
             }
         });
 
-        //积分统计
+        //订单统计
         mNumberStatistics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), IntegralActivity.class));
+                String html = ConfigKeys.ORDERSTATISTICAL + SPUtils.getInt(getContext(), ConfigKeys.USERID, 0);
+                Logger.e(html);
+                Intent intent = new Intent(getContext(), WebviewActivity.class);
+                intent.putExtra("title", "订单统计");
+                intent.putExtra("html", html);
+                startActivity(intent);
             }
         });
 
@@ -268,7 +270,8 @@ public class MainMineFragment extends BaseFragment {
         mPerfect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), PersonalDataActivity.class));
+                Intent intent = new Intent(getContext(), PersonalDataActivity.class);
+                startActivityForResult(intent, 11);
             }
         });
 
@@ -322,4 +325,14 @@ public class MainMineFragment extends BaseFragment {
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 11 && resultCode == 22) {
+            headUrl = SPUtils.getString(getContext(), ConfigKeys.AVATAR, "");
+            Glide.with(this).applyDefaultRequestOptions(new RequestOptions().circleCrop()).load(headUrl).into(mIvHead);
+        } else if (requestCode == 12 && resultCode == 13) {
+            getDocAuth();
+        }
+    }
 }

@@ -3,8 +3,6 @@ package com.jiuhao.jhjk.fragment.main;
 
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 import com.jiuhao.jhjk.APP.ConfigKeys;
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.LastMessageRecyclerAdapter;
-import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.SelectChatListRecyclerAdapter;
+import com.jiuhao.jhjk.adapter.MyRecyclerAdapter.SelectChatListBaseRecyclerAdapter;
 import com.jiuhao.jhjk.bean.LastMessageBean;
 import com.jiuhao.jhjk.bean.SelectChatListBean;
 import com.jiuhao.jhjk.fragment.base.BaseFragment;
@@ -23,6 +21,9 @@ import com.jiuhao.jhjk.utils.net.OkHttpUtils;
 import com.orhanobut.logger.Logger;
 
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 消息主fragment
@@ -59,7 +60,6 @@ public class MainMessageFragment extends BaseFragment {
     private List<LastMessageBean> lastMessageBeans;
     private LastMessageRecyclerAdapter lastMessageRecyclerAdapter;
     private List<SelectChatListBean> selectChatListBeans;
-    private SelectChatListRecyclerAdapter selectChatListRecyclerAdapter;
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
@@ -75,8 +75,9 @@ public class MainMessageFragment extends BaseFragment {
                         sum += notReadNum;
                     }
                     messageNumber.setText("(" + sum + ")");
-                    selectChatListRecyclerAdapter = new SelectChatListRecyclerAdapter(getContext(), selectChatListBeans);
-                    messageRecycler.setAdapter(selectChatListRecyclerAdapter);
+                    SelectChatListBaseRecyclerAdapter selectChatListBaseRecyclerAdapter =
+                            new SelectChatListBaseRecyclerAdapter(getContext(), selectChatListBeans, getFragmentManager());
+                    messageRecycler.setAdapter(selectChatListBaseRecyclerAdapter);
                     break;
             }
             return false;

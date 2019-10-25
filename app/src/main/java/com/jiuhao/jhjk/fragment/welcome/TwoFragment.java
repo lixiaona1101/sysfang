@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.fragment.welcome;
 
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.fragment.base.BaseFragment;

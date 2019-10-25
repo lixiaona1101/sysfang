@@ -1,16 +1,17 @@
 package com.jiuhao.jhjk.activity.HomePage;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -119,9 +120,6 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
 
     private Uri imageuri;
     private String headUri = "";//图片url
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,//写权限
-            Manifest.permission.CAMERA};//照相权限
 
     private File file;//图片文件
     private String symptomText;//病症名称
@@ -143,6 +141,8 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
     private WordInfoRecyclerAdapter wordInfoRecyclerAdapter;//膏方recycleradapter
     private SaveImageBean saveImageBean;//拍方上传 二维码
     private android.app.AlertDialog medCodeDialog;//二维码弹出框
+    //加载框变量
+    private ProgressDialog progressDialog;
     public Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
@@ -180,7 +180,7 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
         ImageView ivEvoCode = view.findViewById(R.id.iv_evo_code);
         Button btnSend = view.findViewById(R.id.btn_send_to_customer);
         Button btnShare = view.findViewById(R.id._btn_share_med_to_wx);
-        Glide.with(getContext()).load(saveImageBean.getUrl()).into(ivEvoCode);
+        GlideUtil.load(getContext(),saveImageBean.getUrl(),ivEvoCode);
         ivCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -279,10 +279,7 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
         tvSelectMedType1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //如果已经添加药品了 再更改剂型会有提示框
-                if (true) {
-                    selectMedTypeDialog();
-                }
+                selectMedTypeDialog();
             }
         });
         //图片
@@ -399,7 +396,7 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
 
     //拍方上传
     public void postData() {
-
+        showProgressDialog("正在上传信息，请耐心等待...");
         Logger.e("*病症名称：" + symptomText);
         Logger.e("*医生id：" + docId);
         Logger.e("*付数：" + plural);
@@ -434,6 +431,7 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onSuccess(int code, String response) {
                 Logger.e(response);
+                dismissProgressDialog();
                 saveImageBean = Json.parseObj(response, SaveImageBean.class);
                 handler.sendEmptyMessage(1);
             }
@@ -441,6 +439,7 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void onFailure(int code, Exception e) {
                 Logger.e(e.getMessage());
+                dismissProgressDialog();
                 ToastUtils.show(e.getMessage());
             }
         }, new ProgressListener() {
@@ -449,6 +448,24 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
 
             }
         });
+    }
+
+    public void showProgressDialog(String text) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        }
+        progressDialog.setMessage(text);
+        progressDialog.setCancelable(false);//返回键失效
+        progressDialog.show();
+    }
+
+    public void dismissProgressDialog() {
+        if (progressDialog != null) {
+            if (progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
+        }
     }
 
     //获取膏方data
@@ -560,7 +577,7 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
 
     //获取剂型data
     public void getSelectFormulationData() {
-        Logger.e("获取药剂token："+Config.userToken);
+        Logger.e("获取药剂token：" + Config.userToken);
         OkHttpUtils.get(ConfigKeys.SELECTFORMULATION, null, new OkHttpUtils.ResultCallback<String>() {
             @Override
             public void onSuccess(int code, String response) {
@@ -641,38 +658,6 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
                 File file = new File(Environment.getExternalStorageDirectory().getPath() + "/" + System.currentTimeMillis() + ".jpg");
                 imageuri = Uri.fromFile(file);
                 PictureUtils.takePicture(CameraEvoActivity.this, imageuri, 4001);
-//                //用于判断SDK版本是否大于23
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//                    //检查权限
-//                    int i = ContextCompat.checkSelfPermission(getContext(), PERMISSIONS_STORAGE[0]);//0表示读写权限
-//                    int i2 = ContextCompat.checkSelfPermission(getContext(), PERMISSIONS_STORAGE[1]);//1表示照相权限
-//                    //如果权限申请失败，则重新申请权限
-//                    if (i == PackageManager.PERMISSION_DENIED && i2 == PackageManager.PERMISSION_DENIED) {//-1没授权
-//                        //重新申请权限函数
-//                        startRequestPermission();
-//                        Logger.e("权限请求成功");
-//                    } else if (i == PackageManager.PERMISSION_GRANTED && i2 == PackageManager.PERMISSION_GRANTED) {//0授权
-//                        PictureUtils.takePicture(CameraEvoActivity.this, imageuri, 4001);
-//                    } else {
-//                        HintTitleDialog myDialog = new HintTitleDialog("需要到系统中设置相关权限");
-//                        myDialog.show(getSupportFragmentManager());
-//                        myDialog.setOnLeftClick(new HintDialog.OnLeftClick() {
-//                            @Override
-//                            public void onLeft() {
-//                                ToastUtils.show("取消");
-//                            }
-//                        });
-//                        myDialog.setOnRightClick(new HintDialog.OnRightClick() {
-//                            @Override
-//                            public void onRight() {
-//                                myDialog.dismiss();
-//                                startAppDetailSetting(CameraEvoActivity.this, 101);
-//                            }
-//                        });
-//                    }
-//                } else {
-//                    PictureUtils.takePicture(CameraEvoActivity.this, imageuri, 4001);
-//                }
             }
 
             @Override
@@ -691,54 +676,6 @@ public class CameraEvoActivity extends BaseActivity implements View.OnClickListe
         }).show(getSupportFragmentManager());
     }
 
-//    /**
-//     * 获取应用详情页面intent
-//     */
-//    public static void startAppDetailSetting(Activity context, int request) {
-//        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-//        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
-//        intent.setData(uri);
-//        context.startActivityForResult(intent, request);
-//    }
-//
-//    //重新申请权限函数
-//    private void startRequestPermission() {
-//        //4001为请求码
-//        ActivityCompat.requestPermissions(this, PERMISSIONS_STORAGE, 4001);
-//    }
-
-//    //请求权限时的回调方法
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        //检查权限
-//        int i = ContextCompat.checkSelfPermission(getContext(), PERMISSIONS_STORAGE[0]);
-//        int i2 = ContextCompat.checkSelfPermission(getContext(), PERMISSIONS_STORAGE[1]);
-//        //如果权限申请失败，则重新申请权限
-//        if (i == PackageManager.PERMISSION_DENIED && i2 == PackageManager.PERMISSION_DENIED) {//-1没授权
-//            //重新申请权限函数
-//            startRequestPermission();
-//            Logger.e("权限请求成功");
-//        } else if (i == PackageManager.PERMISSION_GRANTED && i2 == PackageManager.PERMISSION_GRANTED) {//0授权
-//            PictureUtils.takePicture(CameraEvoActivity.this, imageuri, 4001);
-//        } else {
-//            HintTitleDialog myDialog = new HintTitleDialog("需要到系统中设置相关权限");
-//            myDialog.show(getSupportFragmentManager());
-//            myDialog.setOnLeftClick(new HintDialog.OnLeftClick() {
-//                @Override
-//                public void onLeft() {
-//                    ToastUtils.show("取消");
-//                }
-//            });
-//            myDialog.setOnRightClick(new HintDialog.OnRightClick() {
-//                @Override
-//                public void onRight() {
-//                    myDialog.dismiss();
-//                    startAppDetailSetting(CameraEvoActivity.this, 101);
-//                }
-//            });
-//        }
-//    }
 
     //回传值
     @Override

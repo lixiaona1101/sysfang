@@ -13,7 +13,7 @@
         android:background="@drawable/round_white_10"
         android:orientation="vertical">
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/p_top"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp50"
@@ -23,7 +23,7 @@
 
         <View style="@style/HorizontalLine" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/p_bottom"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp50"
@@ -32,7 +32,7 @@
             android:textSize="@dimen/sp18" />
     </LinearLayout>
 
-    <android.support.v7.widget.AppCompatTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/p_cancel"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp50"

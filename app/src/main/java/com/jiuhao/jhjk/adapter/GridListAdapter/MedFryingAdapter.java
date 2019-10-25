@@ -1,7 +1,7 @@
 package com.jiuhao.jhjk.adapter.GridListAdapter;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.bean.MedFryingBean;
-import com.jiuhao.jhjk.bean.SelectingredientsBean;
-
-import java.util.List;
 
 /**
  * Created by lxn on 2019/9/23.

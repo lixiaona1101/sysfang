@@ -5,9 +5,9 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewCompat;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentManager;
+import androidx.core.view.ViewCompat;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.orhanobut.logger.Logger;
-
-import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AbstractActivity {
 

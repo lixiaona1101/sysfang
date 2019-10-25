@@ -1,7 +1,9 @@
 package com.jiuhao.jhjk.view;
 
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.jiuhao.jhjk.R;
 import com.jiuhao.jhjk.activity.base.BaseActivity;
+import com.orhanobut.logger.Logger;
 
 /**
  * 加载webview
@@ -55,9 +58,8 @@ public class WebviewActivity extends BaseActivity {
         Intent intent = getIntent();
         String title = intent.getStringExtra("title");
         String html = intent.getStringExtra("html");
-
+        Logger.e("webview:" + html);
         tvTitle.setText(title);
-
 
         //一,获取webView的设置选项
         WebSettings settings = webview.getSettings();
@@ -95,7 +97,53 @@ public class WebviewActivity extends BaseActivity {
         //*************必须放在设置属性的最下面*************
         webview.loadUrl(html);
 
+//        //cookie
+//        final CookieManager cookieManager = CookieManager.getInstance();
+//        cookieManager.setAcceptCookie(true);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            cookieManager.setAcceptThirdPartyCookies(webview, true);
+//        }
+//        CookieManager.setAcceptFileSchemeCookies(true);
+//
+//      //不能横向滚动
+//        webview.setHorizontalScrollBarEnabled(false);
+//      //不能纵向滚动
+//        webview.setVerticalScrollBarEnabled(true);
+//      //允许截图
+//        webview.setDrawingCacheEnabled(true);
+//      //屏蔽长按事件
+//        webview.setOnLongClickListener(v -> true);
+//      //初始化WebSettings
+//        final WebSettings settings = webview.getSettings();
+//        settings.setJavaScriptEnabled(true);
+//        final String ua = settings.getUserAgentString();
+//      //隐藏缩放控件
+//        settings.setBuiltInZoomControls(false);
+//        settings.setDisplayZoomControls(false);
+//
+////        //屏幕自适应
+//        settings.setUseWideViewPort(true);//支持任意比例缩放`
+////        //当页面宽度超过WebView显示宽度时，缩小页面适应WebView，默认false
+//        settings.setLoadWithOverviewMode(true);
+//
+//      //禁止缩放
+//        settings.setSupportZoom(true);
+//        settings.setUseWideViewPort(true);
+//        settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+//        settings.setLoadWithOverviewMode(true);
+//      //文件权限
+//        settings.setAllowFileAccess(true);
+//        settings.setAllowFileAccessFromFileURLs(true);
+//        settings.setAllowUniversalAccessFromFileURLs(true);
+//        settings.setAllowContentAccess(true);
+//          //缓存相关
+//        settings.setAppCacheEnabled(true);
+//        settings.setDomStorageEnabled(true);
+//        settings.setDatabaseEnabled(true);
+//        settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+//        webview.loadUrl(html);
     }
+
 
     @Override
     protected void initEvent() {

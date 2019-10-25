@@ -2,7 +2,7 @@ package com.jiuhao.jhjk.adapter.GridListAdapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

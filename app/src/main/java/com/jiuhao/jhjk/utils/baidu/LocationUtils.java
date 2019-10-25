@@ -219,13 +219,13 @@ public class LocationUtils {
             }
             switch (status) {
                 case LocationProvider.AVAILABLE:
-//                    Logger.d("当前GPS状态为可见状态");
+//                    Log.d("当前GPS状态为可见状态");
                     break;
                 case LocationProvider.OUT_OF_SERVICE:
-//                    Logger.d("当前GPS状态为服务区外状态");
+//                    Log.d("当前GPS状态为服务区外状态");
                     break;
                 case LocationProvider.TEMPORARILY_UNAVAILABLE:
-//                    Logger.d("当前GPS状态为暂停服务状态");
+//                    Log.d("当前GPS状态为暂停服务状态");
                     break;
             }
         }
